@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
 
@@ -10,69 +9,24 @@ function DiscordIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-    </svg>
-  );
-}
-
-function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-    </svg>
-  );
-}
-
-function YouTubeIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-    </svg>
-  );
-}
-
-function RedditIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
-    </svg>
-  );
-}
-
-function FacebookIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-    </svg>
-  );
-}
-
-const socialLinks = [
-  { name: "Instagram", href: "https://www.instagram.com/talkshopify", icon: InstagramIcon },
-  { name: "TikTok", href: "https://www.tiktok.com/@talkshopify", icon: TikTokIcon },
-  { name: "YouTube", href: "https://www.youtube.com/@TalkShopify", icon: YouTubeIcon },
-  { name: "Reddit", href: "https://www.reddit.com/r/talkshopify/", icon: RedditIcon },
-  { name: "Discord", href: "https://discord.gg/talk-shop", icon: DiscordIcon },
-  { name: "Facebook", href: "https://www.facebook.com/letstalkshopify", icon: FacebookIcon },
-];
-
 const features = [
   {
+    emoji: "🤝",
     title: "Shopify Collective",
     description: "Connect with Shopify builders, eComm architects, and digital nomads for insights on online business.",
   },
   {
+    emoji: "💡",
     title: "Share Knowledge",
     description: "Share ideas and see them transformed by collective knowledge from experienced merchants and developers.",
   },
   {
+    emoji: "🚀",
     title: "Stay Current",
     description: "Shopify evolves constantly. Stay ahead with strategy, tech updates, and growth discussions.",
   },
   {
+    emoji: "📈",
     title: "Scale Your Store",
     description: "From first sale to enterprise. Learn what works at every stage and unlock growth strategies.",
   },
@@ -88,43 +42,55 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-bg-primary font-sans">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <FadeIn className="max-w-3xl">
-            {/* Badge */}
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-shopify/30 bg-shopify/10 px-4 py-2">
-              <span className="h-2 w-2 rounded-full bg-shopify"></span>
-              <span className="text-sm font-medium text-shopify">
-                Shopify Community
-              </span>
-            </div>
+      <section className="relative pt-56 pb-32 overflow-hidden bg-gradient-to-b from-shopify/5 via-transparent to-transparent">
+        {/* Decorative elements */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-shopify/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-shopify/5 rounded-full blur-3xl" />
 
+        <div className="relative mx-auto max-w-4xl px-6 text-center">
+          <FadeIn>
             {/* Heading */}
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-text-primary sm:text-5xl lg:text-6xl">
+            <h1 className="mb-8 text-5xl font-bold tracking-tight text-text-primary sm:text-6xl lg:text-7xl">
               The Shopify Discord Server
             </h1>
 
             {/* Description */}
-            <p className="mb-10 text-lg leading-relaxed text-text-secondary lg:text-xl">
+            <p className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-text-secondary">
               Connect with merchants, experts, and eCommerce pros to share insights,
               solve problems, and level up your store. Whether you&apos;re just starting
               or scaling to the moon—we&apos;re here as a community to help.
             </p>
 
             {/* CTA */}
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+            <div className="flex flex-col items-center gap-8">
               <a
                 href="https://discord.gg/talk-shop"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 rounded-lg bg-shopify px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-shopify-dark"
+                className="inline-flex items-center justify-center gap-3 rounded-xl bg-shopify px-8 py-4 text-base font-semibold text-white shadow-lg shadow-shopify/25 transition-all hover:bg-shopify-dark hover:shadow-xl hover:shadow-shopify/30 hover:-translate-y-0.5"
               >
                 <DiscordIcon className="h-5 w-5" />
                 Join the Community
               </a>
-              <div className="flex items-center gap-3 text-sm text-text-secondary">
-                <span className="font-semibold text-text-primary">500+ members</span>
-                <span>already joined</span>
+
+              {/* Social proof */}
+              <div className="flex flex-col items-center gap-4">
+                <div className="flex -space-x-3">
+                  {[
+                    "/headshots/danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_0.png",
+                    "/headshots/danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_1.png",
+                    "/headshots/danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_2.png",
+                    "/headshots/danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_0.png",
+                    "/headshots/danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_3.png",
+                  ].map((src, i) => (
+                    <div key={i} className="relative h-12 w-12 rounded-full border-3 border-bg-primary overflow-hidden shadow-md">
+                      <Image src={src} alt="" fill className="object-cover" />
+                    </div>
+                  ))}
+                </div>
+                <p className="text-text-secondary">
+                  <span className="font-semibold text-text-primary">500+ members</span> already joined
+                </p>
               </div>
             </div>
           </FadeIn>
@@ -132,12 +98,12 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="border-t border-border-subtle bg-bg-secondary py-24">
+      <section className="border-t border-border-subtle bg-gradient-to-b from-shopify/5 to-bg-secondary py-24">
         <div className="mx-auto max-w-6xl px-6">
           <FadeIn className="mb-16">
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-shopify">
+            <span className="text-sm font-semibold uppercase tracking-wider text-shopify mb-4 block">
               Why Join Us
-            </h2>
+            </span>
             <p className="text-3xl font-bold text-text-primary lg:text-4xl">
               A community built for Shopify builders
             </p>
@@ -146,7 +112,10 @@ export default function Home() {
           <StaggerContainer className="grid gap-6 sm:grid-cols-2" staggerDelay={0.1}>
             {features.map((feature) => (
               <StaggerItem key={feature.title}>
-                <div className="rounded-xl border border-border-subtle bg-bg-primary p-8 transition-colors hover:border-border-default">
+                <div className="group rounded-xl border-l-4 border-l-shopify border border-border-subtle bg-bg-primary p-8 transition-all hover:shadow-lg hover:shadow-shopify/5 hover:-translate-y-1">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-shopify/10 text-2xl">
+                    {feature.emoji}
+                  </div>
                   <h3 className="mb-3 text-lg font-semibold text-text-primary">
                     {feature.title}
                   </h3>
@@ -160,14 +129,34 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section className="border-t border-border-subtle py-16 bg-bg-primary">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeIn>
+            <div className="grid grid-cols-3 gap-8">
+              {stats.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <div className="text-4xl font-bold text-shopify lg:text-5xl">
+                    {stat.value}
+                  </div>
+                  <div className="mt-2 text-sm font-medium text-text-secondary">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* Experience Section */}
-      <section className="border-t border-border-subtle py-24">
+      <section className="border-t border-border-subtle py-24 bg-bg-secondary">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
             <FadeIn>
-              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-shopify">
+              <span className="text-sm font-semibold uppercase tracking-wider text-shopify mb-4 block">
                 Our Experience
-              </h2>
+              </span>
               <p className="mb-6 text-3xl font-bold text-text-primary lg:text-4xl">
                 20 years in eCommerce
               </p>
@@ -182,32 +171,30 @@ export default function Home() {
                   "Two decades of eCommerce evolution",
                   "Staying ahead of platform changes",
                   "Real insights from real builders",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-text-secondary">
-                    <svg className="h-5 w-5 text-shopify shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    {item}
+                ].map((text) => (
+                  <li key={text} className="flex items-center gap-3 text-text-secondary">
+                    <span className="flex h-2 w-2 rounded-full bg-shopify shrink-0" />
+                    {text}
                   </li>
                 ))}
               </ul>
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <div className="grid grid-cols-3 gap-4">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-xl border border-border-subtle bg-bg-secondary p-6 text-center"
-                  >
-                    <div className="text-3xl font-bold text-shopify lg:text-4xl">
-                      {stat.value}
-                    </div>
-                    <div className="mt-2 text-sm text-text-tertiary">
-                      {stat.label}
-                    </div>
+              <div className="rounded-2xl border border-border-subtle bg-bg-primary p-8 shadow-xl shadow-black/5">
+                <h3 className="text-lg font-semibold text-text-primary mb-6">What members say</h3>
+                <blockquote className="text-text-secondary italic mb-6">
+                  &ldquo;This community has been invaluable for my Shopify journey. Real advice from people who actually run stores.&rdquo;
+                </blockquote>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-shopify/20 flex items-center justify-center text-sm font-semibold text-shopify">
+                    CM
                   </div>
-                ))}
+                  <div>
+                    <div className="font-medium text-text-primary">Community Member</div>
+                    <div className="text-sm text-text-tertiary">Shopify Plus Merchant</div>
+                  </div>
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -228,7 +215,7 @@ export default function Home() {
               href="https://discord.gg/talk-shop"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 rounded-lg bg-white px-8 py-4 text-base font-semibold text-shopify transition-colors hover:bg-gray-100"
+              className="inline-flex items-center justify-center gap-3 rounded-xl bg-white px-8 py-4 text-base font-semibold text-shopify shadow-lg transition-all hover:bg-gray-100 hover:-translate-y-0.5"
             >
               <DiscordIcon className="h-5 w-5" />
               Join Discord
@@ -237,84 +224,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border-subtle bg-bg-primary py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          {/* Social Links */}
-          <FadeIn className="mb-12 text-center">
-            <p className="mb-6 text-sm font-semibold uppercase tracking-wider text-text-tertiary">
-              Follow Us
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-lg border border-border-subtle bg-bg-secondary text-text-secondary transition-colors hover:border-shopify/50 hover:text-shopify"
-                  aria-label={social.name}
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
-            </div>
-          </FadeIn>
-
-          {/* Contact Info */}
-          <div className="mb-12 grid gap-8 border-t border-border-subtle pt-12 text-center md:grid-cols-3 md:text-left">
-            <div>
-              <h4 className="mb-2 text-sm font-semibold text-text-primary">Location</h4>
-              <p className="text-sm text-text-secondary">
-                123 Mars, Crater City, Red Planet
-              </p>
-            </div>
-            <div>
-              <h4 className="mb-2 text-sm font-semibold text-text-primary">Hours</h4>
-              <p className="text-sm text-text-secondary">
-                24/7 — We never sleep
-              </p>
-            </div>
-            <div>
-              <h4 className="mb-2 text-sm font-semibold text-text-primary">Contact</h4>
-              <p className="text-sm text-text-secondary">
-                <a href="mailto:email@example.com" className="hover:text-text-primary">
-                  email@example.com
-                </a>
-              </p>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="flex flex-col items-center justify-between gap-4 border-t border-border-subtle pt-8 md:flex-row">
-            <div className="flex items-center gap-3">
-              <div className="relative h-8 w-8 overflow-hidden rounded-lg">
-                <Image
-                  src="/logo.webp"
-                  alt="Talk Shop"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <span className="text-sm text-text-secondary">Talk Shop</span>
-            </div>
-            <p className="text-xs text-text-tertiary">
-              Not affiliated with Shopify Inc.
-            </p>
-            <div className="flex gap-6">
-              <Link href="/community" className="text-xs text-text-tertiary hover:text-text-primary">
-                Community
-              </Link>
-              <a href="#" className="text-xs text-text-tertiary hover:text-text-primary">
-                Privacy
-              </a>
-              <a href="#" className="text-xs text-text-tertiary hover:text-text-primary">
-                Terms
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
