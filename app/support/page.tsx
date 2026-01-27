@@ -76,7 +76,7 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] overflow-hidden pt-32 pb-20">
+      <section className="relative min-h-[70vh] overflow-hidden pt-32 pb-40">
         {/* Background effects */}
         <div className="absolute inset-0 grid-pattern opacity-50"></div>
         <Floating duration={8} distance={20}>

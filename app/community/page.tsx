@@ -608,16 +608,13 @@ export default function CommunityPage() {
             {topics.map((topic, index) => (
               <StaggerItem
                 key={topic.title}
-                className={index === 0 ? 'lg:col-span-2 lg:row-span-1' : ''}
+                className={`h-full ${index === 0 ? 'lg:col-span-2 lg:row-span-1' : ''}`}
               >
-                <ScaleOnHover scale={1.02}>
+                <ScaleOnHover scale={1.02} className="h-full">
                   <div className="group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 h-full">
                     {/* Gradient background on hover */}
-                    <motion.div
-                      className={`absolute inset-0 bg-gradient-to-br ${topic.gradient}`}
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${topic.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                     />
 
                     {/* Decorative corner */}
