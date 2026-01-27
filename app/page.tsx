@@ -1,5 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import {
+  FadeUp,
+  StaggerContainer,
+  StaggerItem,
+  ScaleOnHover,
+  Magnetic,
+  Floating,
+  SlideIn,
+  BounceIcon,
+} from "@/components/motion";
 
 function DiscordIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -52,14 +66,37 @@ function FacebookIcon({ className = "h-5 w-5" }: { className?: string }) {
 function Marquee({ children, reverse = false }: { children: React.ReactNode; reverse?: boolean }) {
   return (
     <div className="flex overflow-hidden select-none">
-      <div className={`flex shrink-0 items-center gap-8 ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`}>
+      <motion.div
+        className="flex shrink-0 items-center gap-8"
+        animate={{ x: reverse ? ["0%", "-100%"] : ["-100%", "0%"] }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 25,
+            ease: "linear",
+          },
+        }}
+      >
         {children}
         {children}
-      </div>
-      <div className={`flex shrink-0 items-center gap-8 ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`} aria-hidden="true">
+      </motion.div>
+      <motion.div
+        className="flex shrink-0 items-center gap-8"
+        aria-hidden="true"
+        animate={{ x: reverse ? ["0%", "-100%"] : ["-100%", "0%"] }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 25,
+            ease: "linear",
+          },
+        }}
+      >
         {children}
         {children}
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -73,7 +110,50 @@ const socialLinks = [
   { name: "Facebook", href: "https://www.facebook.com/letstalkshopify", icon: FacebookIcon },
 ];
 
+const headshots = [
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_0.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_1.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_2.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_3.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_0.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_1.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_2.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_3.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_0.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_1.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_2.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_3.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_0.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_1.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_2.png",
+  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_3.png",
+];
+
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export default function Home() {
+  const heroRef = useRef(null);
+  const [randomHeadshots, setRandomHeadshots] = useState<string[]>([]);
+
+  useEffect(() => {
+    setRandomHeadshots(shuffleArray(headshots).slice(0, 5));
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const smoothY = useSpring(heroY, { stiffness: 100, damping: 30 });
+
   const features = [
     {
       icon: "{ }",
@@ -107,84 +187,48 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-midnight/80 backdrop-blur-xl">
-        <div className="mx-auto max-w-7xl px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="group flex items-center gap-3">
-              <div className="relative h-10 w-10 overflow-hidden rounded-xl border border-shopify/20 bg-gradient-to-br from-shopify/10 to-transparent transition-all group-hover:border-shopify/40">
-                <Image
-                  src="/logo.webp"
-                  alt="Talk Shop"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              <span className="text-base font-semibold text-white/90 tracking-tight">
-                Talk Shop
-              </span>
-            </Link>
-            <div className="hidden items-center gap-8 md:flex">
-              <a
-                href="#learn-more"
-                className="text-sm font-medium text-gray-400 transition-colors hover:text-white"
-              >
-                Learn More
-              </a>
-              <a
-                href="#about-us"
-                className="text-sm font-medium text-gray-400 transition-colors hover:text-white"
-              >
-                About Us
-              </a>
-              <Link
-                href="/community"
-                className="text-sm font-medium text-gray-400 transition-colors hover:text-white"
-              >
-                Community
-              </Link>
-              <a
-                href="#follow-us"
-                className="text-sm font-medium text-gray-400 transition-colors hover:text-white"
-              >
-                Follow Us
-              </a>
-            </div>
-            <a
-              href="https://discord.gg/talk-shop"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-shopify px-5 py-2.5 text-sm font-semibold text-midnight transition-all hover:bg-lime"
-            >
-              <DiscordIcon className="h-4 w-4" />
-              <span className="hidden sm:inline">Join Discord</span>
-              <span className="sm:hidden">Join</span>
-            </a>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero Section */}
-      <section className="relative min-h-screen overflow-hidden pt-20">
+      <section ref={heroRef} className="relative min-h-screen overflow-hidden pt-20">
         {/* Background effects */}
         <div className="absolute inset-0 grid-pattern opacity-50"></div>
-        <div className="absolute top-20 left-1/4 h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px] animate-pulse-glow"></div>
-        <div className="absolute bottom-0 right-1/4 h-[500px] w-[500px] rounded-full bg-lime/5 blur-[150px] animate-pulse-glow delay-500"></div>
+        <Floating duration={8} distance={20}>
+          <div className="absolute top-20 left-1/4 h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
+        </Floating>
+        <Floating duration={10} distance={15}>
+          <div className="absolute bottom-0 right-1/4 h-[500px] w-[500px] rounded-full bg-lime/5 blur-[150px]"></div>
+        </Floating>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-cyan-500/3 blur-[200px]"></div>
 
         {/* Decorative elements */}
-        <div className="absolute top-40 left-[5%] hidden lg:block">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="absolute top-40 left-[5%] hidden lg:block"
+        >
           <span className="font-mono text-8xl font-bold text-shopify/5 select-none">{"{"}</span>
-        </div>
-        <div className="absolute bottom-40 right-[5%] hidden lg:block">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="absolute bottom-40 right-[5%] hidden lg:block"
+        >
           <span className="font-mono text-8xl font-bold text-shopify/5 select-none">{"}"}</span>
-        </div>
+        </motion.div>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:py-40">
+        <motion.div
+          style={{ y: smoothY }}
+          className="relative mx-auto max-w-7xl px-6 py-24 lg:py-40"
+        >
           <div className="flex flex-col items-center text-center">
             {/* Eyebrow badge */}
-            <div className="animate-slide-up animate-on-load mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+              className="mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
+            >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-shopify opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-shopify"></span>
@@ -192,20 +236,52 @@ export default function Home() {
               <span className="font-mono text-xs font-medium tracking-widest text-shopify uppercase">
                 Shopify Community
               </span>
-            </div>
+            </motion.div>
 
             {/* Main heading */}
-            <h1 className="animate-slide-up animate-on-load delay-100 mb-10 max-w-5xl">
-              <span className="block text-5xl font-bold tracking-tight text-white lg:text-7xl">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
+              className="mb-10 max-w-5xl"
+            >
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="block text-5xl font-bold tracking-tight text-white lg:text-7xl"
+              >
                 The Shopify Discord
-              </span>
+              </motion.span>
               <span className="relative block mt-2">
-                <span className="font-serif text-6xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify lg:text-8xl">
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 200 }}
+                  className="font-serif text-6xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify lg:text-8xl"
+                >
                   Server
-                </span>
+                </motion.span>
                 {/* Underline accent */}
-                <svg className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-48 h-4 lg:w-64" viewBox="0 0 200 16" fill="none" preserveAspectRatio="none">
-                  <path d="M0 8 Q50 2, 100 8 T200 8" stroke="url(#hero-gradient)" strokeWidth="3" fill="none" strokeLinecap="round"/>
+                <motion.svg
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-32 h-3 lg:w-44"
+                  viewBox="0 0 150 12"
+                  fill="none"
+                  preserveAspectRatio="none"
+                >
+                  <motion.path
+                    d="M0 6 Q37 2, 75 6 T150 6"
+                    stroke="url(#hero-gradient)"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+                  />
                   <defs>
                     <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="#95BF47"/>
@@ -213,52 +289,97 @@ export default function Home() {
                       <stop offset="100%" stopColor="#95BF47"/>
                     </linearGradient>
                   </defs>
-                </svg>
+                </motion.svg>
               </span>
-            </h1>
+            </motion.h1>
 
             {/* Subtitle */}
-            <p className="animate-slide-up animate-on-load delay-200 mb-14 max-w-2xl text-lg leading-relaxed text-gray-400 lg:text-xl">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mb-14 max-w-2xl text-lg leading-relaxed text-gray-400 lg:text-xl"
+            >
               Welcome to our Shopify Discord server. Connect with merchants, experts, and eCommerce pros to share insights, solve problems, and level up your store. Whether you&apos;re just starting or scaling to the moon—we&apos;re here as a{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 text-white font-medium">community</span>
-                <span className="absolute bottom-0 left-0 right-0 h-2 bg-shopify/20 -z-0"></span>
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                  className="absolute bottom-0.5 left-0 right-0 h-[3px] bg-shopify/30 -z-0 origin-left rounded-full"
+                />
               </span>{" "}
               to help.
-            </p>
+            </motion.p>
 
             {/* CTA group */}
-            <div className="animate-slide-up animate-on-load delay-300 flex flex-col sm:flex-row items-center gap-6">
-              <a
-                href="https://discord.gg/talk-shop"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-shopify to-shopify-dark px-10 py-5 text-lg font-bold text-midnight transition-all hover:scale-105 hover:shadow-2xl hover:shadow-shopify/25"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-lime to-shopify opacity-0 transition-opacity group-hover:opacity-100"></span>
-                <DiscordIcon className="relative h-6 w-6" />
-                <span className="relative">Join the Community</span>
-                <span className="relative transition-transform group-hover:translate-x-1">→</span>
-              </a>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row items-center gap-6"
+            >
+              <Magnetic>
+                <motion.a
+                  href="https://discord.gg/talk-shop"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-shopify to-shopify-dark px-10 py-5 text-lg font-bold text-midnight transition-all hover:shadow-2xl hover:shadow-shopify/25"
+                >
+                  <motion.span
+                    className="absolute inset-0 bg-gradient-to-r from-lime to-shopify"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <DiscordIcon className="relative h-6 w-6" />
+                  <span className="relative">Join the Community</span>
+                  <motion.span
+                    className="relative"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    →
+                  </motion.span>
+                </motion.a>
+              </Magnetic>
 
-              <div className="flex items-center gap-4">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="flex items-center gap-4"
+              >
                 <div className="flex -space-x-3">
-                  {[...Array(5)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="h-10 w-10 rounded-full border-2 border-midnight bg-gradient-to-br from-carbon to-slate ring-2 ring-shopify/10"
+                  {randomHeadshots.map((src, i) => (
+                    <motion.div
+                      key={src}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.7 + i * 0.1, type: "spring" }}
+                      className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-midnight ring-2 ring-shopify/10"
                       style={{ zIndex: 5 - i }}
-                    ></div>
+                    >
+                      <Image
+                        src={`/headshots/${src}`}
+                        alt="Community member"
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
                   ))}
                 </div>
                 <div className="text-sm text-left">
                   <div className="font-semibold text-white">500+ members</div>
                   <div className="text-gray-500">already joined</div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Angled section divider */}
         <div className="absolute bottom-0 left-0 right-0">
@@ -287,49 +408,71 @@ export default function Home() {
 
         <div className="relative mx-auto max-w-7xl px-6">
           {/* Section header */}
-          <div className="mb-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+          <FadeUp className="mb-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
             <div>
-              <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block"
+              >
                 Why Join Us
-              </span>
+              </motion.span>
               <h2 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
                 Enter the Shopify{" "}
                 <span className="font-serif italic text-lime">Mindstream</span>
               </h2>
             </div>
-            <div className="hidden lg:block">
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="hidden lg:block origin-left"
+            >
               <div className="h-px w-64 bg-gradient-to-r from-shopify/50 to-transparent"></div>
-            </div>
-          </div>
+            </motion.div>
+          </FadeUp>
 
           {/* Feature cards - Bento grid */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" staggerDelay={0.1}>
             {features.map((feature, index) => (
-              <div
+              <StaggerItem
                 key={feature.title}
-                className={`group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:scale-[1.02] ${
-                  index === 0 ? 'lg:col-span-2' : ''
-                } ${index === 3 ? 'lg:col-span-2' : ''}`}
+                className={`${index === 0 ? 'lg:col-span-2' : ''} ${index === 3 ? 'lg:col-span-2' : ''}`}
               >
-                {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}></div>
+                <ScaleOnHover scale={1.02}>
+                  <div
+                    className="group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 h-full"
+                  >
+                    {/* Gradient background on hover */}
+                    <motion.div
+                      className={`absolute inset-0 bg-gradient-to-br ${feature.gradient}`}
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
 
-                <div className="relative">
-                  {/* Icon */}
-                  <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 border border-white/10 font-mono text-2xl text-shopify transition-all duration-300 group-hover:bg-shopify/20 group-hover:border-shopify/30">
-                    {feature.icon}
+                    <div className="relative">
+                      {/* Icon */}
+                      <BounceIcon>
+                        <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 border border-white/10 font-mono text-2xl text-shopify transition-all duration-300 group-hover:bg-shopify/20 group-hover:border-shopify/30">
+                          {feature.icon}
+                        </div>
+                      </BounceIcon>
+
+                      <h3 className="mb-4 text-xl font-bold text-white">
+                        {feature.title}
+                      </h3>
+                      <p className="leading-relaxed text-gray-500 transition-colors group-hover:text-gray-400">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
-
-                  <h3 className="mb-4 text-xl font-bold text-white">
-                    {feature.title}
-                  </h3>
-                  <p className="leading-relaxed text-gray-500 transition-colors group-hover:text-gray-400">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
+                </ScaleOnHover>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -348,14 +491,22 @@ export default function Home() {
       {/* Experience Section */}
       <section className="relative bg-midnight py-32 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30"></div>
-        <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>
+        <Floating duration={12} distance={25}>
+          <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>
+        </Floating>
 
         {/* Decorative vertical line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-shopify/20 to-transparent hidden lg:block"></div>
+        <motion.div
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-shopify/20 to-transparent hidden lg:block origin-top"
+        />
 
         <div className="relative mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-            <div>
+            <SlideIn direction="left" delay={0.1}>
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
                 Our Experience
               </span>
@@ -369,49 +520,64 @@ export default function Home() {
               </p>
 
               {/* Value props */}
-              <div className="space-y-4">
+              <StaggerContainer className="space-y-4" staggerDelay={0.15}>
                 {[
                   { label: "Battle-tested", desc: "Two decades of eCommerce evolution" },
                   { label: "Always adapting", desc: "Staying ahead of platform changes" },
                   { label: "Community-driven", desc: "Real insights from real builders" },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-4 group">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-shopify/20 text-shopify shrink-0 mt-0.5">
-                      <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white">{item.label}</div>
-                      <div className="text-sm text-gray-500">{item.desc}</div>
-                    </div>
-                  </div>
+                  <StaggerItem key={item.label}>
+                    <motion.div
+                      className="flex items-start gap-4 group"
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      <motion.div
+                        className="flex h-6 w-6 items-center justify-center rounded-full bg-shopify/20 text-shopify shrink-0 mt-0.5"
+                        whileHover={{ scale: 1.2, rotate: 360 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </motion.div>
+                      <div>
+                        <div className="font-semibold text-white">{item.label}</div>
+                        <div className="text-sm text-gray-500">{item.desc}</div>
+                      </div>
+                    </motion.div>
+                  </StaggerItem>
                 ))}
-              </div>
-            </div>
+              </StaggerContainer>
+            </SlideIn>
 
             {/* Stats grid */}
-            <div className="relative lg:pl-12">
+            <SlideIn direction="right" delay={0.2} className="relative lg:pl-12">
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-shopify/10 to-transparent blur-xl"></div>
-              <div className="relative grid grid-cols-2 gap-4">
+              <StaggerContainer className="relative grid grid-cols-2 gap-4" staggerDelay={0.1}>
                 {[
                   { value: "20+", label: "Years Experience", color: "text-shopify" },
                   { value: "24/7", label: "Community Active", color: "text-lime" },
                   { value: "500+", label: "Members", color: "text-white" },
                   { value: "∞", label: "Ideas Shared", color: "text-shopify" },
                 ].map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="group rounded-2xl border border-white/10 bg-carbon/50 p-8 backdrop-blur-sm transition-all hover:border-shopify/30 hover:bg-carbon"
-                  >
-                    <div className={`text-4xl font-bold lg:text-5xl ${stat.color} transition-transform group-hover:scale-110`}>
-                      {stat.value}
-                    </div>
-                    <div className="mt-2 text-sm text-gray-500">{stat.label}</div>
-                  </div>
+                  <StaggerItem key={stat.label}>
+                    <ScaleOnHover scale={1.05}>
+                      <div className="group rounded-2xl border border-white/10 bg-carbon/50 p-8 backdrop-blur-sm transition-all hover:border-shopify/30 hover:bg-carbon">
+                        <motion.div
+                          className={`text-4xl font-bold lg:text-5xl ${stat.color}`}
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          {stat.value}
+                        </motion.div>
+                        <div className="mt-2 text-sm text-gray-500">{stat.label}</div>
+                      </div>
+                    </ScaleOnHover>
+                  </StaggerItem>
                 ))}
-              </div>
-            </div>
+              </StaggerContainer>
+            </SlideIn>
           </div>
         </div>
       </section>
@@ -424,43 +590,78 @@ export default function Home() {
         <div className="grain absolute inset-0"></div>
 
         {/* Animated orbs */}
-        <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/10 blur-3xl animate-pulse"></div>
-        <div className="absolute -right-32 top-1/3 h-64 w-64 rounded-full bg-midnight/30 blur-3xl animate-pulse delay-500"></div>
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 h-64 w-[600px] rounded-full bg-lime/20 blur-3xl"></div>
+        <Floating duration={8} distance={30}>
+          <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+        </Floating>
+        <Floating duration={10} distance={20}>
+          <div className="absolute -right-32 top-1/3 h-64 w-64 rounded-full bg-midnight/30 blur-3xl"></div>
+        </Floating>
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute left-1/2 -translate-x-1/2 bottom-0 h-64 w-[600px] rounded-full bg-lime/20 blur-3xl"
+        />
 
         <div className="relative mx-auto max-w-4xl px-6 text-center">
           {/* Badge */}
-          <div className="mb-10 inline-flex items-center gap-3 rounded-full bg-midnight/20 px-6 py-3 backdrop-blur-sm border border-white/10">
-            <DiscordIcon className="h-5 w-5 text-midnight" />
-            <span className="font-mono text-sm font-medium text-midnight tracking-wide">
-              Join on Discord
-            </span>
-          </div>
+          <FadeUp delay={0.1}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="mb-10 inline-flex items-center gap-3 rounded-full bg-midnight/20 px-6 py-3 backdrop-blur-sm border border-white/10"
+            >
+              <DiscordIcon className="h-5 w-5 text-midnight" />
+              <span className="font-mono text-sm font-medium text-midnight tracking-wide">
+                Join on Discord
+              </span>
+            </motion.div>
+          </FadeUp>
 
-          <h2 className="mb-8 text-4xl font-bold tracking-tight text-midnight lg:text-6xl">
-            Join our Shopify{" "}
-            <span className="font-serif italic">Discord Collective</span>
-          </h2>
+          <FadeUp delay={0.2}>
+            <h2 className="mb-8 text-4xl font-bold tracking-tight text-midnight lg:text-6xl">
+              Join our Shopify{" "}
+              <span className="font-serif italic">Discord Collective</span>
+            </h2>
+          </FadeUp>
 
-          <div className="mb-10 space-y-4 text-lg">
-            <p className="font-semibold text-midnight text-2xl">Free to Join</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-midnight/80">
-              <span>A community built to test, learn, and grow</span>
-              <span className="hidden sm:inline text-midnight/40">•</span>
-              <span>We experiment. We adapt. We share.</span>
+          <FadeUp delay={0.3}>
+            <div className="mb-10 space-y-4 text-lg">
+              <p className="font-semibold text-midnight text-2xl">Free to Join</p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-midnight/80">
+                <span>A community built to test, learn, and grow</span>
+                <span className="hidden sm:inline text-midnight/40">•</span>
+                <span>We experiment. We adapt. We share.</span>
+              </div>
             </div>
-          </div>
+          </FadeUp>
 
-          <a
-            href="https://discord.gg/talk-shop"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-midnight px-12 py-6 text-xl font-bold text-white transition-all duration-300 hover:bg-slate hover:scale-105 hover:shadow-2xl"
-          >
-            <DiscordIcon className="h-7 w-7" />
-            <span>Click to Join</span>
-            <span className="transition-transform duration-300 group-hover:translate-x-2">→</span>
-          </a>
+          <FadeUp delay={0.4}>
+            <Magnetic>
+              <motion.a
+                href="https://discord.gg/talk-shop"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-midnight px-12 py-6 text-xl font-bold text-white transition-all duration-300 hover:bg-slate hover:shadow-2xl"
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-slate to-carbon"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <DiscordIcon className="relative h-7 w-7" />
+                <span className="relative">Click to Join</span>
+                <motion.span
+                  className="relative"
+                  whileHover={{ x: 8 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  →
+                </motion.span>
+              </motion.a>
+            </Magnetic>
+          </FadeUp>
         </div>
       </section>
 
@@ -468,61 +669,90 @@ export default function Home() {
       <footer id="follow-us" className="border-t border-white/5 bg-midnight py-16">
         <div className="mx-auto max-w-7xl px-6">
           {/* Social Links - Top */}
-          <div className="mb-12 text-center">
+          <FadeUp className="mb-12 text-center">
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
               Follow Us
             </span>
-            <div className="flex flex-wrap justify-center gap-3">
+            <StaggerContainer className="flex flex-wrap justify-center gap-3" staggerDelay={0.05}>
               {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-carbon/50 transition-all hover:border-shopify/50 hover:bg-shopify/10 hover:scale-110"
-                  aria-label={social.name}
-                >
-                  <social.icon className="h-5 w-5 text-gray-400 transition-colors group-hover:text-shopify" />
-                </a>
+                <StaggerItem key={social.name}>
+                  <motion.a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, rotate: 3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-carbon/50 transition-all hover:border-shopify/50 hover:bg-shopify/10"
+                    aria-label={social.name}
+                  >
+                    <social.icon className="h-7 w-7 text-gray-400 transition-colors group-hover:text-shopify" />
+                  </motion.a>
+                </StaggerItem>
               ))}
-            </div>
-          </div>
+            </StaggerContainer>
+          </FadeUp>
 
-          <div className="border-t border-white/5 pt-12">
-            <div className="grid gap-8 text-center md:grid-cols-3 md:text-left">
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            className="border-t border-white/5 pt-12"
+          >
+            <StaggerContainer className="grid gap-8 text-center md:grid-cols-3 md:text-left" staggerDelay={0.1}>
               {/* Location */}
-              <div>
+              <StaggerItem>
                 <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">Location</h4>
                 <p className="text-gray-400">
                   123 Mars, Crater City, Red Planet
                 </p>
                 <p className="mt-1 text-sm text-gray-600">(WiFi may be spotty)</p>
-              </div>
+              </StaggerItem>
 
               {/* Hours */}
-              <div>
+              <StaggerItem>
                 <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">Hours</h4>
                 <p className="text-gray-400">
                   Who has time for breaks? We&apos;re here 24/7!
                 </p>
-              </div>
+              </StaggerItem>
 
               {/* Contact */}
-              <div>
+              <StaggerItem>
                 <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">Contact</h4>
                 <p className="text-gray-400">
-                  <a href="mailto:email@example.com" className="hover:text-white transition-colors">email@example.com</a>
+                  <motion.a
+                    href="mailto:email@example.com"
+                    whileHover={{ color: "#ffffff" }}
+                    className="transition-colors"
+                  >
+                    email@example.com
+                  </motion.a>
                 </p>
                 <p className="text-gray-400">
-                  <a href="tel:5555555555" className="hover:text-white transition-colors">(555) 555-5555</a>
+                  <motion.a
+                    href="tel:5555555555"
+                    whileHover={{ color: "#ffffff" }}
+                    className="transition-colors"
+                  >
+                    (555) 555-5555
+                  </motion.a>
                 </p>
-              </div>
-            </div>
-          </div>
+              </StaggerItem>
+            </StaggerContainer>
+          </motion.div>
 
-          <div className="mt-12 border-t border-white/5 pt-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="mt-12 border-t border-white/5 pt-8"
+          >
             <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-              <div className="flex items-center gap-3">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center gap-3"
+              >
                 <div className="relative h-8 w-8 overflow-hidden rounded-lg border border-shopify/20">
                   <Image
                     src="/logo.webp"
@@ -532,23 +762,31 @@ export default function Home() {
                   />
                 </div>
                 <span className="text-sm font-medium text-white/60">Talk Shop</span>
-              </div>
+              </motion.div>
               <p className="font-mono text-xs text-gray-600">
                 Built for real builders. Not affiliated with Shopify Inc.
               </p>
               <div className="flex gap-6">
-                <Link href="/community" className="text-xs text-gray-500 hover:text-white transition-colors">
-                  Community
-                </Link>
-                <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors">
-                  Privacy
-                </a>
-                <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors">
-                  Terms
-                </a>
+                {[
+                  { label: "Community", href: "/community" },
+                  { label: "Privacy", href: "#" },
+                  { label: "Terms", href: "#" },
+                ].map((link) => (
+                  <motion.div key={link.label} whileHover={{ y: -2 }}>
+                    {link.href.startsWith("/") ? (
+                      <Link href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors">
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors">
+                        {link.label}
+                      </a>
+                    )}
+                  </motion.div>
+                ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </footer>
     </div>
