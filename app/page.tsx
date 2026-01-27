@@ -302,23 +302,25 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Feature cards - 2x2 grid */}
-          <div className="grid gap-4 md:grid-cols-2">
-            {features.map((feature) => (
+          {/* Feature cards - Bento grid */}
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature, index) => (
               <div
                 key={feature.title}
-                className="group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:scale-[1.02]"
+                className={`group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:scale-[1.02] ${
+                  index === 0 ? 'lg:col-span-2' : ''
+                } ${index === 3 ? 'lg:col-span-2' : ''}`}
               >
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}></div>
 
                 <div className="relative">
                   {/* Icon */}
-                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 border border-white/10 font-mono text-xl text-shopify transition-all duration-300 group-hover:bg-shopify/20 group-hover:border-shopify/30">
+                  <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 border border-white/10 font-mono text-2xl text-shopify transition-all duration-300 group-hover:bg-shopify/20 group-hover:border-shopify/30">
                     {feature.icon}
                   </div>
 
-                  <h3 className="mb-3 text-xl font-bold text-white">
+                  <h3 className="mb-4 text-xl font-bold text-white">
                     {feature.title}
                   </h3>
                   <p className="leading-relaxed text-gray-500 transition-colors group-hover:text-gray-400">
