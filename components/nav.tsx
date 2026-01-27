@@ -38,6 +38,8 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "Community", href: "/community" },
   { label: "Support", href: "/support" },
+  { label: "Experts", href: "/experts" },
+  { label: "Entrepreneurs", href: "/entrepreneurs" },
 ];
 
 export function Nav() {
@@ -54,23 +56,20 @@ export function Nav() {
       >
         <div className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="group flex items-center gap-3">
+            <Link href="/">
               <motion.div
-                whileHover={{ scale: 1.05, rotate: 5 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative h-12 w-12 overflow-hidden rounded-xl border border-shopify/20 bg-gradient-to-br from-shopify/10 to-transparent transition-all group-hover:border-shopify/40"
               >
                 <Image
                   src="/logo.webp"
                   alt="Talk Shop"
-                  fill
-                  className="object-cover"
+                  width={120}
+                  height={48}
+                  className="h-12 w-auto"
                   priority
                 />
               </motion.div>
-              <span className="text-lg font-semibold text-white/90 tracking-tight">
-                Talk Shop
-              </span>
             </Link>
 
             {/* Desktop Navigation */}

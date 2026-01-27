@@ -28,69 +28,6 @@ function DiscordIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-function DiscordPreview() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20, rotate: -2 }}
-      animate={{ opacity: 1, y: 0, rotate: 2 }}
-      transition={{ duration: 0.8, delay: 0.5 }}
-      className="w-72 rounded-xl border border-shopify/20 bg-[#313338] p-4 backdrop-blur-xl shadow-2xl shadow-shopify/5"
-    >
-      <div className="mb-3 flex items-center gap-2">
-        <DiscordIcon className="h-4 w-4 text-[#5865F2]" />
-        <span className="text-xs font-semibold text-white/80"># shopify-dev</span>
-        <span className="ml-auto text-[10px] text-gray-500">3 online</span>
-      </div>
-      <div className="space-y-3 text-xs">
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1 }}
-          className="flex gap-2"
-        >
-          <div className="h-6 w-6 rounded-full bg-shopify/30 shrink-0"></div>
-          <div>
-            <span className="text-shopify font-medium">alex_dev</span>
-            <p className="text-gray-400 mt-0.5">Anyone dealt with webhook retries?</p>
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.4 }}
-          className="flex gap-2"
-        >
-          <div className="h-6 w-6 rounded-full bg-lime/30 shrink-0"></div>
-          <div>
-            <span className="text-lime font-medium">sam_builds</span>
-            <p className="text-gray-400 mt-0.5">Yeah, use idempotency keys!</p>
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.8 }}
-          className="flex items-center gap-2 text-gray-500"
-        >
-          <span className="text-shopify">+3</span>
-          <span>others are typing</span>
-          <span className="animate-pulse">...</span>
-        </motion.div>
-      </div>
-    </motion.div>
-  );
-}
-
-function GlitchText({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <span className={`relative inline-block ${className}`}>
-      <span className="relative z-10">{children}</span>
-      <span className="absolute left-[2px] top-0 -z-10 text-red-500/30" aria-hidden="true">{children}</span>
-      <span className="absolute -left-[2px] top-0 -z-10 text-cyan-500/30" aria-hidden="true">{children}</span>
-    </span>
-  );
-}
-
 const headshots = [
   "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_0.png",
   "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_1.png",
@@ -119,68 +56,69 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-export default function CommunityPage() {
+export default function GrowthPage() {
   const [randomHeadshots, setRandomHeadshots] = useState<string[]>([]);
 
   useEffect(() => {
     setRandomHeadshots(shuffleArray(headshots).slice(0, 5));
   }, []);
+
   const topics = [
     {
-      title: "App Architecture",
+      title: "Conversion Rate Optimization",
       description:
-        "Discuss patterns, best practices, and scalable approaches for Shopify apps.",
-      icon: "{ }",
-      gradient: "from-violet-500/20 to-fuchsia-500/20",
-    },
-    {
-      title: "API & Webhooks",
-      description:
-        "Work through API limitations, webhook handling, and data synchronization challenges.",
-      icon: "< >",
-      gradient: "from-cyan-500/20 to-blue-500/20",
-    },
-    {
-      title: "Theme Development",
-      description:
-        "Share best practices for sections, templates, and performance improvements.",
-      icon: "//",
+        "Learn proven strategies to turn more visitors into customers through testing and iteration.",
+      icon: "%",
       gradient: "from-shopify/20 to-lime/20",
     },
     {
-      title: "Headless & Hydrogen",
+      title: "Customer Retention",
       description:
-        "Compare approaches to data fetching, caching, and storefront performance.",
-      icon: "⚡",
+        "Build loyalty programs, improve repeat purchase rates, and maximize customer lifetime value.",
+      icon: "♻",
+      gradient: "from-cyan-500/20 to-blue-500/20",
+    },
+    {
+      title: "Paid Advertising",
+      description:
+        "Master Meta, Google, and TikTok ads with strategies that actually scale profitably.",
+      icon: "📢",
+      gradient: "from-violet-500/20 to-fuchsia-500/20",
+    },
+    {
+      title: "Email & SMS Marketing",
+      description:
+        "Build flows and campaigns that drive revenue on autopilot with high engagement rates.",
+      icon: "✉",
       gradient: "from-amber-500/20 to-orange-500/20",
     },
     {
-      title: "Performance",
+      title: "Analytics & Data",
       description:
-        "Optimize load times, API calls, and overall app and storefront performance.",
-      icon: "→",
+        "Make data-driven decisions with proper tracking, attribution, and reporting setups.",
+      icon: "📊",
       gradient: "from-emerald-500/20 to-teal-500/20",
     },
     {
-      title: "Billing & Business",
+      title: "Funnel Optimization",
       description:
-        "Navigate billing models, pricing strategies, and platform changes.",
-      icon: "$",
+        "Optimize every step of your customer journey from awareness to purchase and beyond.",
+      icon: "▽",
       gradient: "from-rose-500/20 to-pink-500/20",
     },
   ];
 
   const tags = [
-    "App Developers",
-    "Theme Developers",
-    "API Engineers",
-    "Hydrogen/Headless",
-    "Checkout Extensions",
+    "Revenue Growth",
+    "CRO Experts",
+    "Paid Media",
+    "Email Marketing",
+    "Analytics",
   ];
 
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
-      {/* Hero Section - Dramatic split layout */}
+      {/* Hero Section */}
       <section className="relative min-h-screen overflow-hidden pt-20">
         {/* Animated gradient orbs */}
         <Floating duration={8} distance={20}>
@@ -195,13 +133,6 @@ export default function CommunityPage() {
         <div className="absolute inset-0 grid-pattern opacity-50"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-midnight via-transparent to-midnight"></div>
 
-        {/* Floating Discord preview */}
-        <div className="absolute top-32 right-[8%] hidden lg:block">
-          <Floating duration={6} distance={10}>
-            <DiscordPreview />
-          </Floating>
-        </div>
-
         {/* Decorative brackets */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -209,7 +140,7 @@ export default function CommunityPage() {
           transition={{ delay: 0.8, duration: 0.8 }}
           className="absolute top-40 left-[5%] hidden lg:block"
         >
-          <span className="font-mono text-8xl font-bold text-shopify/5 select-none">{"{"}</span>
+          <span className="font-mono text-8xl font-bold text-shopify/5 select-none">↗</span>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 50 }}
@@ -217,7 +148,7 @@ export default function CommunityPage() {
           transition={{ delay: 0.8, duration: 0.8 }}
           className="absolute bottom-40 right-[5%] hidden lg:block"
         >
-          <span className="font-mono text-8xl font-bold text-shopify/5 select-none">{"}"}</span>
+          <span className="font-mono text-8xl font-bold text-shopify/5 select-none">$</span>
         </motion.div>
 
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:py-40">
@@ -234,11 +165,11 @@ export default function CommunityPage() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-shopify"></span>
               </span>
               <span className="font-mono text-xs font-medium tracking-widest text-shopify uppercase">
-                Developer Community
+                Growth Community
               </span>
             </motion.div>
 
-            {/* Main heading - dramatic typography */}
+            {/* Main heading */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -251,7 +182,7 @@ export default function CommunityPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="block text-6xl font-bold tracking-tight text-white lg:text-8xl"
               >
-                Built for
+                Shopify Growth
               </motion.span>
               <span className="relative inline-block">
                 <motion.span
@@ -260,9 +191,9 @@ export default function CommunityPage() {
                   transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 200 }}
                   className="font-serif text-7xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify lg:text-9xl"
                 >
-                  Real Builders
+                  Community
                 </motion.span>
-                {/* Underline accent - sized to text width */}
+                {/* Underline accent */}
                 <motion.svg
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
@@ -274,7 +205,7 @@ export default function CommunityPage() {
                 >
                   <motion.path
                     d="M0 6 Q75 2, 150 6 T300 6"
-                    stroke="url(#gradient)"
+                    stroke="url(#growth-gradient)"
                     strokeWidth="2"
                     fill="none"
                     strokeLinecap="round"
@@ -283,7 +214,7 @@ export default function CommunityPage() {
                     transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
                   />
                   <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient id="growth-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="#95BF47"/>
                       <stop offset="50%" stopColor="#C4E456"/>
                       <stop offset="100%" stopColor="#95BF47"/>
@@ -293,37 +224,24 @@ export default function CommunityPage() {
               </span>
             </motion.h1>
 
-            {/* Subtitle with highlighted words */}
+            {/* Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mb-14 max-w-2xl text-xl leading-relaxed text-gray-400"
             >
-              The Shopify Dev Community is built for developers who are actively
-              building, shipping, and maintaining products on Shopify. Whether
-              you are working on a public Shopify app, a custom theme, or a
-              headless storefront using Hydrogen, this community exists to
-              support the real work that happens between{" "}
+              A Shopify Growth Community focused on{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 text-white font-medium">documentation</span>
+                <span className="relative z-10 text-white font-medium">real results</span>
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.5, delay: 0.8 }}
                   className="absolute bottom-0.5 left-0 right-0 h-[3px] bg-shopify/30 -z-0 origin-left rounded-full"
                 />
-              </span>{" "}
-              and{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10 text-white font-medium">production</span>
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.5, delay: 1 }}
-                  className="absolute bottom-0.5 left-0 right-0 h-[3px] bg-lime/30 -z-0 origin-left rounded-full"
-                />
-              </span>.
+              </span>
+              . Built for merchants who are focused on increasing revenue, improving conversion rates, and scaling their Shopify businesses.
             </motion.p>
 
             {/* CTA group */}
@@ -386,8 +304,8 @@ export default function CommunityPage() {
                   ))}
                 </div>
                 <div className="text-sm">
-                  <div className="font-semibold text-white">500+ devs</div>
-                  <div className="text-gray-500">shipping on Shopify</div>
+                  <div className="font-semibold text-white">500+ merchants</div>
+                  <div className="text-gray-500">scaling on Shopify</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -402,13 +320,13 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* Problem Section - Bold editorial style */}
+      {/* What Makes Us Different Section */}
       <section className="relative bg-slate py-32">
         <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-12 lg:items-center">
-            {/* Left column - Big quote mark */}
+            {/* Left column - Quote mark */}
             <SlideIn direction="left" className="lg:col-span-4 relative">
               <motion.span
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -421,7 +339,7 @@ export default function CommunityPage() {
               </motion.span>
               <div className="relative">
                 <div className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4">
-                  The Problem
+                  Beyond Surface-Level
                 </div>
                 <motion.div
                   initial={{ scaleX: 0 }}
@@ -436,147 +354,22 @@ export default function CommunityPage() {
             {/* Right column - Content */}
             <SlideIn direction="right" delay={0.2} className="lg:col-span-8">
               <p className="text-2xl leading-relaxed text-gray-300 lg:text-3xl font-light">
-                Many Shopify developers struggle to find a place where technical
-                conversations can happen{" "}
-                <span className="font-serif italic text-white font-normal">naturally</span>.
-                Forums tend to be slow, fragmented, and overly generic. This
-                community fills that gap by creating a space where Shopify
-                developers can talk through real problems, share implementation
-                details, and learn from others building at the same level.
+                Rather than surface-level tips, this community centers on strategies that have been{" "}
+                <span className="font-serif italic text-white font-normal">tested and refined</span>{" "}
+                through real-world experimentation. We focus on what actually moves the needle for Shopify merchants at every stage of growth.
               </p>
             </SlideIn>
           </div>
         </div>
       </section>
 
-      {/* Who This Is For - Asymmetric layout */}
-      <section className="relative bg-midnight py-32 overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-30"></div>
-
-        {/* Decorative vertical line */}
-        <motion.div
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-shopify/20 to-transparent origin-top"
-        />
-
-        <div className="relative mx-auto max-w-7xl px-6">
-          <div className="grid gap-20 lg:grid-cols-2 lg:items-center">
-            {/* Left: Stacked visual placeholder */}
-            <SlideIn direction="left" className="relative order-2 lg:order-1">
-              {/* Background glow */}
-              <div className="absolute -inset-10 bg-gradient-to-br from-shopify/10 via-transparent to-lime/10 blur-3xl"></div>
-
-              {/* Stacked cards effect */}
-              <div className="relative">
-                <motion.div
-                  initial={{ opacity: 0, x: -20, y: 20 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl bg-shopify/5 border border-shopify/10"
-                />
-                <motion.div
-                  initial={{ opacity: 0, x: -10, y: 10 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                  className="absolute -bottom-2 -right-2 w-full h-full rounded-2xl bg-shopify/10 border border-shopify/20"
-                />
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                  className="relative aspect-square rounded-2xl border border-white/10 bg-gradient-to-br from-carbon to-slate overflow-hidden"
-                >
-                  {/* Code rain effect */}
-                  <div className="absolute inset-0 flex justify-around opacity-20">
-                    {[...Array(8)].map((_, i) => (
-                      <div key={i} className="font-mono text-xs text-shopify/60 writing-mode-vertical animate-marquee" style={{ animationDuration: `${15 + i * 3}s`, animationDelay: `${i * 0.5}s` }}>
-                        {"0123456789ABCDEF".repeat(10).split("").join(" ")}
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Center content */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center p-8">
-                      <GlitchText className="font-mono text-7xl font-bold text-shopify/30">
-                        {"</>"}
-                      </GlitchText>
-                      <div className="mt-4 font-mono text-xs text-gray-600 tracking-widest">
-                        [IMAGE PLACEHOLDER]
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Corner brackets */}
-                  <div className="absolute top-6 left-6 h-12 w-12 border-l-2 border-t-2 border-shopify/40"></div>
-                  <div className="absolute bottom-6 right-6 h-12 w-12 border-r-2 border-b-2 border-lime/40"></div>
-                </motion.div>
-              </div>
-            </SlideIn>
-
-            {/* Right: Content */}
-            <SlideIn direction="right" delay={0.2} className="order-1 lg:order-2 lg:pl-12">
-              <div className="mb-8">
-                <span className="inline-block font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4">
-                  Who It&apos;s For
-                </span>
-                <h2 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
-                  Who This Community{" "}
-                  <span className="block font-serif italic text-lime mt-2">Is For</span>
-                </h2>
-              </div>
-
-              <div className="space-y-6 text-lg leading-relaxed text-gray-400">
-                <p>
-                  This community is designed for Shopify app developers, theme
-                  developers, and engineers working with Shopify APIs. It also
-                  welcomes developers building headless Shopify storefronts,
-                  experimenting with Hydrogen, or extending checkout and admin
-                  functionality.
-                </p>
-                <p>
-                  If you spend your time writing code, debugging issues,
-                  reviewing pull requests, or thinking about architecture
-                  decisions on Shopify,{" "}
-                  <span className="text-white font-medium">
-                    this community is designed for you
-                  </span>
-                  .
-                </p>
-              </div>
-
-              {/* Tags with staggered animation */}
-              <StaggerContainer className="mt-12 flex flex-wrap gap-3" staggerDelay={0.08}>
-                {tags.map((tag) => (
-                  <StaggerItem key={tag}>
-                    <motion.span
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      className="group relative cursor-default overflow-hidden rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-gray-300 transition-all duration-300 hover:border-shopify/50 hover:text-white hover:bg-shopify/10 inline-block"
-                    >
-                      <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-shopify/20 to-transparent transition-transform duration-500 group-hover:translate-x-full"></span>
-                      <span className="relative">{tag}</span>
-                    </motion.span>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </SlideIn>
-          </div>
-        </div>
-      </section>
-
-      {/* What Developers Talk About - Bento grid with gradients */}
+      {/* Growth Topics Section */}
       <section className="relative bg-slate py-32">
         {/* Top gradient fade */}
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-midnight to-transparent"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate to-transparent"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
-          {/* Section header with decorative line */}
+          {/* Section header */}
           <FadeUp className="mb-20 flex items-end justify-between">
             <div>
               <motion.span
@@ -585,11 +378,11 @@ export default function CommunityPage() {
                 viewport={{ once: true }}
                 className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block"
               >
-                Inside the Community
+                Growth Topics
               </motion.span>
               <h2 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
-                What Developers{" "}
-                <span className="font-serif italic text-lime">Discuss</span>
+                Topics That{" "}
+                <span className="font-serif italic text-lime">Matter</span>
               </h2>
             </div>
             <motion.div
@@ -656,14 +449,125 @@ export default function CommunityPage() {
           {/* Bottom quote */}
           <FadeUp delay={0.3} className="mt-16 text-center">
             <p className="inline-block font-serif text-xl italic text-gray-500 px-8 py-4 border-l-2 border-r-2 border-shopify/30">
-              These are not theoretical discussions, but practical conversations
-              driven by <span className="text-shopify not-italic font-sans font-medium">real-world projects</span>.
+              These discussions help merchants understand what drives growth at{" "}
+              <span className="text-shopify not-italic font-sans font-medium">different stages</span>{" "}
+              of a Shopify business.
             </p>
           </FadeUp>
         </div>
       </section>
 
-      {/* Why Real-Time Communities Matter - Split screen */}
+      {/* Shared Learning Section */}
+      <section className="relative bg-midnight py-32 overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-30"></div>
+
+        {/* Decorative vertical line */}
+        <motion.div
+          initial={{ scaleY: 0 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-shopify/20 to-transparent origin-top"
+        />
+
+        <div className="relative mx-auto max-w-7xl px-6">
+          <div className="grid gap-20 lg:grid-cols-2 lg:items-center">
+            {/* Left: Visual */}
+            <SlideIn direction="left" className="relative order-2 lg:order-1">
+              {/* Background glow */}
+              <div className="absolute -inset-10 bg-gradient-to-br from-shopify/10 via-transparent to-lime/10 blur-3xl"></div>
+
+              {/* Stacked cards effect */}
+              <div className="relative">
+                <motion.div
+                  initial={{ opacity: 0, x: -20, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl bg-shopify/5 border border-shopify/10"
+                />
+                <motion.div
+                  initial={{ opacity: 0, x: -10, y: 10 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="absolute -bottom-2 -right-2 w-full h-full rounded-2xl bg-shopify/10 border border-shopify/20"
+                />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="relative aspect-square rounded-2xl border border-white/10 bg-gradient-to-br from-carbon to-slate overflow-hidden"
+                >
+                  {/* Center content */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center p-8">
+                      <motion.div
+                        animate={{ scale: [1, 1.1, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        className="font-mono text-7xl font-bold text-shopify/30"
+                      >
+                        📈
+                      </motion.div>
+                      <div className="mt-4 font-mono text-xs text-gray-600 tracking-widest">
+                        SHARED EXPERIMENTS
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Corner brackets */}
+                  <div className="absolute top-6 left-6 h-12 w-12 border-l-2 border-t-2 border-shopify/40"></div>
+                  <div className="absolute bottom-6 right-6 h-12 w-12 border-r-2 border-b-2 border-lime/40"></div>
+                </motion.div>
+              </div>
+            </SlideIn>
+
+            {/* Right: Content */}
+            <SlideIn direction="right" delay={0.2} className="order-1 lg:order-2 lg:pl-12">
+              <div className="mb-8">
+                <span className="inline-block font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4">
+                  Learn Faster
+                </span>
+                <h2 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
+                  Shared Experiments,{" "}
+                  <span className="block font-serif italic text-lime mt-2">Faster Learning</span>
+                </h2>
+              </div>
+
+              <div className="space-y-6 text-lg leading-relaxed text-gray-400">
+                <p>
+                  By sharing experiments, results, and lessons learned, merchants can learn faster and avoid repeating mistakes others have already made.
+                </p>
+                <p>
+                  This collaborative approach to growth helps businesses{" "}
+                  <span className="text-white font-medium">
+                    scale more sustainably
+                  </span>
+                  .
+                </p>
+              </div>
+
+              {/* Tags */}
+              <StaggerContainer className="mt-12 flex flex-wrap gap-3" staggerDelay={0.08}>
+                {tags.map((tag) => (
+                  <StaggerItem key={tag}>
+                    <motion.span
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      className="group relative cursor-default overflow-hidden rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-gray-300 transition-all duration-300 hover:border-shopify/50 hover:text-white hover:bg-shopify/10 inline-block"
+                    >
+                      <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-shopify/20 to-transparent transition-transform duration-500 group-hover:translate-x-full"></span>
+                      <span className="relative">{tag}</span>
+                    </motion.span>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </SlideIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Who It's For Section */}
       <section className="relative overflow-hidden bg-midnight">
         {/* Left half background */}
         <div className="absolute left-0 top-0 bottom-0 w-1/2 bg-gradient-to-br from-shopify/5 to-transparent"></div>
@@ -675,27 +579,21 @@ export default function CommunityPage() {
             {/* Left column - Content */}
             <SlideIn direction="left" className="relative px-6 py-32 lg:pr-16">
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
-                Why Real-Time
+                Who It&apos;s For
               </span>
               <h2 className="mb-10 text-4xl font-bold tracking-tight text-white lg:text-5xl">
-                Why Real-Time{" "}
-                <span className="block font-serif italic text-lime mt-2">Matters</span>
+                Built for Merchants{" "}
+                <span className="block font-serif italic text-lime mt-2">Serious About Growth</span>
               </h2>
 
               <div className="space-y-6 text-lg leading-relaxed text-gray-400">
                 <p>
-                  Development work often requires quick feedback and iteration.
-                  Waiting days for a forum response can slow down progress and
-                  introduce unnecessary friction. A real-time Shopify developer
-                  community allows builders to ask questions when they are
-                  blocked and get answers from others who have already solved
-                  similar problems.
+                  This community is best suited for merchants who are actively testing, measuring, and refining their growth strategies.
                 </p>
                 <p>
-                  This kind of collaboration helps developers move faster, avoid
-                  common mistakes, and{" "}
+                  It provides a space to discuss advanced topics with others who understand{" "}
                   <span className="text-white font-medium">
-                    build better products on Shopify
+                    the realities of scaling
                   </span>
                   .
                 </p>
@@ -704,9 +602,9 @@ export default function CommunityPage() {
               {/* Value props */}
               <StaggerContainer className="mt-14 grid gap-6" staggerDelay={0.15}>
                 {[
-                  { label: "Fast", desc: "Real-time answers when you're blocked", icon: "⚡" },
-                  { label: "Real", desc: "Production problems, not theoretical", icon: "🎯" },
-                  { label: "Peer", desc: "Developer to developer expertise", icon: "👥" },
+                  { label: "Data-Driven", desc: "Decisions backed by real metrics", icon: "📊" },
+                  { label: "Test & Learn", desc: "Experiment-based growth approach", icon: "🧪" },
+                  { label: "Scale Ready", desc: "Strategies for every growth stage", icon: "🚀" },
                 ].map((item) => (
                   <StaggerItem key={item.label}>
                     <motion.div
@@ -755,14 +653,14 @@ export default function CommunityPage() {
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center">
                         <motion.div
-                          animate={{ x: [0, 10, 0] }}
+                          animate={{ y: [0, -10, 0] }}
                           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                           className="font-mono text-6xl text-lime/20"
                         >
-                          →
+                          ↗
                         </motion.div>
                         <div className="mt-4 font-mono text-xs text-gray-600 tracking-widest">
-                          [IMAGE PLACEHOLDER]
+                          GROWTH MINDSET
                         </div>
                       </div>
                     </div>
@@ -781,7 +679,7 @@ export default function CommunityPage() {
                     whileHover={{ scale: 1.1 }}
                     className="absolute -top-4 -right-4 rounded-full bg-shopify px-4 py-2 text-xs font-bold text-midnight shadow-lg"
                   >
-                    24/7 Active
+                    Results-Focused
                   </motion.div>
                   <motion.div
                     initial={{ opacity: 0, y: -20 }}
@@ -791,7 +689,7 @@ export default function CommunityPage() {
                     whileHover={{ scale: 1.1 }}
                     className="absolute -bottom-4 -left-4 rounded-full bg-lime px-4 py-2 text-xs font-bold text-midnight shadow-lg"
                   >
-                    500+ Devs
+                    500+ Merchants
                   </motion.div>
                 </div>
               </div>
@@ -800,7 +698,7 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      {/* CTA Section - Maximum impact */}
+      {/* CTA Section */}
       <section className="relative overflow-hidden py-32">
         {/* Multi-layer background */}
         <div className="absolute inset-0 bg-gradient-to-br from-shopify via-shopify-dark to-shopify"></div>
@@ -837,23 +735,19 @@ export default function CommunityPage() {
           <FadeUp delay={0.2}>
             <h2 className="mb-8 text-5xl font-bold tracking-tight text-midnight lg:text-7xl">
               Join the Shopify{" "}
-              <span className="font-serif italic">Dev Community</span>
+              <span className="font-serif italic">Growth Community</span>
             </h2>
           </FadeUp>
 
           <FadeUp delay={0.3}>
             <p className="mx-auto mb-6 max-w-2xl text-xl leading-relaxed text-midnight/80">
-              If you are building on Shopify and want to learn alongside other
-              developers, the Shopify Dev Community provides a collaborative
-              environment focused on practical problem-solving and shared
-              learning.
+              If you are focused on scaling your Shopify store and want to learn from others doing the same, the Growth Community offers a practical, collaborative environment.
             </p>
           </FadeUp>
 
           <FadeUp delay={0.4}>
             <p className="mx-auto mb-14 max-w-2xl text-lg leading-relaxed text-midnight/70">
-              Connect with other Shopify developers, share knowledge, and improve
-              how you build on the platform.
+              Join on Discord to participate in growth-focused discussions and shared learning.
             </p>
           </FadeUp>
 
