@@ -96,6 +96,13 @@ export default function Home() {
         "Shopify evolves. Trends shift. Yesterday's success can become obsolete. We adapt—strategy, tech, and growth.",
       gradient: "from-shopify/20 to-lime/20",
     },
+    {
+      icon: "∞",
+      title: "Scale Without Limits",
+      description:
+        "From first sale to enterprise. Learn what works at every stage and unlock growth strategies that compound.",
+      gradient: "from-cyan-500/20 to-blue-500/20",
+    },
   ];
 
   return (
@@ -295,38 +302,28 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Feature cards - Bento grid */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => (
+          {/* Feature cards - 2x2 grid */}
+          <div className="grid gap-4 md:grid-cols-2">
+            {features.map((feature) => (
               <div
                 key={feature.title}
-                className={`group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:scale-[1.02] ${
-                  index === 0 ? 'lg:col-span-2' : ''
-                }`}
+                className="group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:scale-[1.02]"
               >
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}></div>
 
-                {/* Decorative corner */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/5 to-transparent rounded-bl-[100px]"></div>
-
                 <div className="relative">
                   {/* Icon */}
-                  <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 border border-white/10 font-mono text-2xl text-shopify transition-all duration-300 group-hover:bg-shopify/20 group-hover:border-shopify/30 group-hover:scale-110">
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 border border-white/10 font-mono text-xl text-shopify transition-all duration-300 group-hover:bg-shopify/20 group-hover:border-shopify/30">
                     {feature.icon}
                   </div>
 
-                  <h3 className="mb-4 text-xl font-bold text-white">
+                  <h3 className="mb-3 text-xl font-bold text-white">
                     {feature.title}
                   </h3>
                   <p className="leading-relaxed text-gray-500 transition-colors group-hover:text-gray-400">
                     {feature.description}
                   </p>
-                </div>
-
-                {/* Hover arrow indicator */}
-                <div className="absolute bottom-6 right-6 opacity-0 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                  <span className="text-shopify text-xl">→</span>
                 </div>
               </div>
             ))}
@@ -465,60 +462,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Follow Us Section */}
-      <section id="follow-us" className="relative bg-slate py-20">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
-            Stay Connected
-          </span>
-          <h3 className="mb-10 text-3xl font-bold text-white">Follow our journey</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-carbon/50 transition-all hover:border-shopify/50 hover:bg-shopify/10 hover:scale-110"
-                aria-label={social.name}
-              >
-                <social.icon className="h-6 w-6 text-gray-400 transition-colors group-hover:text-shopify" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="border-t border-white/5 bg-midnight py-16">
+      <footer id="follow-us" className="border-t border-white/5 bg-midnight py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-12 text-center md:grid-cols-3 md:text-left">
-            {/* Location */}
-            <div>
-              <h4 className="mb-4 text-lg font-semibold text-white">Location</h4>
-              <p className="text-gray-400">
-                123 Mars, Crater City, Red Planet
-              </p>
-              <p className="mt-1 text-sm text-gray-600">(WiFi may be spotty)</p>
+          {/* Social Links - Top */}
+          <div className="mb-12 text-center">
+            <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
+              Follow Us
+            </span>
+            <div className="flex flex-wrap justify-center gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-carbon/50 transition-all hover:border-shopify/50 hover:bg-shopify/10 hover:scale-110"
+                  aria-label={social.name}
+                >
+                  <social.icon className="h-5 w-5 text-gray-400 transition-colors group-hover:text-shopify" />
+                </a>
+              ))}
             </div>
+          </div>
 
-            {/* Hours */}
-            <div>
-              <h4 className="mb-4 text-lg font-semibold text-white">Hours</h4>
-              <p className="text-gray-400">
-                Who has time for breaks? We&apos;re here 24/7!
-              </p>
-            </div>
+          <div className="border-t border-white/5 pt-12">
+            <div className="grid gap-8 text-center md:grid-cols-3 md:text-left">
+              {/* Location */}
+              <div>
+                <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">Location</h4>
+                <p className="text-gray-400">
+                  123 Mars, Crater City, Red Planet
+                </p>
+                <p className="mt-1 text-sm text-gray-600">(WiFi may be spotty)</p>
+              </div>
 
-            {/* Contact */}
-            <div>
-              <h4 className="mb-4 text-lg font-semibold text-white">Contact</h4>
-              <p className="text-gray-400">
-                <a href="mailto:email@example.com" className="hover:text-white transition-colors">email@example.com</a>
-              </p>
-              <p className="text-gray-400">
-                <a href="tel:5555555555" className="hover:text-white transition-colors">(555) 555-5555</a>
-              </p>
+              {/* Hours */}
+              <div>
+                <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">Hours</h4>
+                <p className="text-gray-400">
+                  Who has time for breaks? We&apos;re here 24/7!
+                </p>
+              </div>
+
+              {/* Contact */}
+              <div>
+                <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">Contact</h4>
+                <p className="text-gray-400">
+                  <a href="mailto:email@example.com" className="hover:text-white transition-colors">email@example.com</a>
+                </p>
+                <p className="text-gray-400">
+                  <a href="tel:5555555555" className="hover:text-white transition-colors">(555) 555-5555</a>
+                </p>
+              </div>
             </div>
           </div>
 
