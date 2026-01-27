@@ -3,8 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { Magnetic } from "@/components/motion";
 
 function DiscordIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -17,28 +15,19 @@ function DiscordIcon({ className = "h-5 w-5" }: { className?: string }) {
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Community", href: "/community" },
-  { label: "About", href: "/#about-us" },
-  { label: "Follow Us", href: "/#follow-us" },
+  { label: "Support", href: "/support" },
 ];
 
 export function Nav() {
   const pathname = usePathname();
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-midnight/80 backdrop-blur-xl"
-    >
-      <div className="mx-auto max-w-7xl px-6 py-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border-subtle bg-bg-primary/95 backdrop-blur-sm">
+      <div className="mx-auto max-w-6xl px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="group flex items-center gap-3">
-            <motion.div
-              whileHover={{ scale: 1.05, rotate: 5 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative h-12 w-12 overflow-hidden rounded-xl border border-shopify/20 bg-gradient-to-br from-shopify/10 to-transparent transition-all group-hover:border-shopify/40"
-            >
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3">
+            <div className="relative h-10 w-10 overflow-hidden rounded-lg">
               <Image
                 src="/logo.webp"
                 alt="Talk Shop"
@@ -46,56 +35,47 @@ export function Nav() {
                 className="object-cover"
                 priority
               />
-            </motion.div>
-            <span className="text-lg font-semibold text-white/90 tracking-tight">
+            </div>
+            <span className="text-base font-semibold text-text-primary">
               Talk Shop
             </span>
           </Link>
+
+          {/* Navigation links */}
           <div className="hidden items-center gap-8 md:flex">
-            {navLinks.map((item, i) => {
+            {navLinks.map((item) => {
               const isActive = pathname === item.href ||
                 (item.href !== "/" && pathname.startsWith(item.href.split("#")[0]));
 
               return (
-                <motion.div
+                <Link
                   key={item.label}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * i, duration: 0.4 }}
+                  href={item.href}
+                  className={`text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-shopify"
+                      : "text-text-secondary hover:text-text-primary"
+                  }`}
                 >
-                  <Link
-                    href={item.href}
-                    className={`text-sm font-medium transition-colors relative group ${
-                      isActive ? "text-shopify" : "text-gray-400 hover:text-white"
-                    }`}
-                  >
-                    {item.label}
-                    <span
-                      className={`absolute -bottom-1 left-0 h-0.5 bg-shopify transition-all ${
-                        isActive ? "w-full" : "w-0 group-hover:w-full"
-                      }`}
-                    />
-                  </Link>
-                </motion.div>
+                  {item.label}
+                </Link>
               );
             })}
           </div>
-          <Magnetic>
-            <motion.a
-              href="https://discord.gg/talk-shop"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-shopify px-5 py-2.5 text-sm font-semibold text-midnight transition-all hover:bg-lime"
-            >
-              <DiscordIcon className="h-4 w-4" />
-              <span className="hidden sm:inline">Join Discord</span>
-              <span className="sm:hidden">Join</span>
-            </motion.a>
-          </Magnetic>
+
+          {/* CTA Button */}
+          <a
+            href="https://discord.gg/talk-shop"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg bg-shopify px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-shopify-dark"
+          >
+            <DiscordIcon className="h-4 w-4" />
+            <span className="hidden sm:inline">Join Discord</span>
+            <span className="sm:hidden">Join</span>
+          </a>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }

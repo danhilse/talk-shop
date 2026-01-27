@@ -1,19 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import {
-  FadeUp,
-  StaggerContainer,
-  StaggerItem,
-  ScaleOnHover,
-  Magnetic,
-  Floating,
-  SlideIn,
-  BounceIcon,
-} from "@/components/motion";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/motion";
 
 function DiscordIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -25,79 +12,41 @@ function DiscordIcon({ className = "h-5 w-5" }: { className?: string }) {
 
 function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
-    <svg className={className} fill="currentColor" viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M46.91,25.816c-0.073-1.597-0.326-2.687-0.697-3.641c-0.383-0.986-0.896-1.823-1.73-2.657c-0.834-0.834-1.67-1.347-2.657-1.73c-0.954-0.371-2.045-0.624-3.641-0.697C36.585,17.017,36.074,17,32,17s-4.585,0.017-6.184,0.09c-1.597,0.073-2.687,0.326-3.641,0.697c-0.986,0.383-1.823,0.896-2.657,1.73c-0.834,0.834-1.347,1.67-1.73,2.657c-0.371,0.954-0.624,2.045-0.697,3.641C17.017,27.415,17,27.926,17,32c0,4.074,0.017,4.585,0.09,6.184c0.073,1.597,0.326,2.687,0.697,3.641c0.383,0.986,0.896,1.823,1.73,2.657c0.834,0.834,1.67,1.347,2.657,1.73c0.954,0.371,2.045,0.624,3.641,0.697C27.415,46.983,27.926,47,32,47s4.585-0.017,6.184-0.09c1.597-0.073,2.687-0.326,3.641-0.697c0.986-0.383,1.823-0.896,2.657-1.73c0.834-0.834,1.347-1.67,1.73-2.657c0.371-0.954,0.624-2.045,0.697-3.641C46.983,36.585,47,36.074,47,32S46.983,27.415,46.91,25.816z M44.21,38.061c-0.067,1.462-0.311,2.257-0.516,2.785c-0.272,0.7-0.597,1.2-1.122,1.725c-0.525,0.525-1.025,0.85-1.725,1.122c-0.529,0.205-1.323,0.45-2.785,0.516c-1.581,0.072-2.056,0.087-6.061,0.087s-4.48-0.015-6.061-0.087c-1.462-0.067-2.257-0.311-2.785-0.516c-0.7-0.272-1.2-0.597-1.725-1.122c-0.525-0.525-0.85-1.025-1.122-1.725c-0.205-0.529-0.45-1.323-0.516-2.785c-0.072-1.582-0.087-2.056-0.087-6.061s0.015-4.48,0.087-6.061c0.067-1.462,0.311-2.257,0.516-2.785c0.272-0.7,0.597-1.2,1.122-1.725c0.525-0.525,1.025-0.85,1.725-1.122c0.529-0.205,1.323-0.45,2.785-0.516c1.582-0.072,2.056-0.087,6.061-0.087s4.48,0.015,6.061,0.087c1.462,0.067,2.257,0.311,2.785,0.516c0.7,0.272,1.2,0.597,1.725,1.122c0.525,0.525,0.85,1.025,1.122,1.725c0.205,0.529,0.45,1.323,0.516,2.785c0.072,1.582,0.087,2.056,0.087,6.061S44.282,36.48,44.21,38.061z M32,24.297c-4.254,0-7.703,3.449-7.703,7.703c0,4.254,3.449,7.703,7.703,7.703c4.254,0,7.703-3.449,7.703-7.703C39.703,27.746,36.254,24.297,32,24.297z M32,37c-2.761,0-5-2.239-5-5c0-2.761,2.239-5,5-5s5,2.239,5,5C37,34.761,34.761,37,32,37z M40.007,22.193c-0.994,0-1.8,0.806-1.8,1.8c0,0.994,0.806,1.8,1.8,1.8c0.994,0,1.8-0.806,1.8-1.8C41.807,22.999,41.001,22.193,40.007,22.193z" />
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
     </svg>
   );
 }
 
 function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
-    <svg className={className} fill="currentColor" viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M37.9281 17C38.4298 21.2545 40.825 23.7941 45 24.0658V28.8451C42.5859 29.0794 40.4652 28.3016 38.0038 26.821V35.7423C38.0038 47.147 25.4788 50.7361 20.4233 42.5457C17.1856 37.3073 19.1642 28.1048 29.5496 27.73V32.781C28.7296 32.9058 27.9219 33.1002 27.1355 33.362C24.835 34.1398 23.5191 35.583 23.8883 38.1413C24.5889 43.033 33.6584 44.4856 32.901 34.9176V17H37.9091H37.9281Z" />
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
     </svg>
   );
 }
 
 function YouTubeIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
-    <svg className={className} fill="currentColor" viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M46.7,26c0,0-0.3-2.1-1.2-3c-1.1-1.2-2.4-1.2-3-1.3C38.3,21.4,32,21.4,32,21.4h0 c0,0-6.3,0-10.5,0.3c-0.6,0.1-1.9,0.1-3,1.3c-0.9,0.9-1.2,3-1.2,3S17,28.4,17,30.9v2.3c0,2.4,0.3,4.9,0.3,4.9s0.3,2.1,1.2,3 c1.1,1.2,2.6,1.2,3.3,1.3c2.4,0.2,10.2,0.3,10.2,0.3s6.3,0,10.5-0.3c0.6-0.1,1.9-0.1,3-1.3c0.9-0.9,1.2-3,1.2-3s0.3-2.4,0.3-4.9 v-2.3C47,28.4,46.7,26,46.7,26z M28.9,35.9l0-8.4l8.1,4.2L28.9,35.9z" />
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
     </svg>
   );
 }
 
 function RedditIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
-    <svg className={className} fill="currentColor" viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M47.8,30.7c0-2.1-1.7-3.8-3.8-3.8c-0.9,0-1.7,0.3-2.4,0.9c-2.3-1.4-5.2-2.4-8.5-2.5l1.7-5.3 l4.6,1.1c0.1,1.6,1.5,3,3.2,3c1.8,0,3.2-1.4,3.2-3.2s-1.4-3.2-3.2-3.2c-1.2,0-2.3,0.7-2.8,1.7l-5.3-1.2c-0.4-0.1-0.9,0.1-1,0.6 l-2.1,6.5c-3.5,0.1-6.7,1-9.1,2.6c-0.7-0.5-1.5-0.9-2.4-0.9c-2.1,0-3.8,1.7-3.8,3.8c0,1.3,0.7,2.5,1.7,3.1c0,0.3-0.1,0.6-0.1,0.9 c0,5.3,6.4,9.6,14.2,9.6s14.2-4.3,14.2-9.6c0-0.3,0-0.6-0.1-0.9C47.2,33.2,47.8,32,47.8,30.7z M42.6,19.4c0.8,0,1.5,0.7,1.5,1.5 c0,0.8-0.7,1.5-1.5,1.5s-1.5-0.7-1.5-1.5C41.1,20,41.8,19.4,42.6,19.4z M17.8,30.7c0-1.2,0.9-2.1,2.1-2.1c0.3,0,0.6,0.1,0.9,0.2 c-1.1,0.9-2,2-2.5,3.2C18.1,31.7,17.8,31.2,17.8,30.7z M32,42.6c-6.9,0-12.5-3.5-12.5-7.9s5.6-7.9,12.5-7.9s12.5,3.5,12.5,7.9 S38.9,42.6,32,42.6z M45.6,32.1c-0.5-1.2-1.4-2.3-2.5-3.2c0.3-0.1,0.6-0.2,0.9-0.2c1.2,0,2.1,0.9,2.1,2.1 C46.2,31.2,45.9,31.7,45.6,32.1z M29.4,33.1c0-1.2-1-2.1-2.1-2.1s-2.1,1-2.1,2.1s1,2.2,2.1,2.2S29.4,34.2,29.4,33.1z M36.7,30.9 c-1.2,0-2.1,1-2.1,2.1s1,2.2,2.1,2.2c1.2,0,2.1-1,2.1-2.2S37.9,30.9,36.7,30.9z M36,38.2c-0.8,0.8-2.1,1.1-4,1.1 c-1.9,0-3.2-0.4-4-1.1c-0.3-0.3-0.9-0.3-1.2,0c-0.3,0.3-0.3,0.9,0,1.2c1.1,1.1,2.8,1.6,5.2,1.6c2.4,0,4.1-0.5,5.2-1.6 c0.3-0.3,0.3-0.9,0-1.2C36.9,37.8,36.3,37.8,36,38.2z" />
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
     </svg>
   );
 }
 
 function FacebookIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
-    <svg className={className} fill="currentColor" viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M34.1,47V33.3h4.6l0.7-5.3h-5.3v-3.4c0-1.5,0.4-2.6,2.6-2.6l2.8,0v-4.8c-0.5-0.1-2.2-0.2-4.1-0.2 c-4.1,0-6.9,2.5-6.9,7V28H24v5.3h4.6V47H34.1z" />
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
     </svg>
-  );
-}
-
-function Marquee({ children, reverse = false }: { children: React.ReactNode; reverse?: boolean }) {
-  return (
-    <div className="flex overflow-hidden select-none">
-      <motion.div
-        className="flex shrink-0 items-center gap-8"
-        animate={{ x: reverse ? ["0%", "-100%"] : ["-100%", "0%"] }}
-        transition={{
-          x: {
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 25,
-            ease: "linear",
-          },
-        }}
-      >
-        {children}
-        {children}
-      </motion.div>
-      <motion.div
-        className="flex shrink-0 items-center gap-8"
-        aria-hidden="true"
-        animate={{ x: reverse ? ["0%", "-100%"] : ["-100%", "0%"] }}
-        transition={{
-          x: {
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 25,
-            ease: "linear",
-          },
-        }}
-      >
-        {children}
-        {children}
-      </motion.div>
-    </div>
   );
 }
 
@@ -110,683 +59,260 @@ const socialLinks = [
   { name: "Facebook", href: "https://www.facebook.com/letstalkshopify", icon: FacebookIcon },
 ];
 
-const headshots = [
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_3.png",
+const features = [
+  {
+    title: "Shopify Collective",
+    description: "Connect with Shopify builders, eComm architects, and digital nomads for insights on online business.",
+  },
+  {
+    title: "Share Knowledge",
+    description: "Share ideas and see them transformed by collective knowledge from experienced merchants and developers.",
+  },
+  {
+    title: "Stay Current",
+    description: "Shopify evolves constantly. Stay ahead with strategy, tech updates, and growth discussions.",
+  },
+  {
+    title: "Scale Your Store",
+    description: "From first sale to enterprise. Learn what works at every stage and unlock growth strategies.",
+  },
 ];
 
-function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
+const stats = [
+  { value: "20+", label: "Years Experience" },
+  { value: "500+", label: "Members" },
+  { value: "24/7", label: "Active Community" },
+];
 
 export default function Home() {
-  const heroRef = useRef(null);
-  const [randomHeadshots, setRandomHeadshots] = useState<string[]>([]);
-
-  useEffect(() => {
-    setRandomHeadshots(shuffleArray(headshots).slice(0, 5));
-  }, []);
-
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const smoothY = useSpring(heroY, { stiffness: 100, damping: 30 });
-
-  const features = [
-    {
-      icon: "{ }",
-      title: "Shopify Collective",
-      description:
-        "Connect with Shopify builders, eComm architects, and digital nomads for raw insights on online business.",
-      gradient: "from-violet-500/20 to-fuchsia-500/20",
-    },
-    {
-      icon: "//",
-      title: "Burn the Rulebook",
-      description:
-        "No blueprints here. We build, break, and rebuild. Share ideas and see them transformed by collective knowledge.",
-      gradient: "from-amber-500/20 to-orange-500/20",
-    },
-    {
-      icon: "⚡",
-      title: "The Algorithm Never Sleeps",
-      description:
-        "Shopify evolves. Trends shift. Yesterday's success can become obsolete. We adapt—strategy, tech, and growth.",
-      gradient: "from-shopify/20 to-lime/20",
-    },
-    {
-      icon: "∞",
-      title: "Scale Without Limits",
-      description:
-        "From first sale to enterprise. Learn what works at every stage and unlock growth strategies that compound.",
-      gradient: "from-cyan-500/20 to-blue-500/20",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-bg-primary font-sans">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen overflow-hidden pt-20">
-        {/* Background effects */}
-        <div className="absolute inset-0 grid-pattern opacity-50"></div>
-        <Floating duration={8} distance={20}>
-          <div className="absolute top-20 left-1/4 h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
-        </Floating>
-        <Floating duration={10} distance={15}>
-          <div className="absolute bottom-0 right-1/4 h-[500px] w-[500px] rounded-full bg-lime/5 blur-[150px]"></div>
-        </Floating>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-cyan-500/3 blur-[200px]"></div>
-
-        {/* Decorative elements */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="absolute top-40 left-[5%] hidden lg:block"
-        >
-          <span className="font-mono text-8xl font-bold text-shopify/5 select-none">{"{"}</span>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="absolute bottom-40 right-[5%] hidden lg:block"
-        >
-          <span className="font-mono text-8xl font-bold text-shopify/5 select-none">{"}"}</span>
-        </motion.div>
-
-        <motion.div
-          style={{ y: smoothY }}
-          className="relative mx-auto max-w-7xl px-6 py-24 lg:py-40"
-        >
-          <div className="flex flex-col items-center text-center">
-            {/* Eyebrow badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-              className="mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-shopify opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-shopify"></span>
-              </span>
-              <span className="font-mono text-xs font-medium tracking-widest text-shopify uppercase">
+      <section className="relative pt-32 pb-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeIn className="max-w-3xl">
+            {/* Badge */}
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-shopify/30 bg-shopify/10 px-4 py-2">
+              <span className="h-2 w-2 rounded-full bg-shopify"></span>
+              <span className="text-sm font-medium text-shopify">
                 Shopify Community
               </span>
-            </motion.div>
+            </div>
 
-            {/* Main heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
-              className="mb-10 max-w-5xl"
-            >
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="block text-5xl font-bold tracking-tight text-white lg:text-7xl"
+            {/* Heading */}
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-text-primary sm:text-5xl lg:text-6xl">
+              The Shopify Discord Server
+            </h1>
+
+            {/* Description */}
+            <p className="mb-10 text-lg leading-relaxed text-text-secondary lg:text-xl">
+              Connect with merchants, experts, and eCommerce pros to share insights,
+              solve problems, and level up your store. Whether you&apos;re just starting
+              or scaling to the moon—we&apos;re here as a community to help.
+            </p>
+
+            {/* CTA */}
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+              <a
+                href="https://discord.gg/talk-shop"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 rounded-lg bg-shopify px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-shopify-dark"
               >
-                The Shopify Discord
-              </motion.span>
-              <span className="relative block mt-2">
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 200 }}
-                  className="font-serif text-6xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify lg:text-8xl"
-                >
-                  Server
-                </motion.span>
-                {/* Underline accent */}
-                <motion.svg
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-32 h-3 lg:w-44"
-                  viewBox="0 0 150 12"
-                  fill="none"
-                  preserveAspectRatio="none"
-                >
-                  <motion.path
-                    d="M0 6 Q37 2, 75 6 T150 6"
-                    stroke="url(#hero-gradient)"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-                  />
-                  <defs>
-                    <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#95BF47"/>
-                      <stop offset="50%" stopColor="#C4E456"/>
-                      <stop offset="100%" stopColor="#95BF47"/>
-                    </linearGradient>
-                  </defs>
-                </motion.svg>
-              </span>
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-14 max-w-2xl text-lg leading-relaxed text-gray-400 lg:text-xl"
-            >
-              Welcome to our Shopify Discord server. Connect with merchants, experts, and eCommerce pros to share insights, solve problems, and level up your store. Whether you&apos;re just starting or scaling to the moon—we&apos;re here as a{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10 text-white font-medium">community</span>
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.5, delay: 0.8 }}
-                  className="absolute bottom-0.5 left-0 right-0 h-[3px] bg-shopify/30 -z-0 origin-left rounded-full"
-                />
-              </span>{" "}
-              to help.
-            </motion.p>
-
-            {/* CTA group */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-center gap-6"
-            >
-              <Magnetic>
-                <motion.a
-                  href="https://discord.gg/talk-shop"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-shopify to-shopify-dark px-10 py-5 text-lg font-bold text-midnight transition-all hover:shadow-2xl hover:shadow-shopify/25"
-                >
-                  <motion.span
-                    className="absolute inset-0 bg-gradient-to-r from-lime to-shopify"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <DiscordIcon className="relative h-6 w-6" />
-                  <span className="relative">Join the Community</span>
-                  <motion.span
-                    className="relative"
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    →
-                  </motion.span>
-                </motion.a>
-              </Magnetic>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-                className="flex items-center gap-4"
-              >
-                <div className="flex -space-x-3">
-                  {randomHeadshots.map((src, i) => (
-                    <motion.div
-                      key={src}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.7 + i * 0.1, type: "spring" }}
-                      className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-midnight ring-2 ring-shopify/10"
-                      style={{ zIndex: 5 - i }}
-                    >
-                      <Image
-                        src={`/headshots/${src}`}
-                        alt="Community member"
-                        fill
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-                <div className="text-sm text-left">
-                  <div className="font-semibold text-white">500+ members</div>
-                  <div className="text-gray-500">already joined</div>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Angled section divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
-            <path d="M0 96V48L720 0L1440 48V96H0Z" fill="#161B22"/>
-          </svg>
+                <DiscordIcon className="h-5 w-5" />
+                Join the Community
+              </a>
+              <div className="flex items-center gap-3 text-sm text-text-secondary">
+                <span className="font-semibold text-text-primary">500+ members</span>
+                <span>already joined</span>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* Marquee Section */}
-      <section className="relative overflow-hidden bg-slate py-6 border-y border-white/5">
-        <Marquee>
-          <span className="text-2xl font-bold text-white/10 lg:text-4xl">LET&apos;S TALK SHOP</span>
-          <span className="text-shopify">•</span>
-          <span className="text-2xl font-bold text-white/10 lg:text-4xl">LET&apos;S TALK SHOP</span>
-          <span className="text-shopify">•</span>
-          <span className="text-2xl font-bold text-white/10 lg:text-4xl">LET&apos;S TALK SHOP</span>
-          <span className="text-shopify">•</span>
-        </Marquee>
-      </section>
-
       {/* Features Section */}
-      <section id="learn-more" className="relative bg-slate py-32">
-        <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate to-transparent"></div>
+      <section className="border-t border-border-subtle bg-bg-secondary py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeIn className="mb-16">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-shopify">
+              Why Join Us
+            </h2>
+            <p className="text-3xl font-bold text-text-primary lg:text-4xl">
+              A community built for Shopify builders
+            </p>
+          </FadeIn>
 
-        <div className="relative mx-auto max-w-7xl px-6">
-          {/* Section header */}
-          <FadeUp className="mb-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
-            <div>
-              <motion.span
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block"
-              >
-                Why Join Us
-              </motion.span>
-              <h2 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
-                Enter the Shopify{" "}
-                <span className="font-serif italic text-lime">Mindstream</span>
-              </h2>
-            </div>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="hidden lg:block origin-left"
-            >
-              <div className="h-px w-64 bg-gradient-to-r from-shopify/50 to-transparent"></div>
-            </motion.div>
-          </FadeUp>
-
-          {/* Feature cards - Bento grid */}
-          <StaggerContainer className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" staggerDelay={0.1}>
-            {features.map((feature, index) => (
-              <StaggerItem
-                key={feature.title}
-                className={`${index === 0 ? 'lg:col-span-2' : ''} ${index === 3 ? 'lg:col-span-2' : ''}`}
-              >
-                <ScaleOnHover scale={1.02}>
-                  <div
-                    className="group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 h-full"
-                  >
-                    {/* Gradient background on hover */}
-                    <motion.div
-                      className={`absolute inset-0 bg-gradient-to-br ${feature.gradient}`}
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-
-                    <div className="relative">
-                      {/* Icon */}
-                      <BounceIcon>
-                        <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 border border-white/10 font-mono text-2xl text-shopify transition-all duration-300 group-hover:bg-shopify/20 group-hover:border-shopify/30">
-                          {feature.icon}
-                        </div>
-                      </BounceIcon>
-
-                      <h3 className="mb-4 text-xl font-bold text-white">
-                        {feature.title}
-                      </h3>
-                      <p className="leading-relaxed text-gray-500 transition-colors group-hover:text-gray-400">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                </ScaleOnHover>
+          <StaggerContainer className="grid gap-6 sm:grid-cols-2" staggerDelay={0.1}>
+            {features.map((feature) => (
+              <StaggerItem key={feature.title}>
+                <div className="rounded-xl border border-border-subtle bg-bg-primary p-8 transition-colors hover:border-border-default">
+                  <h3 className="mb-3 text-lg font-semibold text-text-primary">
+                    {feature.title}
+                  </h3>
+                  <p className="text-text-secondary leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
         </div>
       </section>
 
-      {/* Dream Build Grow Marquee */}
-      <section id="about-us" className="relative overflow-hidden bg-midnight py-8 border-y border-white/5">
-        <Marquee reverse>
-          <span className="font-serif text-3xl italic text-lime/30 lg:text-5xl">Dream it</span>
-          <span className="text-white/20">•</span>
-          <span className="font-serif text-3xl italic text-shopify/30 lg:text-5xl">Build it</span>
-          <span className="text-white/20">•</span>
-          <span className="font-serif text-3xl italic text-lime/30 lg:text-5xl">Grow it</span>
-          <span className="text-white/20">•</span>
-        </Marquee>
-      </section>
-
       {/* Experience Section */}
-      <section className="relative bg-midnight py-32 overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-30"></div>
-        <Floating duration={12} distance={25}>
-          <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>
-        </Floating>
-
-        {/* Decorative vertical line */}
-        <motion.div
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-shopify/20 to-transparent hidden lg:block origin-top"
-        />
-
-        <div className="relative mx-auto max-w-7xl px-6">
+      <section className="border-t border-border-subtle py-24">
+        <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-            <SlideIn direction="left" delay={0.1}>
-              <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
+            <FadeIn>
+              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-shopify">
                 Our Experience
-              </span>
-              <h2 className="mb-8 text-4xl font-bold tracking-tight text-white lg:text-5xl">
-                With 20 years in eCommerce,{" "}
-                <span className="block font-serif italic text-lime mt-2">We stand out</span>
               </h2>
-
-              <p className="text-lg leading-relaxed text-gray-400 mb-8">
-                We&apos;ve witnessed it all—platform changes, Shopify updates, trends shifting, and strategies rising and falling. This is battle-tested insight from years in the trenches. Join us to stay ahead of the chaos.
+              <p className="mb-6 text-3xl font-bold text-text-primary lg:text-4xl">
+                20 years in eCommerce
+              </p>
+              <p className="mb-8 text-lg leading-relaxed text-text-secondary">
+                We&apos;ve witnessed it all—platform changes, Shopify updates, trends
+                shifting, and strategies rising and falling. This is battle-tested
+                insight from years in the trenches. Join us to stay ahead.
               </p>
 
-              {/* Value props */}
-              <StaggerContainer className="space-y-4" staggerDelay={0.15}>
+              <ul className="space-y-4">
                 {[
-                  { label: "Battle-tested", desc: "Two decades of eCommerce evolution" },
-                  { label: "Always adapting", desc: "Staying ahead of platform changes" },
-                  { label: "Community-driven", desc: "Real insights from real builders" },
+                  "Two decades of eCommerce evolution",
+                  "Staying ahead of platform changes",
+                  "Real insights from real builders",
                 ].map((item) => (
-                  <StaggerItem key={item.label}>
-                    <motion.div
-                      className="flex items-start gap-4 group"
-                      whileHover={{ x: 5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      <motion.div
-                        className="flex h-6 w-6 items-center justify-center rounded-full bg-shopify/20 text-shopify shrink-0 mt-0.5"
-                        whileHover={{ scale: 1.2, rotate: 360 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </motion.div>
-                      <div>
-                        <div className="font-semibold text-white">{item.label}</div>
-                        <div className="text-sm text-gray-500">{item.desc}</div>
-                      </div>
-                    </motion.div>
-                  </StaggerItem>
+                  <li key={item} className="flex items-center gap-3 text-text-secondary">
+                    <svg className="h-5 w-5 text-shopify shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    {item}
+                  </li>
                 ))}
-              </StaggerContainer>
-            </SlideIn>
+              </ul>
+            </FadeIn>
 
-            {/* Stats grid */}
-            <SlideIn direction="right" delay={0.2} className="relative lg:pl-12">
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-shopify/10 to-transparent blur-xl"></div>
-              <StaggerContainer className="relative grid grid-cols-2 gap-4" staggerDelay={0.1}>
-                {[
-                  { value: "20+", label: "Years Experience", color: "text-shopify" },
-                  { value: "24/7", label: "Community Active", color: "text-lime" },
-                  { value: "500+", label: "Members", color: "text-white" },
-                  { value: "∞", label: "Ideas Shared", color: "text-shopify" },
-                ].map((stat) => (
-                  <StaggerItem key={stat.label}>
-                    <ScaleOnHover scale={1.05}>
-                      <div className="group rounded-2xl border border-white/10 bg-carbon/50 p-8 backdrop-blur-sm transition-all hover:border-shopify/30 hover:bg-carbon">
-                        <motion.div
-                          className={`text-4xl font-bold lg:text-5xl ${stat.color}`}
-                          whileHover={{ scale: 1.1 }}
-                          transition={{ type: "spring", stiffness: 300 }}
-                        >
-                          {stat.value}
-                        </motion.div>
-                        <div className="mt-2 text-sm text-gray-500">{stat.label}</div>
-                      </div>
-                    </ScaleOnHover>
-                  </StaggerItem>
+            <FadeIn delay={0.2}>
+              <div className="grid grid-cols-3 gap-4">
+                {stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-xl border border-border-subtle bg-bg-secondary p-6 text-center"
+                  >
+                    <div className="text-3xl font-bold text-shopify lg:text-4xl">
+                      {stat.value}
+                    </div>
+                    <div className="mt-2 text-sm text-text-tertiary">
+                      {stat.label}
+                    </div>
+                  </div>
                 ))}
-              </StaggerContainer>
-            </SlideIn>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* Join Discord CTA Section */}
-      <section id="join-discord" className="relative overflow-hidden py-32">
-        {/* Multi-layer background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-shopify via-shopify-dark to-shopify"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-        <div className="grain absolute inset-0"></div>
-
-        {/* Animated orbs */}
-        <Floating duration={8} distance={30}>
-          <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
-        </Floating>
-        <Floating duration={10} distance={20}>
-          <div className="absolute -right-32 top-1/3 h-64 w-64 rounded-full bg-midnight/30 blur-3xl"></div>
-        </Floating>
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 -translate-x-1/2 bottom-0 h-64 w-[600px] rounded-full bg-lime/20 blur-3xl"
-        />
-
-        <div className="relative mx-auto max-w-4xl px-6 text-center">
-          {/* Badge */}
-          <FadeUp delay={0.1}>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="mb-10 inline-flex items-center gap-3 rounded-full bg-midnight/20 px-6 py-3 backdrop-blur-sm border border-white/10"
-            >
-              <DiscordIcon className="h-5 w-5 text-midnight" />
-              <span className="font-mono text-sm font-medium text-midnight tracking-wide">
-                Join on Discord
-              </span>
-            </motion.div>
-          </FadeUp>
-
-          <FadeUp delay={0.2}>
-            <h2 className="mb-8 text-4xl font-bold tracking-tight text-midnight lg:text-6xl">
-              Join our Shopify{" "}
-              <span className="font-serif italic">Discord Collective</span>
+      {/* CTA Section */}
+      <section className="border-t border-border-subtle bg-shopify py-24">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <FadeIn>
+            <h2 className="mb-4 text-3xl font-bold text-white lg:text-4xl">
+              Join our Shopify Discord
             </h2>
-          </FadeUp>
-
-          <FadeUp delay={0.3}>
-            <div className="mb-10 space-y-4 text-lg">
-              <p className="font-semibold text-midnight text-2xl">Free to Join</p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-midnight/80">
-                <span>A community built to test, learn, and grow</span>
-                <span className="hidden sm:inline text-midnight/40">•</span>
-                <span>We experiment. We adapt. We share.</span>
-              </div>
-            </div>
-          </FadeUp>
-
-          <FadeUp delay={0.4}>
-            <Magnetic>
-              <motion.a
-                href="https://discord.gg/talk-shop"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-midnight px-12 py-6 text-xl font-bold text-white transition-all duration-300 hover:bg-slate hover:shadow-2xl"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-slate to-carbon"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <DiscordIcon className="relative h-7 w-7" />
-                <span className="relative">Click to Join</span>
-                <motion.span
-                  className="relative"
-                  whileHover={{ x: 8 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  →
-                </motion.span>
-              </motion.a>
-            </Magnetic>
-          </FadeUp>
+            <p className="mb-8 text-lg text-white/80">
+              Free to join. A community built to test, learn, and grow together.
+            </p>
+            <a
+              href="https://discord.gg/talk-shop"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 rounded-lg bg-white px-8 py-4 text-base font-semibold text-shopify transition-colors hover:bg-gray-100"
+            >
+              <DiscordIcon className="h-5 w-5" />
+              Join Discord
+            </a>
+          </FadeIn>
         </div>
       </section>
 
       {/* Footer */}
-      <footer id="follow-us" className="border-t border-white/5 bg-midnight py-16">
-        <div className="mx-auto max-w-7xl px-6">
-          {/* Social Links - Top */}
-          <FadeUp className="mb-12 text-center">
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
+      <footer className="border-t border-border-subtle bg-bg-primary py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          {/* Social Links */}
+          <FadeIn className="mb-12 text-center">
+            <p className="mb-6 text-sm font-semibold uppercase tracking-wider text-text-tertiary">
               Follow Us
-            </span>
-            <StaggerContainer className="flex flex-wrap justify-center gap-3" staggerDelay={0.05}>
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
               {socialLinks.map((social) => (
-                <StaggerItem key={social.name}>
-                  <motion.a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, rotate: 3 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="group flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-carbon/50 transition-all hover:border-shopify/50 hover:bg-shopify/10"
-                    aria-label={social.name}
-                  >
-                    <social.icon className="h-7 w-7 text-gray-400 transition-colors group-hover:text-shopify" />
-                  </motion.a>
-                </StaggerItem>
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-12 w-12 items-center justify-center rounded-lg border border-border-subtle bg-bg-secondary text-text-secondary transition-colors hover:border-shopify/50 hover:text-shopify"
+                  aria-label={social.name}
+                >
+                  <social.icon className="h-5 w-5" />
+                </a>
               ))}
-            </StaggerContainer>
-          </FadeUp>
-
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            className="border-t border-white/5 pt-12"
-          >
-            <StaggerContainer className="grid gap-8 text-center md:grid-cols-3 md:text-left" staggerDelay={0.1}>
-              {/* Location */}
-              <StaggerItem>
-                <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">Location</h4>
-                <p className="text-gray-400">
-                  123 Mars, Crater City, Red Planet
-                </p>
-                <p className="mt-1 text-sm text-gray-600">(WiFi may be spotty)</p>
-              </StaggerItem>
-
-              {/* Hours */}
-              <StaggerItem>
-                <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">Hours</h4>
-                <p className="text-gray-400">
-                  Who has time for breaks? We&apos;re here 24/7!
-                </p>
-              </StaggerItem>
-
-              {/* Contact */}
-              <StaggerItem>
-                <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white">Contact</h4>
-                <p className="text-gray-400">
-                  <motion.a
-                    href="mailto:email@example.com"
-                    whileHover={{ color: "#ffffff" }}
-                    className="transition-colors"
-                  >
-                    email@example.com
-                  </motion.a>
-                </p>
-                <p className="text-gray-400">
-                  <motion.a
-                    href="tel:5555555555"
-                    whileHover={{ color: "#ffffff" }}
-                    className="transition-colors"
-                  >
-                    (555) 555-5555
-                  </motion.a>
-                </p>
-              </StaggerItem>
-            </StaggerContainer>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="mt-12 border-t border-white/5 pt-8"
-          >
-            <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-3"
-              >
-                <div className="relative h-8 w-8 overflow-hidden rounded-lg border border-shopify/20">
-                  <Image
-                    src="/logo.webp"
-                    alt="Talk Shop"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <span className="text-sm font-medium text-white/60">Talk Shop</span>
-              </motion.div>
-              <p className="font-mono text-xs text-gray-600">
-                Built for real builders. Not affiliated with Shopify Inc.
-              </p>
-              <div className="flex gap-6">
-                {[
-                  { label: "Community", href: "/community" },
-                  { label: "Privacy", href: "#" },
-                  { label: "Terms", href: "#" },
-                ].map((link) => (
-                  <motion.div key={link.label} whileHover={{ y: -2 }}>
-                    {link.href.startsWith("/") ? (
-                      <Link href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors">
-                        {link.label}
-                      </Link>
-                    ) : (
-                      <a href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors">
-                        {link.label}
-                      </a>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
             </div>
-          </motion.div>
+          </FadeIn>
+
+          {/* Contact Info */}
+          <div className="mb-12 grid gap-8 border-t border-border-subtle pt-12 text-center md:grid-cols-3 md:text-left">
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-text-primary">Location</h4>
+              <p className="text-sm text-text-secondary">
+                123 Mars, Crater City, Red Planet
+              </p>
+            </div>
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-text-primary">Hours</h4>
+              <p className="text-sm text-text-secondary">
+                24/7 — We never sleep
+              </p>
+            </div>
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-text-primary">Contact</h4>
+              <p className="text-sm text-text-secondary">
+                <a href="mailto:email@example.com" className="hover:text-text-primary">
+                  email@example.com
+                </a>
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="flex flex-col items-center justify-between gap-4 border-t border-border-subtle pt-8 md:flex-row">
+            <div className="flex items-center gap-3">
+              <div className="relative h-8 w-8 overflow-hidden rounded-lg">
+                <Image
+                  src="/logo.webp"
+                  alt="Talk Shop"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <span className="text-sm text-text-secondary">Talk Shop</span>
+            </div>
+            <p className="text-xs text-text-tertiary">
+              Not affiliated with Shopify Inc.
+            </p>
+            <div className="flex gap-6">
+              <Link href="/community" className="text-xs text-text-tertiary hover:text-text-primary">
+                Community
+              </Link>
+              <a href="#" className="text-xs text-text-tertiary hover:text-text-primary">
+                Privacy
+              </a>
+              <a href="#" className="text-xs text-text-tertiary hover:text-text-primary">
+                Terms
+              </a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
