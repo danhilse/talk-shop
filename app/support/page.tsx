@@ -1,0 +1,414 @@
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  FadeUp,
+  StaggerContainer,
+  StaggerItem,
+  ScaleOnHover,
+  Magnetic,
+  Floating,
+  SlideIn,
+} from "@/components/motion";
+
+function DiscordIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+    </svg>
+  );
+}
+
+const commonProblems = [
+  {
+    icon: "🎨",
+    title: "Theme Issues",
+    description: "Customization conflicts, layout bugs, and Liquid template problems",
+  },
+  {
+    icon: "📦",
+    title: "App Conflicts",
+    description: "App compatibility issues, script conflicts, and performance impacts",
+  },
+  {
+    icon: "💳",
+    title: "Checkout & Payments",
+    description: "Payment gateway errors, checkout flow issues, and currency problems",
+  },
+  {
+    icon: "🚚",
+    title: "Shipping Rules",
+    description: "Shipping rate configuration, zone setup, and carrier integration",
+  },
+  {
+    icon: "⚙️",
+    title: "Store Configuration",
+    description: "Settings conflicts, domain issues, and store setup challenges",
+  },
+  {
+    icon: "📊",
+    title: "Analytics & Reports",
+    description: "Data discrepancies, tracking issues, and report generation",
+  },
+];
+
+const benefits = [
+  {
+    title: "Real Experience",
+    description: "Merchants share what worked, what didn't, and what they'd do differently next time.",
+  },
+  {
+    title: "Multiple Perspectives",
+    description: "Get different approaches from various merchants and choose the solution that fits your store best.",
+  },
+  {
+    title: "Practical Knowledge",
+    description: "A knowledge base grounded in real-world experience that complements official documentation.",
+  },
+  {
+    title: "Reduced Downtime",
+    description: "Faster problem resolution helps merchants stay focused on growing their business.",
+  },
+];
+
+export default function SupportPage() {
+  return (
+    <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] overflow-hidden pt-32 pb-20">
+        {/* Background effects */}
+        <div className="absolute inset-0 grid-pattern opacity-50"></div>
+        <Floating duration={8} distance={20}>
+          <div className="absolute top-20 right-1/4 h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
+        </Floating>
+        <Floating duration={10} distance={15}>
+          <div className="absolute bottom-0 left-1/4 h-[500px] w-[500px] rounded-full bg-lime/5 blur-[150px]"></div>
+        </Floating>
+
+        <div className="relative mx-auto max-w-5xl px-6">
+          <div className="flex flex-col items-center text-center">
+            {/* Breadcrumb */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-shopify transition-colors"
+              >
+                <span>←</span>
+                <span>Back to Home</span>
+              </Link>
+            </motion.div>
+
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+              className="mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-shopify opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-shopify"></span>
+              </span>
+              <span className="font-mono text-xs font-medium tracking-widest text-shopify uppercase">
+                Support Group
+              </span>
+            </motion.div>
+
+            {/* Main heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
+              className="mb-8 max-w-4xl"
+            >
+              <span className="block text-4xl font-bold tracking-tight text-white lg:text-6xl">
+                Shopify Support Group
+              </span>
+              <span className="block mt-4 text-2xl text-gray-400 lg:text-3xl font-normal">
+                For Merchants Who Need{" "}
+                <span className="font-serif italic text-lime">Real Answers</span>
+              </span>
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-12 max-w-2xl text-lg leading-relaxed text-gray-400"
+            >
+              Running a Shopify store comes with challenges, especially when something breaks or behaves unexpectedly. Connect with merchants who understand the platform from hands-on experience.
+            </motion.p>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <Magnetic>
+                <motion.a
+                  href="https://discord.gg/talk-shop"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-shopify to-shopify-dark px-10 py-5 text-lg font-bold text-midnight transition-all hover:shadow-2xl hover:shadow-shopify/25"
+                >
+                  <motion.span
+                    className="absolute inset-0 bg-gradient-to-r from-lime to-shopify"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <DiscordIcon className="relative h-6 w-6" />
+                  <span className="relative">Join the Support Group</span>
+                  <motion.span
+                    className="relative"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    →
+                  </motion.span>
+                </motion.a>
+              </Magnetic>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Section divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg className="w-full h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
+            <path d="M0 96V48L720 0L1440 48V96H0Z" fill="#161B22"/>
+          </svg>
+        </div>
+      </section>
+
+      {/* Common Problems Section */}
+      <section className="relative bg-slate py-24">
+        <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
+
+        <div className="relative mx-auto max-w-7xl px-6">
+          <FadeUp className="mb-16 text-center">
+            <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
+              Common Challenges
+            </span>
+            <h2 className="text-3xl font-bold tracking-tight text-white lg:text-5xl mb-6">
+              Common Shopify Problems{" "}
+              <span className="font-serif italic text-lime">Merchants Face</span>
+            </h2>
+            <p className="max-w-2xl mx-auto text-gray-400 text-lg">
+              These everyday challenges can have a direct impact on revenue and customer experience. Learn from merchants who have resolved them.
+            </p>
+          </FadeUp>
+
+          <StaggerContainer className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" staggerDelay={0.1}>
+            {commonProblems.map((problem) => (
+              <StaggerItem key={problem.title}>
+                <ScaleOnHover scale={1.02}>
+                  <div className="group relative overflow-hidden rounded-2xl border border-white/5 bg-carbon/30 p-6 backdrop-blur-sm transition-all duration-500 hover:border-white/20 h-full">
+                    <div className="text-3xl mb-4">{problem.icon}</div>
+                    <h3 className="text-lg font-bold text-white mb-2">{problem.title}</h3>
+                    <p className="text-gray-500 text-sm">{problem.description}</p>
+                  </div>
+                </ScaleOnHover>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Why Peer Support Works Section */}
+      <section className="relative bg-midnight py-24 overflow-hidden">
+        <div className="absolute inset-0 grid-pattern opacity-30"></div>
+        <Floating duration={12} distance={25}>
+          <div className="absolute right-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>
+        </Floating>
+
+        <div className="relative mx-auto max-w-7xl px-6">
+          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+            <SlideIn direction="left" delay={0.1}>
+              <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
+                Why It Works
+              </span>
+              <h2 className="mb-6 text-3xl font-bold tracking-tight text-white lg:text-5xl">
+                Why Peer-Based{" "}
+                <span className="block font-serif italic text-lime mt-2">Shopify Support Works</span>
+              </h2>
+              <p className="text-lg leading-relaxed text-gray-400 mb-8">
+                Peer support works because it is grounded in real experience. Instead of relying solely on support tickets or searching through outdated forum posts, merchants connect with others who are actively running Shopify stores and solving similar problems.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-shopify/20 text-shopify shrink-0 mt-0.5">
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-white">Faster than support tickets</div>
+                    <div className="text-sm text-gray-500">Get answers in real-time from active merchants</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-shopify/20 text-shopify shrink-0 mt-0.5">
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-white">Battle-tested solutions</div>
+                    <div className="text-sm text-gray-500">Learn what actually works from those who've tried it</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-shopify/20 text-shopify shrink-0 mt-0.5">
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-white">No guesswork</div>
+                    <div className="text-sm text-gray-500">Multiple perspectives help you choose the right approach</div>
+                  </div>
+                </div>
+              </div>
+            </SlideIn>
+
+            <SlideIn direction="right" delay={0.2} className="relative lg:pl-8">
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-shopify/10 to-transparent blur-xl"></div>
+              <StaggerContainer className="relative grid grid-cols-1 gap-4" staggerDelay={0.1}>
+                {benefits.map((benefit) => (
+                  <StaggerItem key={benefit.title}>
+                    <ScaleOnHover scale={1.02}>
+                      <div className="group rounded-2xl border border-white/10 bg-carbon/50 p-6 backdrop-blur-sm transition-all hover:border-shopify/30 hover:bg-carbon">
+                        <div className="font-bold text-white mb-2">{benefit.title}</div>
+                        <div className="text-sm text-gray-500">{benefit.description}</div>
+                      </div>
+                    </ScaleOnHover>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </SlideIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Faster Help Section */}
+      <section className="relative bg-slate py-24">
+        <div className="absolute inset-0 diagonal-stripes opacity-30"></div>
+
+        <div className="relative mx-auto max-w-4xl px-6 text-center">
+          <FadeUp>
+            <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
+              Speed Matters
+            </span>
+            <h2 className="text-3xl font-bold tracking-tight text-white lg:text-5xl mb-6">
+              Faster Help{" "}
+              <span className="font-serif italic text-lime">Without the Guesswork</span>
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-400 mb-8 max-w-2xl mx-auto">
+              When you ask a question in a live Shopify support community, you often receive multiple perspectives. This helps you evaluate different approaches and choose the solution that fits your store best.
+            </p>
+          </FadeUp>
+
+          <FadeUp delay={0.2}>
+            <div className="grid gap-6 md:grid-cols-3 text-left">
+              <div className="rounded-2xl border border-white/10 bg-carbon/50 p-6">
+                <div className="text-3xl font-bold text-shopify mb-2">↓</div>
+                <div className="font-semibold text-white mb-1">Reduce Downtime</div>
+                <div className="text-sm text-gray-500">Get your store back on track faster</div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-carbon/50 p-6">
+                <div className="text-3xl font-bold text-lime mb-2">⚡</div>
+                <div className="font-semibold text-white mb-1">Speed Up Resolution</div>
+                <div className="text-sm text-gray-500">Multiple solutions means faster answers</div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-carbon/50 p-6">
+                <div className="text-3xl font-bold text-white mb-2">→</div>
+                <div className="font-semibold text-white mb-1">Stay Focused</div>
+                <div className="text-sm text-gray-500">Spend more time growing your business</div>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative overflow-hidden py-32">
+        <div className="absolute inset-0 bg-gradient-to-br from-shopify via-shopify-dark to-shopify"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        <div className="grain absolute inset-0"></div>
+
+        <Floating duration={8} distance={30}>
+          <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+        </Floating>
+        <Floating duration={10} distance={20}>
+          <div className="absolute -right-32 top-1/3 h-64 w-64 rounded-full bg-midnight/30 blur-3xl"></div>
+        </Floating>
+
+        <div className="relative mx-auto max-w-4xl px-6 text-center">
+          <FadeUp delay={0.1}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="mb-10 inline-flex items-center gap-3 rounded-full bg-midnight/20 px-6 py-3 backdrop-blur-sm border border-white/10"
+            >
+              <DiscordIcon className="h-5 w-5 text-midnight" />
+              <span className="font-mono text-sm font-medium text-midnight tracking-wide">
+                Join the Support Group
+              </span>
+            </motion.div>
+          </FadeUp>
+
+          <FadeUp delay={0.2}>
+            <h2 className="mb-8 text-3xl font-bold tracking-tight text-midnight lg:text-5xl">
+              Join the Shopify Support Group{" "}
+              <span className="font-serif italic">on Discord</span>
+            </h2>
+          </FadeUp>
+
+          <FadeUp delay={0.3}>
+            <p className="mb-10 text-lg text-midnight/80 max-w-xl mx-auto">
+              If you want faster answers and practical guidance from other Shopify merchants, join our welcoming community to ask questions, share experiences, and build confidence running your store.
+            </p>
+          </FadeUp>
+
+          <FadeUp delay={0.4}>
+            <Magnetic>
+              <motion.a
+                href="https://discord.gg/talk-shop"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-midnight px-12 py-6 text-xl font-bold text-white transition-all duration-300 hover:bg-slate hover:shadow-2xl"
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-slate to-carbon"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <DiscordIcon className="relative h-7 w-7" />
+                <span className="relative">Join the Community</span>
+                <motion.span
+                  className="relative"
+                  whileHover={{ x: 8 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  →
+                </motion.span>
+              </motion.a>
+            </Magnetic>
+          </FadeUp>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -68,62 +68,53 @@ function FacebookIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-function TerminalWindow() {
+function DiscordPreview() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20, rotate: -2 }}
       animate={{ opacity: 1, y: 0, rotate: 2 }}
       transition={{ duration: 0.8, delay: 0.5 }}
-      className="rounded-xl border border-shopify/20 bg-midnight/90 p-4 backdrop-blur-xl shadow-2xl shadow-shopify/5"
+      className="w-72 rounded-xl border border-shopify/20 bg-[#313338] p-4 backdrop-blur-xl shadow-2xl shadow-shopify/5"
     >
       <div className="mb-3 flex items-center gap-2">
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.7, type: "spring" }}
-          className="h-3 w-3 rounded-full bg-red-500/80"
-        />
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.8, type: "spring" }}
-          className="h-3 w-3 rounded-full bg-yellow-500/80"
-        />
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.9, type: "spring" }}
-          className="h-3 w-3 rounded-full bg-shopify/80"
-        />
-        <span className="ml-3 font-mono text-[10px] text-gray-600">~/shopify-dev</span>
+        <DiscordIcon className="h-4 w-4 text-[#5865F2]" />
+        <span className="text-xs font-semibold text-white/80"># shopify-dev</span>
+        <span className="ml-auto text-[10px] text-gray-500">3 online</span>
       </div>
-      <div className="space-y-2 font-mono text-xs">
+      <div className="space-y-3 text-xs">
         <motion.div
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1 }}
-          className="text-gray-500"
+          className="flex gap-2"
         >
-          $ shopify app dev
+          <div className="h-6 w-6 rounded-full bg-shopify/30 shrink-0"></div>
+          <div>
+            <span className="text-shopify font-medium">alex_dev</span>
+            <p className="text-gray-400 mt-0.5">Anyone dealt with webhook retries?</p>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.3 }}
-          className="flex items-center gap-2"
+          transition={{ delay: 1.4 }}
+          className="flex gap-2"
         >
-          <span className="text-shopify">✓</span>
-          <span className="text-gray-300">Connected to store</span>
+          <div className="h-6 w-6 rounded-full bg-lime/30 shrink-0"></div>
+          <div>
+            <span className="text-lime font-medium">sam_builds</span>
+            <p className="text-gray-400 mt-0.5">Yeah, use idempotency keys!</p>
+          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.6 }}
-          className="flex items-center gap-2"
+          transition={{ delay: 1.8 }}
+          className="flex items-center gap-2 text-gray-500"
         >
-          <span className="text-lime">→</span>
-          <span className="text-gray-400">Building something great</span>
-          <span className="animate-pulse text-shopify">▋</span>
+          <span className="text-shopify">+3</span>
+          <span>others are typing</span>
+          <span className="animate-pulse">...</span>
         </motion.div>
       </div>
     </motion.div>
@@ -253,10 +244,10 @@ export default function CommunityPage() {
         <div className="absolute inset-0 grid-pattern opacity-50"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-midnight via-transparent to-midnight"></div>
 
-        {/* Floating code elements */}
+        {/* Floating Discord preview */}
         <div className="absolute top-32 right-[8%] hidden lg:block">
           <Floating duration={6} distance={10}>
-            <TerminalWindow />
+            <DiscordPreview />
           </Floating>
         </div>
 
@@ -311,7 +302,7 @@ export default function CommunityPage() {
               >
                 Built for
               </motion.span>
-              <span className="relative block">
+              <span className="relative inline-block">
                 <motion.span
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -325,7 +316,7 @@ export default function CommunityPage() {
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-                  className="absolute -bottom-1 left-0 w-[85%] h-3"
+                  className="absolute -bottom-1 left-0 w-full h-3"
                   viewBox="0 0 300 12"
                   fill="none"
                   preserveAspectRatio="none"

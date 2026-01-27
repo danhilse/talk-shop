@@ -435,13 +435,13 @@ export default function Home() {
           </FadeUp>
 
           {/* Feature cards - Bento grid */}
-          <StaggerContainer className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" staggerDelay={0.1}>
+          <StaggerContainer className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:auto-rows-fr" staggerDelay={0.1}>
             {features.map((feature, index) => (
               <StaggerItem
                 key={feature.title}
-                className={`${index === 0 ? 'lg:col-span-2' : ''} ${index === 3 ? 'lg:col-span-2' : ''}`}
+                className={`h-full ${index === 0 ? 'lg:col-span-2' : ''} ${index === 3 ? 'lg:col-span-2' : ''}`}
               >
-                <ScaleOnHover scale={1.02}>
+                <ScaleOnHover scale={1.02} className="h-full">
                   <div
                     className="group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 h-full"
                   >
