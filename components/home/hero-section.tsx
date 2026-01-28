@@ -217,7 +217,7 @@ export function HeroSection() {
 
       {/* Angled section divider */}
       <div className="absolute bottom-0 left-0 right-0">
-        <svg className="w-full h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
+        <svg className="w-full h-12 md:h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
           <path d="M0 96V48L720 0L1440 48V96H0Z" fill="#161B22"/>
         </svg>
       </div>

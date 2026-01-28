@@ -12,7 +12,7 @@ import { experienceStats, valueProps } from "@/lib/data";
 
 export function ExperienceSection() {
   return (
-    <section className="relative bg-midnight py-24 overflow-hidden">
+    <section className="relative bg-midnight py-16 md:py-24 overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-30"></div>
       <Floating duration={12} distance={25}>
         <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>

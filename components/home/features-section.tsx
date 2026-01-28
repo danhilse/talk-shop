@@ -12,7 +12,7 @@ import { homeFeatures } from "@/lib/data";
 
 export function FeaturesSection() {
   return (
-    <section id="learn-more" className="relative bg-slate py-24">
+    <section id="learn-more" className="relative bg-slate py-16 md:py-24">
       <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate to-transparent"></div>
 

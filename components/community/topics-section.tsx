@@ -12,7 +12,7 @@ import { communityTopics } from "@/lib/data";
 
 export function TopicsSection() {
   return (
-    <section className="relative bg-slate py-24">
+    <section className="relative bg-slate py-16 md:py-24">
       {/* Top gradient fade */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-midnight to-transparent"></div>
 

@@ -65,7 +65,7 @@ export function CommunityHeroSection() {
   const [randomHeadshots] = useState(() => shuffleArray(headshots).slice(0, 5));
 
   return (
-    <section className="relative min-h-screen overflow-hidden pt-20">
+    <section className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
       {/* Animated gradient orbs */}
       <Floating duration={8} distance={20}>
         <div className="absolute top-20 left-[10%] h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
@@ -104,14 +104,14 @@ export function CommunityHeroSection() {
         <span className="font-mono text-8xl font-bold text-shopify/5 select-none">{"}"}</span>
       </motion.div>
 
-      <div className="relative mx-auto max-w-7xl px-6 py-32 lg:py-40">
+      <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:py-40">
         <div className="max-w-4xl">
           {/* Eyebrow with animated border */}
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-            className="mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
+            className="mb-6 md:mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-shopify opacity-75"></span>
@@ -127,7 +127,7 @@ export function CommunityHeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-10"
+            className="mb-6 md:mb-10"
           >
             <motion.span
               initial={{ opacity: 0, y: 20 }}
@@ -137,44 +137,45 @@ export function CommunityHeroSection() {
             >
               Shopify Dev Community
             </motion.span>
-            <span className="relative inline-block">
-              <motion.span
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 200 }}
-                className="font-serif text-5xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify lg:text-7xl"
-              >
-                for Builders & Developers
-              </motion.span>
-              {/* Underline accent - sized to text width */}
-              <motion.svg
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-                className="absolute -bottom-1 left-0 w-full h-3"
-                viewBox="0 0 300 12"
-                fill="none"
-                preserveAspectRatio="none"
-              >
-                <motion.path
-                  d="M0 6 Q75 2, 150 6 T300 6"
-                  stroke="url(#community-gradient)"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
+            <motion.span
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 200 }}
+              className="font-serif text-5xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify lg:text-7xl"
+            >
+              for Builders &{" "}
+              <span className="relative inline-block">
+                Developers
+                {/* Underline accent - only under "Developers" */}
+                <motion.svg
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-                />
-                <defs>
-                  <linearGradient id="community-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#95BF47"/>
-                    <stop offset="50%" stopColor="#C4E456"/>
-                    <stop offset="100%" stopColor="#95BF47"/>
-                  </linearGradient>
-                </defs>
-              </motion.svg>
-            </span>
+                  className="absolute -bottom-1 left-0 w-full h-3"
+                  viewBox="0 0 150 12"
+                  fill="none"
+                  preserveAspectRatio="none"
+                >
+                  <motion.path
+                    d="M0 6 Q37 2, 75 6 T150 6"
+                    stroke="url(#community-gradient)"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+                  />
+                  <defs>
+                    <linearGradient id="community-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#95BF47"/>
+                      <stop offset="50%" stopColor="#C4E456"/>
+                      <stop offset="100%" stopColor="#95BF47"/>
+                    </linearGradient>
+                  </defs>
+                </motion.svg>
+              </span>
+            </motion.span>
           </motion.h1>
 
           {/* Subtitle with highlighted words */}
@@ -182,13 +183,18 @@ export function CommunityHeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-12 max-w-2xl text-xl leading-relaxed text-gray-400"
+            className="mb-8 md:mb-12 max-w-2xl text-lg md:text-xl leading-relaxed text-gray-400"
           >
-            The Shopify Dev Community is built for developers who are actively
-            building, shipping, and maintaining products on Shopify. Whether
-            you are working on a public Shopify app, a custom theme, or a
-            headless storefront using Hydrogen, this community exists to
-            support the real work that happens between{" "}
+            <span className="hidden md:inline">
+              The Shopify Dev Community is built for developers who are actively
+              building, shipping, and maintaining products on Shopify. Whether
+              you are working on a public Shopify app, a custom theme, or a
+              headless storefront using Hydrogen, this community exists to
+              support the real work that happens between{" "}
+            </span>
+            <span className="md:hidden">
+              Built for developers shipping apps, themes, and storefronts on Shopify. We support the real work between{" "}
+            </span>
             <span className="relative inline-block">
               <span className="relative z-10 text-white font-medium">documentation</span>
               <motion.span
@@ -280,7 +286,7 @@ export function CommunityHeroSection() {
 
       {/* Angled section divider */}
       <div className="absolute bottom-0 left-0 right-0">
-        <svg className="w-full h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
+        <svg className="w-full h-12 md:h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
           <path d="M0 96V48L720 0L1440 48V96H0Z" fill="#161B22"/>
         </svg>
       </div>

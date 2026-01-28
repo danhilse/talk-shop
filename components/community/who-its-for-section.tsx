@@ -16,7 +16,7 @@ function GlitchText({ children, className = "" }: { children: React.ReactNode; c
 
 export function WhoItsForSection() {
   return (
-    <section className="relative bg-midnight py-24 overflow-hidden">
+    <section className="relative bg-midnight py-16 md:py-24 overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-30"></div>
 
       {/* Decorative vertical line */}
@@ -25,7 +25,7 @@ export function WhoItsForSection() {
         whileInView={{ scaleY: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-shopify/20 to-transparent origin-top"
+        className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-shopify/20 to-transparent origin-top hidden lg:block"
       />
 
       <div className="relative mx-auto max-w-7xl px-6">
@@ -88,8 +88,8 @@ export function WhoItsForSection() {
 
           {/* Right: Content */}
           <SlideIn direction="right" delay={0.2} className="order-1 lg:order-2 lg:pl-12">
-            <div className="mb-8">
-              <span className="inline-block font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4">
+            <div className="mb-6 md:mb-8">
+              <span className="inline-block font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-3 md:mb-4">
                 Who It&apos;s For
               </span>
               <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
@@ -118,7 +118,7 @@ export function WhoItsForSection() {
             </div>
 
             {/* Tags with staggered animation */}
-            <StaggerContainer className="mt-12 flex flex-wrap gap-3" staggerDelay={0.08}>
+            <StaggerContainer className="mt-8 md:mt-12 flex flex-wrap gap-2 md:gap-3" staggerDelay={0.08}>
               {developerTags.map((tag) => (
                 <StaggerItem key={tag}>
                   <motion.span

@@ -103,7 +103,7 @@ export default function GrowthPage() {
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen overflow-hidden pt-20">
+      <section className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
         {/* Animated gradient orbs */}
         <Floating duration={8} distance={20}>
           <div className="absolute top-20 left-[10%] h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
@@ -135,7 +135,7 @@ export default function GrowthPage() {
           <span className="font-mono text-8xl font-bold text-shopify/5 select-none">$</span>
         </motion.div>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:py-40">
+        <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:py-40">
           <div className="max-w-4xl">
             {/* Eyebrow with animated border */}
             <motion.div
@@ -298,7 +298,7 @@ export default function GrowthPage() {
 
         {/* Angled section divider */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
+          <svg className="w-full h-12 md:h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
             <path d="M0 96V48L720 0L1440 48V96H0Z" fill="#161B22"/>
           </svg>
         </div>
@@ -317,7 +317,7 @@ export default function GrowthPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="absolute -top-8 -left-4 font-serif text-[200px] leading-none text-shopify/10 select-none"
+                className="absolute -top-8 -left-4 font-serif text-[120px] md:text-[200px] leading-none text-shopify/10 select-none"
               >
                 &ldquo;
               </motion.span>
@@ -451,7 +451,7 @@ export default function GrowthPage() {
           whileInView={{ scaleY: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-shopify/20 to-transparent origin-top"
+          className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-shopify/20 to-transparent origin-top hidden lg:block"
         />
 
         <div className="relative mx-auto max-w-7xl px-6">

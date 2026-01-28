@@ -159,14 +159,14 @@ export default function SupportPage() {
 
         {/* Section divider */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
+          <svg className="w-full h-12 md:h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
             <path d="M0 96V48L720 0L1440 48V96H0Z" fill="#161B22"/>
           </svg>
         </div>
       </section>
 
       {/* Common Problems Section */}
-      <section className="relative bg-slate py-24">
+      <section className="relative bg-slate py-16 md:py-24">
         <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
@@ -200,7 +200,7 @@ export default function SupportPage() {
       </section>
 
       {/* Why Peer Support Works Section */}
-      <section className="relative bg-midnight py-24 overflow-hidden">
+      <section className="relative bg-midnight py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30"></div>
         <Floating duration={12} distance={25}>
           <div className="absolute right-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>
@@ -276,7 +276,7 @@ export default function SupportPage() {
       </section>
 
       {/* Faster Help Section */}
-      <section className="relative bg-slate py-24">
+      <section className="relative bg-slate py-16 md:py-24">
         <div className="absolute inset-0 diagonal-stripes opacity-30"></div>
 
         <div className="relative mx-auto max-w-4xl px-6 text-center">

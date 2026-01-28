@@ -240,7 +240,7 @@ export default function EntrepreneursPage() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="absolute -top-8 -left-4 font-serif text-[180px] leading-none text-shopify/5 select-none"
+                className="absolute -top-8 -left-4 font-serif text-[120px] md:text-[180px] leading-none text-shopify/5 select-none"
               >
                 &ldquo;
               </motion.span>
@@ -328,8 +328,8 @@ export default function EntrepreneursPage() {
                     </p>
                   </div>
 
-                  {/* Decorative graphic element to fill remaining height */}
-                  <div className="mt-auto pt-10 flex-1 flex items-end">
+                  {/* Decorative graphic element to fill remaining height - hidden on mobile */}
+                  <div className="mt-auto pt-10 flex-1 hidden md:flex items-end">
                     <div className="w-full relative">
                       <motion.div
                         initial={{ scaleX: 0 }}
