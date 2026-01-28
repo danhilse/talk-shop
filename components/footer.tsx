@@ -10,7 +10,6 @@ import {
 } from "@/components/motion";
 
 import {
-  DiscordIcon,
   InstagramIcon,
   TikTokIcon,
   YouTubeIcon,
@@ -23,7 +22,6 @@ const socialLinks = [
   { name: "TikTok", href: "https://www.tiktok.com/@talkshopify", icon: TikTokIcon },
   { name: "YouTube", href: "https://www.youtube.com/@TalkShopify", icon: YouTubeIcon },
   { name: "Reddit", href: "https://www.reddit.com/r/talkshopify/", icon: RedditIcon },
-  { name: "Discord", href: "https://discord.gg/talk-shop", icon: DiscordIcon },
   { name: "Facebook", href: "https://www.facebook.com/letstalkshopify", icon: FacebookIcon },
 ];
 
@@ -109,7 +107,7 @@ export function Footer() {
           transition={{ delay: 0.3 }}
           className="mt-12 border-t border-white/5 pt-8"
         >
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-4">
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="flex items-center gap-3"
@@ -124,10 +122,10 @@ export function Footer() {
               </div>
               <span className="text-sm font-medium text-white/60">Talk Shop</span>
             </motion.div>
-            <p className="font-mono text-xs text-gray-600">
+            <p className="font-mono text-xs text-gray-600 text-center">
               Built for real builders. Not affiliated with Shopify Inc.
             </p>
-            <div className="flex gap-6">
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
               {navLinks.map((link) => (
                 <motion.div key={link.label} whileHover={{ y: -2 }}>
                   {link.href.startsWith("/") ? (

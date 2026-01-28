@@ -17,11 +17,12 @@ export function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  // Delay parallax start - content stays fixed for first 40% of scroll, then moves
+  const heroY = useTransform(scrollYProgress, [0, 0.4, 1], ["0%", "0%", "15%"]);
   const smoothY = useSpring(heroY, { stiffness: 100, damping: 30 });
 
   return (
-    <section ref={heroRef} className="relative min-h-screen overflow-hidden pt-20">
+    <section ref={heroRef} className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
       {/* Background effects */}
       <div className="absolute inset-0 grid-pattern opacity-50"></div>
       <Floating duration={8} distance={20}>
@@ -52,7 +53,7 @@ export function HeroSection() {
 
       <motion.div
         style={{ y: smoothY }}
-        className="relative mx-auto max-w-7xl px-6 py-32 lg:py-40"
+        className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:py-40"
       >
         <div className="flex flex-col items-center text-center">
           {/* Eyebrow badge */}
@@ -60,7 +61,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-            className="mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
+            className="mb-6 md:mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-shopify opacity-75"></span>
@@ -76,7 +77,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
-            className="mb-10 max-w-5xl"
+            className="mb-6 md:mb-10 max-w-5xl"
           >
             <motion.span
               initial={{ opacity: 0, y: 20 }}
@@ -131,7 +132,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-12 max-w-2xl text-lg leading-relaxed text-gray-400 lg:text-xl"
+            className="mb-8 md:mb-12 max-w-2xl text-lg leading-relaxed text-gray-400 lg:text-xl"
           >
             Welcome to our Shopify Discord server. Connect with merchants, experts, and eCommerce pros to share insights, solve problems, and level up your store. Whether you&apos;re just starting or scaling to the moon—we&apos;re here as a{" "}
             <span className="relative inline-block">

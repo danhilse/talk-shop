@@ -256,9 +256,9 @@ export function Nav() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeMenu}
-                    className="flex items-center justify-center gap-2 w-full rounded-full bg-shopify px-5 py-3 text-base font-semibold text-midnight transition-all hover:bg-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
+                    className="flex items-center justify-center gap-3 w-full rounded-full bg-shopify px-6 py-4 text-lg font-semibold text-midnight transition-all hover:bg-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
                   >
-                    <DiscordIcon className="h-5 w-5" />
+                    <DiscordIcon className="h-6 w-6" />
                     <span>Join Discord</span>
                   </a>
                 </motion.div>
