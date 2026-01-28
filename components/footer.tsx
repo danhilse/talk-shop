@@ -81,20 +81,11 @@ export function Footer() {
             <h4 className="mb-4 text-lg font-semibold text-white">Contact</h4>
             <p className="text-gray-400">
               <motion.a
-                href="mailto:email@example.com"
+                href="mailto:hello@letstalkshop.com"
                 whileHover={{ color: "#ffffff" }}
                 className="transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
               >
-                email@example.com
-              </motion.a>
-            </p>
-            <p className="text-gray-400">
-              <motion.a
-                href="tel:5555555555"
-                whileHover={{ color: "#ffffff" }}
-                className="transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
-              >
-                (555) 555-5555
+                hello@letstalkshop.com
               </motion.a>
             </p>
           </StaggerItem>

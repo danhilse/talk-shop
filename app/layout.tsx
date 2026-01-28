@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist_Mono, DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { CookieConsent } from "@/components/cookie-consent";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -33,10 +34,6 @@ export const metadata: Metadata = {
   creator: "Talk Shop",
   publisher: "Talk Shop",
   metadataBase: new URL("https://letstalkshop.com"),
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -79,6 +76,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -92,6 +96,7 @@ export default function RootLayout({
         <Nav />
         {children}
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
