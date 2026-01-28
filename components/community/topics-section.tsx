@@ -12,13 +12,13 @@ import { communityTopics } from "@/lib/data";
 
 export function TopicsSection() {
   return (
-    <section className="relative bg-slate py-32">
+    <section className="relative bg-slate py-24">
       {/* Top gradient fade */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-midnight to-transparent"></div>
 
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Section header with decorative line */}
-        <FadeUp className="mb-20 flex items-end justify-between">
+        <FadeUp className="mb-16 flex items-end justify-between">
           <div>
             <motion.span
               initial={{ opacity: 0, x: -20 }}
@@ -28,7 +28,7 @@ export function TopicsSection() {
             >
               Inside the Community
             </motion.span>
-            <h2 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
               What Developers{" "}
               <span className="font-serif italic text-lime">Discuss</span>
             </h2>

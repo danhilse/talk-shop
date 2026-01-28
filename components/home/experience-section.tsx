@@ -12,7 +12,7 @@ import { experienceStats, valueProps } from "@/lib/data";
 
 export function ExperienceSection() {
   return (
-    <section className="relative bg-midnight py-32 overflow-hidden">
+    <section className="relative bg-midnight py-24 overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-30"></div>
       <Floating duration={12} distance={25}>
         <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>
@@ -28,12 +28,12 @@ export function ExperienceSection() {
       />
 
       <div className="relative mx-auto max-w-7xl px-6">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <SlideIn direction="left" delay={0.1}>
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               Our Experience
             </span>
-            <h2 className="mb-8 text-4xl font-bold tracking-tight text-white lg:text-5xl">
+            <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
               With 20 years in eCommerce,{" "}
               <span className="block font-serif italic text-lime mt-2">We stand out</span>
             </h2>

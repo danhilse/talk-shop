@@ -104,7 +104,7 @@ export function CommunityHeroSection() {
         <span className="font-mono text-8xl font-bold text-shopify/5 select-none">{"}"}</span>
       </motion.div>
 
-      <div className="relative mx-auto max-w-7xl px-6 py-24 lg:py-40">
+      <div className="relative mx-auto max-w-7xl px-6 py-32 lg:py-40">
         <div className="max-w-4xl">
           {/* Eyebrow with animated border */}
           <motion.div
@@ -182,7 +182,7 @@ export function CommunityHeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-14 max-w-2xl text-xl leading-relaxed text-gray-400"
+            className="mb-12 max-w-2xl text-xl leading-relaxed text-gray-400"
           >
             The Shopify Dev Community is built for developers who are actively
             building, shipping, and maintaining products on Shopify. Whether
@@ -224,7 +224,7 @@ export function CommunityHeroSection() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-shopify to-shopify-dark px-10 py-5 text-lg font-bold text-midnight transition-all hover:shadow-2xl hover:shadow-shopify/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-shopify to-shopify-dark px-8 py-4 text-lg font-bold text-midnight transition-all hover:shadow-2xl hover:shadow-shopify/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
               >
                 <motion.span
                   className="absolute inset-0 bg-gradient-to-r from-lime to-shopify"

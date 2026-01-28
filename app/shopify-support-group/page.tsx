@@ -174,7 +174,7 @@ export default function SupportPage() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               Common Challenges
             </span>
-            <h2 className="text-3xl font-bold tracking-tight text-white lg:text-5xl mb-6">
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl mb-6">
               Common Shopify Problems{" "}
               <span className="font-serif italic text-lime">Merchants Face</span>
             </h2>
@@ -212,7 +212,7 @@ export default function SupportPage() {
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
                 Why It Works
               </span>
-              <h2 className="mb-6 text-3xl font-bold tracking-tight text-white lg:text-5xl">
+              <h2 className="mb-6 text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
                 Why Peer-Based{" "}
                 <span className="block font-serif italic text-lime mt-2">Shopify Support Works</span>
               </h2>
@@ -284,7 +284,7 @@ export default function SupportPage() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               Speed Matters
             </span>
-            <h2 className="text-3xl font-bold tracking-tight text-white lg:text-5xl mb-6">
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl mb-6">
               Faster Help{" "}
               <span className="font-serif italic text-lime">Without the Guesswork</span>
             </h2>
@@ -342,7 +342,7 @@ export default function SupportPage() {
           </FadeUp>
 
           <FadeUp delay={0.2}>
-            <h2 className="mb-8 text-3xl font-bold tracking-tight text-midnight lg:text-5xl">
+            <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-midnight lg:text-5xl">
               Join the Shopify Support Group{" "}
               <span className="font-serif italic">on Discord</span>
             </h2>

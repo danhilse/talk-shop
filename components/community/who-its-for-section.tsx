@@ -16,7 +16,7 @@ function GlitchText({ children, className = "" }: { children: React.ReactNode; c
 
 export function WhoItsForSection() {
   return (
-    <section className="relative bg-midnight py-32 overflow-hidden">
+    <section className="relative bg-midnight py-24 overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-30"></div>
 
       {/* Decorative vertical line */}
@@ -29,7 +29,7 @@ export function WhoItsForSection() {
       />
 
       <div className="relative mx-auto max-w-7xl px-6">
-        <div className="grid gap-20 lg:grid-cols-2 lg:items-center">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           {/* Left: Stacked visual placeholder */}
           <SlideIn direction="left" className="relative order-2 lg:order-1">
             {/* Background glow */}
@@ -92,7 +92,7 @@ export function WhoItsForSection() {
               <span className="inline-block font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4">
                 Who It&apos;s For
               </span>
-              <h2 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
+              <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
                 Who This Community{" "}
                 <span className="block font-serif italic text-lime mt-2">Is For</span>
               </h2>

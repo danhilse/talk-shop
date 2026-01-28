@@ -40,7 +40,7 @@ export function CTASection() {
         </FadeUp>
 
         <FadeUp delay={0.2}>
-          <h2 className="mb-8 text-4xl font-bold tracking-tight text-midnight lg:text-6xl">
+          <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-midnight lg:text-5xl">
             Join our Shopify{" "}
             <span className="font-serif italic">Discord Collective</span>
           </h2>
@@ -65,7 +65,7 @@ export function CTASection() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-midnight px-12 py-6 text-xl font-bold text-white transition-all duration-300 hover:bg-slate hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-shopify"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-midnight px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-slate hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-shopify"
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-slate to-carbon"
@@ -73,7 +73,7 @@ export function CTASection() {
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
               />
-              <DiscordIcon className="relative h-7 w-7" />
+              <DiscordIcon className="relative h-6 w-6" />
               <span className="relative">Click to Join</span>
               <motion.span
                 className="relative"

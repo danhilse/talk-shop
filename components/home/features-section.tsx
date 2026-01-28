@@ -12,13 +12,13 @@ import { homeFeatures } from "@/lib/data";
 
 export function FeaturesSection() {
   return (
-    <section id="learn-more" className="relative bg-slate py-32">
+    <section id="learn-more" className="relative bg-slate py-24">
       <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate to-transparent"></div>
 
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Section header */}
-        <FadeUp className="mb-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+        <FadeUp className="mb-16 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <div>
             <motion.span
               initial={{ opacity: 0, x: -20 }}
@@ -28,7 +28,7 @@ export function FeaturesSection() {
             >
               Why Join Us
             </motion.span>
-            <h2 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
               Enter the Shopify{" "}
               <span className="font-serif italic text-lime">Mindstream</span>
             </h2>
@@ -56,11 +56,8 @@ export function FeaturesSection() {
                   className="group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 h-full"
                 >
                   {/* Gradient background on hover */}
-                  <motion.div
-                    className={`absolute inset-0 bg-gradient-to-br ${feature.gradient}`}
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
                   />
 
                   <div className="relative">

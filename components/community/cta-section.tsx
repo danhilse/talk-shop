@@ -40,7 +40,7 @@ export function CommunityCTASection() {
         </FadeUp>
 
         <FadeUp delay={0.2}>
-          <h2 className="mb-8 text-5xl font-bold tracking-tight text-midnight lg:text-7xl">
+          <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-midnight lg:text-5xl">
             Join the Shopify{" "}
             <span className="font-serif italic">Dev Community</span>
           </h2>
@@ -56,7 +56,7 @@ export function CommunityCTASection() {
         </FadeUp>
 
         <FadeUp delay={0.4}>
-          <p className="mx-auto mb-14 max-w-2xl text-lg leading-relaxed text-midnight/70">
+          <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-midnight/70">
             Connect with other Shopify developers, share knowledge, and improve
             how you build on the platform.
           </p>
@@ -70,7 +70,7 @@ export function CommunityCTASection() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-midnight px-12 py-6 text-xl font-bold text-white transition-all duration-300 hover:bg-slate hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-shopify"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-midnight px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:bg-slate hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-shopify"
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-slate to-carbon"
@@ -78,7 +78,7 @@ export function CommunityCTASection() {
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
               />
-              <DiscordIcon className="relative h-7 w-7" />
+              <DiscordIcon className="relative h-6 w-6" />
               <span className="relative">Join Discord Community</span>
               <motion.span
                 className="relative"

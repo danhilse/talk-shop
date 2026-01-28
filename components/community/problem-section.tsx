@@ -5,11 +5,11 @@ import { SlideIn } from "@/components/motion";
 
 export function ProblemSection() {
   return (
-    <section className="relative bg-slate py-32">
+    <section className="relative bg-slate py-24">
       <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
 
       <div className="relative mx-auto max-w-7xl px-6">
-        <div className="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           {/* Left column - Big quote mark */}
           <SlideIn direction="left" className="lg:col-span-4 relative">
             <motion.span

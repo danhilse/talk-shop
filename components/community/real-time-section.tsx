@@ -15,11 +15,11 @@ export function RealTimeSection() {
       <div className="relative mx-auto max-w-7xl">
         <div className="grid lg:grid-cols-2">
           {/* Left column - Content */}
-          <SlideIn direction="left" className="relative px-6 py-32 lg:pr-16">
+          <SlideIn direction="left" className="relative px-6 py-24 lg:pr-16">
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
               Why Real-Time
             </span>
-            <h2 className="mb-10 text-4xl font-bold tracking-tight text-white lg:text-5xl">
+            <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
               Why Real-Time{" "}
               <span className="block font-serif italic text-lime mt-2">Matters</span>
             </h2>
@@ -44,7 +44,7 @@ export function RealTimeSection() {
             </div>
 
             {/* Value props */}
-            <StaggerContainer className="mt-14 grid gap-6" staggerDelay={0.15}>
+            <StaggerContainer className="mt-12 grid gap-6" staggerDelay={0.15}>
               {realTimeValueProps.map((item) => (
                 <StaggerItem key={item.label}>
                   <motion.div
@@ -68,7 +68,7 @@ export function RealTimeSection() {
           </SlideIn>
 
           {/* Right column - Visual */}
-          <SlideIn direction="right" delay={0.2} className="relative px-6 py-32 lg:pl-16 flex items-center justify-center">
+          <SlideIn direction="right" delay={0.2} className="relative px-6 py-24 lg:pl-16 flex items-center justify-center">
             {/* Glow effect */}
             <div className="absolute inset-0 bg-gradient-to-l from-lime/5 to-transparent"></div>
 
