@@ -1,7 +1,56 @@
 "use client";
 
-import { motion, useInView, Variants, HTMLMotionProps } from "framer-motion";
-import { ReactNode, useRef } from "react";
+import { motion, useInView, Variants, HTMLMotionProps, useReducedMotion } from "framer-motion";
+import { ReactNode, useRef, useMemo } from "react";
+
+// ============================================================================
+// Hoisted transition constants - prevents object recreation on every render
+// ============================================================================
+
+const EASE_OUT_CUBIC = [0.25, 0.4, 0.25, 1] as const;
+
+const springTransition = {
+  type: "spring",
+  stiffness: 400,
+  damping: 17,
+} as const;
+
+const springTransitionSoft = {
+  type: "spring",
+  stiffness: 200,
+  damping: 15,
+} as const;
+
+const easeOutTransition = {
+  duration: 0.8,
+  ease: "easeOut",
+} as const;
+
+const infiniteEaseTransition = {
+  repeat: Infinity,
+  ease: "easeInOut",
+} as const;
+
+const linearInfiniteTransition = {
+  duration: 4,
+  repeat: Infinity,
+  ease: "linear",
+} as const;
+
+const bounceHoverTransition = {
+  duration: 0.4,
+  ease: "easeInOut",
+} as const;
+
+// Animation state objects
+const fadeUpHidden = { opacity: 0, y: 30 } as const;
+const fadeUpVisible = { opacity: 1, y: 0 } as const;
+const scaleHidden = { opacity: 0, scale: 0.5 } as const;
+const scaleVisible = { opacity: 1, scale: 1 } as const;
+
+// ============================================================================
+// Components
+// ============================================================================
 
 // Fade up animation for sections and cards
 interface FadeUpProps extends Omit<HTMLMotionProps<"div">, "children"> {
@@ -21,16 +70,21 @@ export function FadeUp({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
+  const transition = useMemo(
+    () => ({
+      duration,
+      delay,
+      ease: EASE_OUT_CUBIC,
+    }),
+    [duration, delay]
+  );
+
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{
-        duration,
-        delay,
-        ease: [0.25, 0.4, 0.25, 1],
-      }}
+      initial={fadeUpHidden}
+      animate={isInView ? fadeUpVisible : fadeUpHidden}
+      transition={transition}
       className={className}
       {...props}
     >
@@ -64,7 +118,7 @@ const itemVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.4, 0.25, 1],
+      ease: EASE_OUT_CUBIC,
     },
   },
 };
@@ -112,17 +166,21 @@ interface ScaleOnHoverProps extends Omit<HTMLMotionProps<"div">, "children"> {
   className?: string;
 }
 
+const tapScale = { scale: 0.98 } as const;
+
 export function ScaleOnHover({
   children,
   scale = 1.03,
   className,
   ...props
 }: ScaleOnHoverProps) {
+  const hoverScale = useMemo(() => ({ scale }), [scale]);
+
   return (
     <motion.div
-      whileHover={{ scale }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      whileHover={hoverScale}
+      whileTap={tapScale}
+      transition={springTransition}
       className={className}
       {...props}
     >
@@ -138,11 +196,29 @@ interface TextRevealProps {
   delay?: number;
 }
 
+const textRevealVariants: Variants = {
+  hidden: { opacity: 0, y: 20, rotateX: -90 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: {
+      duration: 0.5,
+      ease: EASE_OUT_CUBIC,
+    },
+  },
+};
+
 export function TextReveal({ children, className, delay = 0 }: TextRevealProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   const words = children.split(" ");
+
+  const staggerTransition = useMemo(
+    () => ({ staggerChildren: 0.08, delayChildren: delay }),
+    [delay]
+  );
 
   return (
     <motion.span
@@ -150,24 +226,13 @@ export function TextReveal({ children, className, delay = 0 }: TextRevealProps) 
       className={className}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      transition={{ staggerChildren: 0.08, delayChildren: delay }}
+      transition={staggerTransition}
     >
       {words.map((word, i) => (
         <motion.span
           key={i}
           className="inline-block mr-[0.25em] last:mr-0"
-          variants={{
-            hidden: { opacity: 0, y: 20, rotateX: -90 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              rotateX: 0,
-              transition: {
-                duration: 0.5,
-                ease: [0.25, 0.4, 0.25, 1],
-              },
-            },
-          }}
+          variants={textRevealVariants}
         >
           {word}
         </motion.span>
@@ -190,9 +255,9 @@ export function Counter({ value, className }: CounterProps) {
     <motion.span
       ref={ref}
       className={className}
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
-      transition={{ type: "spring", stiffness: 200, damping: 15 }}
+      initial={scaleHidden}
+      animate={isInView ? scaleVisible : scaleHidden}
+      transition={springTransitionSoft}
     >
       {value}
     </motion.span>
@@ -204,6 +269,8 @@ interface MagneticProps {
   children: ReactNode;
   className?: string;
 }
+
+const magneticStyle = { transition: "transform 0.2s ease-out" } as const;
 
 export function Magnetic({ children, className }: MagneticProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -226,7 +293,7 @@ export function Magnetic({ children, className }: MagneticProps) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={className}
-      style={{ transition: "transform 0.2s ease-out" }}
+      style={magneticStyle}
     >
       {children}
     </motion.div>
@@ -247,18 +314,23 @@ export function Floating({
   duration = 6,
   distance = 10,
 }: FloatingProps) {
+  const animate = useMemo(
+    () => ({
+      y: [-distance / 2, distance / 2, -distance / 2],
+    }),
+    [distance]
+  );
+
+  const transition = useMemo(
+    () => ({
+      duration,
+      ...infiniteEaseTransition,
+    }),
+    [duration]
+  );
+
   return (
-    <motion.div
-      className={className}
-      animate={{
-        y: [-distance / 2, distance / 2, -distance / 2],
-      }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    >
+    <motion.div className={className} animate={animate} transition={transition}>
       {children}
     </motion.div>
   );
@@ -275,13 +347,16 @@ export function Parallax({ children, className, offset = 50 }: ParallaxProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-100px" });
 
+  const initial = useMemo(() => ({ y: offset }), [offset]);
+  const animateHidden = useMemo(() => ({ y: offset }), [offset]);
+
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ y: offset }}
-      animate={isInView ? { y: 0 } : { y: offset }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      initial={initial}
+      animate={isInView ? fadeUpVisible : animateHidden}
+      transition={easeOutTransition}
     >
       {children}
     </motion.div>
@@ -300,22 +375,27 @@ export function GlowPulse({
   className,
   glowColor = "rgba(149, 191, 71, 0.4)",
 }: GlowPulseProps) {
+  const animate = useMemo(
+    () => ({
+      boxShadow: [
+        `0 0 20px ${glowColor}`,
+        `0 0 60px ${glowColor}`,
+        `0 0 20px ${glowColor}`,
+      ],
+    }),
+    [glowColor]
+  );
+
+  const transition = useMemo(
+    () => ({
+      duration: 2,
+      ...infiniteEaseTransition,
+    }),
+    []
+  );
+
   return (
-    <motion.div
-      className={className}
-      animate={{
-        boxShadow: [
-          `0 0 20px ${glowColor}`,
-          `0 0 60px ${glowColor}`,
-          `0 0 20px ${glowColor}`,
-        ],
-      }}
-      transition={{
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    >
+    <motion.div className={className} animate={animate} transition={transition}>
       {children}
     </motion.div>
   );
@@ -329,6 +409,13 @@ interface SlideInProps extends Omit<HTMLMotionProps<"div">, "children"> {
   className?: string;
 }
 
+const directionOffsets = {
+  left: { x: -50, y: 0 },
+  right: { x: 50, y: 0 },
+  up: { x: 0, y: 50 },
+  down: { x: 0, y: -50 },
+} as const;
+
 export function SlideIn({
   children,
   direction = "up",
@@ -339,27 +426,25 @@ export function SlideIn({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-  const directionOffset = {
-    left: { x: -50, y: 0 },
-    right: { x: 50, y: 0 },
-    up: { x: 0, y: 50 },
-    down: { x: 0, y: -50 },
-  };
+  const offset = directionOffsets[direction];
+
+  const initial = useMemo(() => ({ opacity: 0, ...offset }), [offset]);
+  const animateHidden = useMemo(() => ({ opacity: 0, ...offset }), [offset]);
+  const transition = useMemo(
+    () => ({
+      duration: 0.6,
+      delay,
+      ease: EASE_OUT_CUBIC,
+    }),
+    [delay]
+  );
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, ...directionOffset[direction] }}
-      animate={
-        isInView
-          ? { opacity: 1, x: 0, y: 0 }
-          : { opacity: 0, ...directionOffset[direction] }
-      }
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.25, 0.4, 0.25, 1],
-      }}
+      initial={initial}
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : animateHidden}
+      transition={transition}
       className={className}
       {...props}
     >
@@ -374,18 +459,14 @@ interface BounceIconProps {
   className?: string;
 }
 
+const bounceHover = {
+  y: [0, -8, 0] as number[],
+  transition: bounceHoverTransition,
+};
+
 export function BounceIcon({ children, className }: BounceIconProps) {
   return (
-    <motion.div
-      className={className}
-      whileHover={{
-        y: [0, -8, 0],
-        transition: {
-          duration: 0.4,
-          ease: "easeInOut",
-        },
-      }}
-    >
+    <motion.div className={className} whileHover={bounceHover}>
       {children}
     </motion.div>
   );
@@ -397,13 +478,16 @@ interface GradientBorderProps {
   className?: string;
 }
 
+const gradientInitial = { "--gradient-angle": "0deg" } as Record<string, string>;
+const gradientAnimate = { "--gradient-angle": "360deg" } as Record<string, string>;
+
 export function GradientBorder({ children, className }: GradientBorderProps) {
   return (
     <motion.div
       className={`relative ${className}`}
-      initial={{ "--gradient-angle": "0deg" } as Record<string, string>}
-      animate={{ "--gradient-angle": "360deg" } as Record<string, string>}
-      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+      initial={gradientInitial}
+      animate={gradientAnimate}
+      transition={linearInfiniteTransition}
     >
       {children}
     </motion.div>

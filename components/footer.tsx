@@ -29,8 +29,8 @@ const socialLinks = [
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Community", href: "/community" },
-  { label: "Growth", href: "/growth" },
+  { label: "Developers", href: "/shopify-dev-community" },
+  { label: "Growth", href: "/shopify-growth-community" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
 ];
@@ -39,6 +39,27 @@ export function Footer() {
   return (
     <footer className="border-t border-white/5 bg-midnight py-16">
       <div className="mx-auto max-w-7xl px-6">
+        {/* Social links */}
+        <FadeUp className="mb-12">
+          <StaggerContainer className="flex flex-wrap justify-center gap-4" staggerDelay={0.05}>
+            {socialLinks.map((social) => (
+              <StaggerItem key={social.name}>
+                <motion.a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, rotate: 3 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-all hover:border-shopify/50 hover:bg-shopify/10"
+                  aria-label={social.name}
+                >
+                  <social.icon className="h-7 w-7 text-gray-400 transition-colors group-hover:text-shopify" />
+                </motion.a>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </FadeUp>
+
         <StaggerContainer className="grid gap-12 text-center md:grid-cols-3 md:text-left" staggerDelay={0.1}>
           {/* Location */}
           <StaggerItem>
@@ -80,27 +101,6 @@ export function Footer() {
             </p>
           </StaggerItem>
         </StaggerContainer>
-
-        {/* Social links */}
-        <FadeUp className="mt-12">
-          <StaggerContainer className="flex flex-wrap justify-center gap-4" staggerDelay={0.05}>
-            {socialLinks.map((social) => (
-              <StaggerItem key={social.name}>
-                <motion.a
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, rotate: 3 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-all hover:border-shopify/50 hover:bg-shopify/10"
-                  aria-label={social.name}
-                >
-                  <social.icon className="h-7 w-7 text-gray-400 transition-colors group-hover:text-shopify" />
-                </motion.a>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </FadeUp>
 
         <motion.div
           initial={{ opacity: 0 }}

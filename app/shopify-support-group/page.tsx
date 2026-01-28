@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   FadeUp,
@@ -69,7 +68,7 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] overflow-hidden pt-32 pb-40">
+      <section className="relative min-h-[70vh] overflow-hidden pt-40 pb-56">
         {/* Background effects */}
         <div className="absolute inset-0 grid-pattern opacity-50"></div>
         <Floating duration={8} distance={20}>
@@ -81,22 +80,6 @@ export default function SupportPage() {
 
         <div className="relative mx-auto max-w-5xl px-6">
           <div className="flex flex-col items-center text-center">
-            {/* Breadcrumb */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8"
-            >
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-shopify transition-colors"
-              >
-                <span>←</span>
-                <span>Back to Home</span>
-              </Link>
-            </motion.div>
-
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -124,8 +107,7 @@ export default function SupportPage() {
                 Shopify Support Group
               </span>
               <span className="block mt-4 text-2xl text-gray-400 lg:text-3xl font-normal">
-                For Merchants Who Need{" "}
-                <span className="font-serif italic text-lime">Real Answers</span>
+                <span className="font-serif italic text-lime">for Merchants</span>
               </span>
             </motion.h1>
 
@@ -257,7 +239,7 @@ export default function SupportPage() {
                   </div>
                   <div>
                     <div className="font-semibold text-white">Battle-tested solutions</div>
-                    <div className="text-sm text-gray-500">Learn what actually works from those who've tried it</div>
+                    <div className="text-sm text-gray-500">Learn what actually works from those who&apos;ve tried it</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">

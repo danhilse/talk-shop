@@ -1,8 +1,22 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Talk Shop",
-  description: "Terms of service for the Talk Shop community.",
+  title: "Terms of Service",
+  description:
+    "Terms of service for the Talk Shop Shopify Discord community. Community guidelines, intellectual property, and usage terms.",
+  openGraph: {
+    title: "Terms of Service | Talk Shop",
+    description: "Terms of service for the Talk Shop Shopify Discord community.",
+    url: "https://talkshop.community/terms",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://talkshop.community/terms",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function TermsPage() {

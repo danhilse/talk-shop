@@ -3,24 +3,69 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Magnetic } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
+
+// ============================================================================
+// Hoisted constants - prevents object recreation on every render
+// ============================================================================
+
+const navTransition = {
+  duration: 0.6,
+  ease: [0.25, 0.4, 0.25, 1],
+} as const;
+
+const fadeTransition = { duration: 0.2 } as const;
+
+const slideTransition = {
+  type: "spring",
+  damping: 25,
+  stiffness: 200,
+} as const;
+
+const hoverScale = { scale: 1.05 } as const;
+const tapScale = { scale: 0.95 } as const;
+
+// Animation states
+const navInitial = { y: -100, opacity: 0 } as const;
+const navAnimate = { y: 0, opacity: 1 } as const;
+const fadeInitial = { opacity: 0 } as const;
+const fadeAnimate = { opacity: 1 } as const;
+const slideInitial = { x: "100%" } as const;
+const slideAnimate = { x: 0 } as const;
+
+// Hamburger animation states
+const hamburgerOpen = {
+  top: { rotate: 45, y: 8 },
+  middle: { opacity: 0 },
+  bottom: { rotate: -45, y: -8 },
+} as const;
+
+const hamburgerClosed = {
+  top: { rotate: 0, y: 0 },
+  middle: { opacity: 1 },
+  bottom: { rotate: 0, y: 0 },
+} as const;
+
+// ============================================================================
+// Components
+// ============================================================================
 
 function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
   return (
     <div className="relative h-5 w-6">
       <motion.span
-        animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+        animate={isOpen ? hamburgerOpen.top : hamburgerClosed.top}
         className="absolute left-0 top-0 h-0.5 w-6 bg-current"
       />
       <motion.span
-        animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+        animate={isOpen ? hamburgerOpen.middle : hamburgerClosed.middle}
         className="absolute left-0 top-2 h-0.5 w-6 bg-current"
       />
       <motion.span
-        animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+        animate={isOpen ? hamburgerOpen.bottom : hamburgerClosed.bottom}
         className="absolute left-0 top-4 h-0.5 w-6 bg-current"
       />
     </div>
@@ -29,37 +74,43 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Community", href: "/community" },
-  { label: "Support", href: "/support" },
-  { label: "Experts", href: "/experts" },
-  { label: "Entrepreneurs", href: "/entrepreneurs" },
-];
+  { label: "Developers", href: "/shopify-dev-community" },
+  { label: "Support", href: "/shopify-support-group" },
+  { label: "Experts", href: "/shopify-experts-network" },
+  { label: "Entrepreneurs", href: "/shopify-entrepreneurs" },
+] as const;
 
 export function Nav() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Stable callback using functional setState
+  const toggleMenu = useCallback(() => {
+    setMobileMenuOpen((prev) => !prev);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setMobileMenuOpen(false);
+  }, []);
+
   return (
     <>
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+        initial={navInitial}
+        animate={navAnimate}
+        transition={navTransition}
         className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-midnight/80 backdrop-blur-xl"
       >
         <div className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <motion.div whileHover={hoverScale} whileTap={tapScale}>
                 <Image
                   src="/logo.webp"
                   alt="Talk Shop"
-                  width={140}
-                  height={56}
-                  className="h-14 w-auto"
+                  width={160}
+                  height={64}
+                  className="h-16 w-auto"
                   priority
                 />
               </motion.div>
@@ -68,8 +119,10 @@ export function Nav() {
             {/* Desktop Navigation */}
             <div className="hidden items-center gap-8 md:flex">
               {navLinks.map((item, i) => {
-                const isActive = pathname === item.href ||
-                  (item.href !== "/" && pathname.startsWith(item.href.split("#")[0]));
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" &&
+                    pathname.startsWith(item.href.split("#")[0]));
 
                 return (
                   <motion.div
@@ -103,11 +156,11 @@ export function Nav() {
                   href="https://discord.gg/talk-shop"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="hidden md:inline-flex group relative items-center gap-2 overflow-hidden rounded-full bg-shopify px-5 py-2.5 text-sm font-semibold text-midnight transition-all hover:bg-lime"
+                  whileHover={hoverScale}
+                  whileTap={tapScale}
+                  className="hidden md:inline-flex group relative items-center gap-2 overflow-hidden rounded-full bg-shopify px-6 py-3 text-base font-semibold text-midnight transition-all hover:bg-lime"
                 >
-                  <DiscordIcon className="h-4 w-4" />
+                  <DiscordIcon className="h-5 w-5" />
                   <span>Join Discord</span>
                 </motion.a>
               </Magnetic>
@@ -117,7 +170,7 @@ export function Nav() {
                 href="https://discord.gg/talk-shop"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileTap={{ scale: 0.95 }}
+                whileTap={tapScale}
                 className="md:hidden inline-flex items-center gap-1.5 rounded-full bg-shopify px-3 py-2 text-xs font-semibold text-midnight transition-all hover:bg-lime"
               >
                 <DiscordIcon className="h-4 w-4" />
@@ -126,7 +179,7 @@ export function Nav() {
 
               {/* Mobile Menu Button */}
               <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                onClick={toggleMenu}
                 className="md:hidden relative z-50 p-2 text-white/80 hover:text-white transition-colors"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               >
@@ -137,34 +190,36 @@ export function Nav() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - using ternary for explicit null */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {mobileMenuOpen ? (
           <>
             {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              initial={fadeInitial}
+              animate={fadeAnimate}
+              exit={fadeInitial}
+              transition={fadeTransition}
               className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={closeMenu}
             />
 
             {/* Mobile Menu Panel */}
             <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              initial={slideInitial}
+              animate={slideAnimate}
+              exit={slideInitial}
+              transition={slideTransition}
               className="fixed top-0 right-0 bottom-0 z-40 w-72 bg-midnight border-l border-white/10 md:hidden"
             >
               <div className="flex flex-col h-full pt-24 px-6 pb-8">
                 {/* Navigation Links */}
                 <nav className="flex flex-col gap-2">
                   {navLinks.map((item, i) => {
-                    const isActive = pathname === item.href ||
-                      (item.href !== "/" && pathname.startsWith(item.href.split("#")[0]));
+                    const isActive =
+                      pathname === item.href ||
+                      (item.href !== "/" &&
+                        pathname.startsWith(item.href.split("#")[0]));
 
                     return (
                       <motion.div
@@ -175,7 +230,7 @@ export function Nav() {
                       >
                         <Link
                           href={item.href}
-                          onClick={() => setMobileMenuOpen(false)}
+                          onClick={closeMenu}
                           className={`block py-3 px-4 rounded-lg text-lg font-medium transition-colors ${
                             isActive
                               ? "bg-shopify/10 text-shopify"
@@ -200,7 +255,7 @@ export function Nav() {
                     href="https://discord.gg/talk-shop"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={closeMenu}
                     className="flex items-center justify-center gap-2 w-full rounded-full bg-shopify px-5 py-3 text-base font-semibold text-midnight transition-all hover:bg-lime"
                   >
                     <DiscordIcon className="h-5 w-5" />
@@ -210,7 +265,7 @@ export function Nav() {
               </div>
             </motion.div>
           </>
-        )}
+        ) : null}
       </AnimatePresence>
     </>
   );

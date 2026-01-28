@@ -27,11 +27,12 @@ export const metadata: Metadata = {
     default: "Talk Shop - Shopify Discord Community",
     template: "%s | Talk Shop",
   },
-  description: "Join the Shopify Discord community for developers, merchants, and experts. Get real-time help, share insights, and connect with 300+ members building on Shopify.",
+  description: "Join the Shopify Discord community for developers, merchants, and experts. Get real-time help, share insights, and connect with members building on Shopify.",
   keywords: ["Shopify", "Discord", "community", "developers", "merchants", "ecommerce", "Shopify apps", "Shopify themes", "Hydrogen", "headless commerce"],
   authors: [{ name: "Talk Shop Community" }],
   creator: "Talk Shop",
   publisher: "Talk Shop",
+  metadataBase: new URL("https://letstalkshop.com"),
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -45,12 +46,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Talk Shop",
     title: "Talk Shop - Shopify Discord Community",
-    description: "Join the Shopify Discord community for developers, merchants, and experts. Get real-time help, share insights, and connect with 300+ members building on Shopify.",
+    description: "Join the Shopify Discord community for developers, merchants, and experts. Get real-time help, share insights, and connect with members building on Shopify.",
+    images: [
+      {
+        url: "/opengraph.png",
+        width: 1200,
+        height: 630,
+        alt: "Talk Shop - Shopify Discord Community",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Talk Shop - Shopify Discord Community",
-    description: "Join the Shopify Discord community for developers, merchants, and experts. Get real-time help and connect with 300+ members.",
+    description: "Join the Shopify Discord community for developers, merchants, and experts. Get real-time help, share insights, and connect with members building on Shopify.",
+    images: ["/opengraph.png"],
   },
   robots: {
     index: true,

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   FadeUp,
   StaggerContainer,
@@ -43,11 +43,8 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 export default function EntrepreneursPage() {
-  const [randomHeadshots, setRandomHeadshots] = useState<string[]>([]);
-
-  useEffect(() => {
-    setRandomHeadshots(shuffleArray(headshots).slice(0, 5));
-  }, []);
+  // Lazy initialization - shuffles once on mount
+  const [randomHeadshots] = useState(() => shuffleArray(headshots).slice(0, 5));
 
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">

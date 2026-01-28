@@ -1,8 +1,23 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Talk Shop",
-  description: "Privacy policy for the Talk Shop community.",
+  title: "Privacy Policy",
+  description:
+    "Privacy policy for the Talk Shop Shopify Discord community. Learn how we collect, use, and protect your information.",
+  openGraph: {
+    title: "Privacy Policy | Talk Shop",
+    description:
+      "Privacy policy for the Talk Shop Shopify Discord community.",
+    url: "https://talkshop.community/privacy",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://talkshop.community/privacy",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function PrivacyPage() {
