@@ -74,7 +74,7 @@ export default function Error({
         >
           <button
             onClick={() => reset()}
-            className="group inline-flex items-center gap-2 rounded-full bg-shopify px-6 py-3 font-semibold text-black transition-all hover:bg-shopify-light hover:shadow-lg hover:shadow-shopify/20"
+            className="group inline-flex items-center gap-2 rounded-full bg-shopify px-6 py-3 font-semibold text-black transition-all hover:bg-shopify-light hover:shadow-lg hover:shadow-shopify/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
           >
             <svg
               className="h-4 w-4 transition-transform group-hover:-rotate-180"
@@ -94,7 +94,7 @@ export default function Error({
 
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-semibold text-white transition-all hover:border-white/20 hover:bg-white/10"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-semibold text-white transition-all hover:border-white/20 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
           >
             <span>Go Home</span>
           </Link>

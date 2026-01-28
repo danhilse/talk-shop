@@ -160,7 +160,7 @@ export function HeroSection() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-shopify to-shopify-dark px-10 py-5 text-lg font-bold text-midnight transition-all hover:shadow-2xl hover:shadow-shopify/25"
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-shopify to-shopify-dark px-10 py-5 text-lg font-bold text-midnight transition-all hover:shadow-2xl hover:shadow-shopify/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
               >
                 <motion.span
                   className="absolute inset-0 bg-gradient-to-r from-lime to-shopify"
@@ -198,7 +198,7 @@ export function HeroSection() {
                   >
                     <Image
                       src={`/headshots/${src}`}
-                      alt="Community member"
+                      alt=""
                       fill
                       className="object-cover"
                     />

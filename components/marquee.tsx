@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 
 const marqueeTransition = {
@@ -18,7 +18,19 @@ interface MarqueeProps {
 }
 
 export function Marquee({ children, reverse = false }: MarqueeProps) {
+  const prefersReducedMotion = useReducedMotion();
   const animateX = reverse ? ["0%", "-100%"] : ["-100%", "0%"];
+
+  // For reduced motion, show static content
+  if (prefersReducedMotion) {
+    return (
+      <div className="flex overflow-hidden select-none gap-8 justify-center">
+        <div className="flex shrink-0 items-center gap-8">
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex overflow-hidden select-none gap-8">

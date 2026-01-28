@@ -270,30 +270,32 @@ interface MagneticProps {
   className?: string;
 }
 
-const magneticStyle = { transition: "transform 0.2s ease-out" } as const;
-
 export function Magnetic({ children, className }: MagneticProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion || !ref.current) return;
     const { clientX, clientY } = e;
-    const { left, top, width, height } = ref.current!.getBoundingClientRect();
+    const { left, top, width, height } = ref.current.getBoundingClientRect();
     const x = (clientX - left - width / 2) * 0.15;
     const y = (clientY - top - height / 2) * 0.15;
-    ref.current!.style.transform = `translate(${x}px, ${y}px)`;
+    ref.current.style.transform = `translate(${x}px, ${y}px)`;
   };
 
-  const handleMouseLeave = () => {
-    ref.current!.style.transform = "translate(0, 0)";
+  const resetPosition = () => {
+    if (ref.current) {
+      ref.current.style.transform = "translate(0, 0)";
+    }
   };
 
   return (
     <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={className}
-      style={magneticStyle}
+      onMouseLeave={resetPosition}
+      onBlur={resetPosition}
+      className={`transition-transform duration-200 ease-out ${className || ""}`}
     >
       {children}
     </motion.div>
@@ -314,11 +316,16 @@ export function Floating({
   duration = 6,
   distance = 10,
 }: FloatingProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   const animate = useMemo(
-    () => ({
-      y: [-distance / 2, distance / 2, -distance / 2],
-    }),
-    [distance]
+    () =>
+      prefersReducedMotion
+        ? {}
+        : {
+            y: [-distance / 2, distance / 2, -distance / 2],
+          },
+    [distance, prefersReducedMotion]
   );
 
   const transition = useMemo(
@@ -375,15 +382,20 @@ export function GlowPulse({
   className,
   glowColor = "rgba(149, 191, 71, 0.4)",
 }: GlowPulseProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   const animate = useMemo(
-    () => ({
-      boxShadow: [
-        `0 0 20px ${glowColor}`,
-        `0 0 60px ${glowColor}`,
-        `0 0 20px ${glowColor}`,
-      ],
-    }),
-    [glowColor]
+    () =>
+      prefersReducedMotion
+        ? { boxShadow: `0 0 40px ${glowColor}` }
+        : {
+            boxShadow: [
+              `0 0 20px ${glowColor}`,
+              `0 0 60px ${glowColor}`,
+              `0 0 20px ${glowColor}`,
+            ],
+          },
+    [glowColor, prefersReducedMotion]
   );
 
   const transition = useMemo(

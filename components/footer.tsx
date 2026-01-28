@@ -50,7 +50,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, rotate: 3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-all hover:border-shopify/50 hover:bg-shopify/10"
+                  className="group flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-all hover:border-shopify/50 hover:bg-shopify/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
                   aria-label={social.name}
                 >
                   <social.icon className="h-7 w-7 text-gray-400 transition-colors group-hover:text-shopify" />
@@ -85,7 +85,7 @@ export function Footer() {
               <motion.a
                 href="mailto:email@example.com"
                 whileHover={{ color: "#ffffff" }}
-                className="transition-colors"
+                className="transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
               >
                 email@example.com
               </motion.a>
@@ -94,7 +94,7 @@ export function Footer() {
               <motion.a
                 href="tel:5555555555"
                 whileHover={{ color: "#ffffff" }}
-                className="transition-colors"
+                className="transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
               >
                 (555) 555-5555
               </motion.a>
@@ -131,11 +131,11 @@ export function Footer() {
               {navLinks.map((link) => (
                 <motion.div key={link.label} whileHover={{ y: -2 }}>
                   {link.href.startsWith("/") ? (
-                    <Link href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors">
+                    <Link href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
                       {link.label}
                     </Link>
                   ) : (
-                    <a href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors">
+                    <a href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
                       {link.label}
                     </a>
                   )}

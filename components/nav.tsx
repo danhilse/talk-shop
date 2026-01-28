@@ -103,7 +103,7 @@ export function Nav() {
       >
         <div className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/">
+            <Link href="/" className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
               <motion.div whileHover={hoverScale} whileTap={tapScale}>
                 <Image
                   src="/logo.webp"
@@ -133,7 +133,7 @@ export function Nav() {
                   >
                     <Link
                       href={item.href}
-                      className={`text-sm font-medium transition-colors relative group ${
+                      className={`text-sm font-medium transition-colors relative group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight ${
                         isActive ? "text-shopify" : "text-gray-400 hover:text-white"
                       }`}
                     >
@@ -158,7 +158,7 @@ export function Nav() {
                   rel="noopener noreferrer"
                   whileHover={hoverScale}
                   whileTap={tapScale}
-                  className="hidden md:inline-flex group relative items-center gap-2 overflow-hidden rounded-full bg-shopify px-6 py-3 text-base font-semibold text-midnight transition-all hover:bg-lime"
+                  className="hidden md:inline-flex group relative items-center gap-2 overflow-hidden rounded-full bg-shopify px-6 py-3 text-base font-semibold text-midnight transition-all hover:bg-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
                 >
                   <DiscordIcon className="h-5 w-5" />
                   <span>Join Discord</span>
@@ -171,7 +171,7 @@ export function Nav() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileTap={tapScale}
-                className="md:hidden inline-flex items-center gap-1.5 rounded-full bg-shopify px-3 py-2 text-xs font-semibold text-midnight transition-all hover:bg-lime"
+                className="md:hidden inline-flex items-center gap-1.5 rounded-full bg-shopify px-3 py-2 text-xs font-semibold text-midnight transition-all hover:bg-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
               >
                 <DiscordIcon className="h-4 w-4" />
                 <span>Join</span>
@@ -180,7 +180,7 @@ export function Nav() {
               {/* Mobile Menu Button */}
               <button
                 onClick={toggleMenu}
-                className="md:hidden relative z-50 p-2 text-white/80 hover:text-white transition-colors"
+                className="md:hidden relative z-50 p-2 text-white/80 hover:text-white transition-colors rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               >
                 <HamburgerIcon isOpen={mobileMenuOpen} />
@@ -231,7 +231,7 @@ export function Nav() {
                         <Link
                           href={item.href}
                           onClick={closeMenu}
-                          className={`block py-3 px-4 rounded-lg text-lg font-medium transition-colors ${
+                          className={`block py-3 px-4 rounded-lg text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight ${
                             isActive
                               ? "bg-shopify/10 text-shopify"
                               : "text-gray-400 hover:bg-white/5 hover:text-white"
@@ -256,7 +256,7 @@ export function Nav() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeMenu}
-                    className="flex items-center justify-center gap-2 w-full rounded-full bg-shopify px-5 py-3 text-base font-semibold text-midnight transition-all hover:bg-lime"
+                    className="flex items-center justify-center gap-2 w-full rounded-full bg-shopify px-5 py-3 text-base font-semibold text-midnight transition-all hover:bg-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
                   >
                     <DiscordIcon className="h-5 w-5" />
                     <span>Join Discord</span>
