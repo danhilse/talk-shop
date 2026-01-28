@@ -96,7 +96,7 @@ export function Nav() {
               })}
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               {/* Desktop Discord Button */}
               <Magnetic>
                 <motion.a
@@ -111,6 +111,18 @@ export function Nav() {
                   <span>Join Discord</span>
                 </motion.a>
               </Magnetic>
+
+              {/* Mobile Discord Button */}
+              <motion.a
+                href="https://discord.gg/talk-shop"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileTap={{ scale: 0.95 }}
+                className="md:hidden inline-flex items-center gap-1.5 rounded-full bg-shopify px-3 py-2 text-xs font-semibold text-midnight transition-all hover:bg-lime"
+              >
+                <DiscordIcon className="h-4 w-4" />
+                <span>Join</span>
+              </motion.a>
 
               {/* Mobile Menu Button */}
               <button
