@@ -392,7 +392,7 @@ export default function ExpertsPage() {
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
                 Real-World Learning
               </span>
-              <h2 className="mb-8 text-4xl font-bold tracking-tight text-white lg:text-5xl">
+              <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
                 Learning Through{" "}
                 <span className="block font-serif italic text-lime mt-2">Real-World Feedback</span>
               </h2>

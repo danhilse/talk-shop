@@ -565,7 +565,7 @@ export default function GrowthPage() {
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
                 Who It&apos;s For
               </span>
-              <h2 className="mb-10 text-4xl font-bold tracking-tight text-white lg:text-5xl">
+              <h2 className="mb-10 text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
                 Built for Merchants{" "}
                 <span className="block font-serif italic text-lime mt-2">Serious About Growth</span>
               </h2>

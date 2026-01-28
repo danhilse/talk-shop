@@ -179,7 +179,7 @@ export default function EntrepreneursPage() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               The Founder Journey
             </span>
-            <h2 className="text-4xl font-bold tracking-tight text-white lg:text-5xl">
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
               From Idea to <span className="font-serif italic text-lime">Sustainable Business</span>
             </h2>
           </FadeUp>
@@ -306,7 +306,7 @@ export default function EntrepreneursPage() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               Building Together
             </span>
-            <h2 className="text-4xl font-bold tracking-tight text-white lg:text-5xl max-w-2xl">
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl max-w-2xl">
               Building Alongside <span className="font-serif italic text-lime">Other Founders</span>
             </h2>
           </FadeUp>
