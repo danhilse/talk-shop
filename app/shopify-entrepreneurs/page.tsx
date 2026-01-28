@@ -49,7 +49,7 @@ export default function EntrepreneursPage() {
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
       {/* Hero Section - Centered, editorial style */}
-      <section className="relative min-h-screen overflow-hidden pt-20 flex items-center">
+      <section className="relative min-h-screen overflow-hidden pt-16 md:pt-20 flex items-center">
         {/* Subtle gradient orbs */}
         <Floating duration={12} distance={15}>
           <div className="absolute top-1/4 left-1/4 h-[500px] w-[500px] rounded-full bg-shopify/5 blur-[200px]"></div>
@@ -62,13 +62,13 @@ export default function EntrepreneursPage() {
         <div className="absolute inset-0 grid-pattern opacity-30"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-midnight via-transparent to-midnight"></div>
 
-        <div className="relative mx-auto max-w-5xl px-6 py-24 text-center">
+        <div className="relative mx-auto max-w-5xl px-6 py-12 sm:py-16 md:py-24 text-center">
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-8"
+            className="mb-6 md:mb-8"
           >
             <span className="font-mono text-sm tracking-widest text-shopify uppercase">
               A Community for Founders
@@ -80,12 +80,12 @@ export default function EntrepreneursPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mb-8"
+            className="mb-6 md:mb-8"
           >
-            <span className="block text-6xl font-bold tracking-tight text-white lg:text-8xl">
+            <span className="block text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-8xl">
               Shopify
             </span>
-            <span className="block font-serif text-6xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify to-lime lg:text-8xl mt-2">
+            <span className="block font-serif text-5xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify to-lime sm:text-6xl lg:text-8xl mt-2">
               Entrepreneurs
             </span>
           </motion.h1>
@@ -95,7 +95,7 @@ export default function EntrepreneursPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-gray-400"
+            className="mx-auto mb-8 md:mb-12 max-w-2xl text-lg md:text-xl leading-relaxed text-gray-400"
           >
             Building a Shopify business can be isolating, especially for solo founders and small teams.
             This community exists to bring founders together in a shared space for learning and support.
@@ -179,7 +179,7 @@ export default function EntrepreneursPage() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               The Founder Journey
             </span>
-            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
+            <h2 className="text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
               From Idea to <span className="font-serif italic text-lime">Sustainable Business</span>
             </h2>
           </FadeUp>
@@ -306,7 +306,7 @@ export default function EntrepreneursPage() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               Building Together
             </span>
-            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl max-w-2xl">
+            <h2 className="text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl max-w-2xl">
               Building Alongside <span className="font-serif italic text-lime">Other Founders</span>
             </h2>
           </FadeUp>

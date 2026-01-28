@@ -144,7 +144,7 @@ export function CommunityHeroSection() {
               className="font-serif text-5xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify lg:text-7xl"
             >
               for Builders &{" "}
-              <span className="relative inline-block">
+              <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify">
                 Developers
                 {/* Underline accent - only under "Developers" */}
                 <motion.svg

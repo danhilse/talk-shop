@@ -33,9 +33,8 @@ export function ExperienceSection() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               Our Experience
             </span>
-            <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
-              With 20 years in eCommerce,{" "}
-              <span className="block font-serif italic text-lime mt-2">We stand out</span>
+            <h2 className="mb-8 text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
+              With 20 years in eCommerce, <span className="font-serif italic text-lime">We stand out</span>
             </h2>
 
             <p className="text-lg leading-relaxed text-gray-400 mb-8">

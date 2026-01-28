@@ -134,7 +134,7 @@ export default function ExpertsPage() {
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-              className="mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
+              className="mb-6 md:mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-shopify opacity-75"></span>
@@ -150,13 +150,13 @@ export default function ExpertsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-10"
+              className="mb-6 md:mb-10"
             >
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="block text-5xl font-bold tracking-tight text-white lg:text-7xl"
+                className="block text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl"
               >
                 Shopify Experts Network
               </motion.span>
@@ -205,7 +205,7 @@ export default function ExpertsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-14 max-w-2xl text-xl leading-relaxed text-gray-400"
+              className="mb-8 md:mb-14 max-w-2xl text-lg md:text-xl leading-relaxed text-gray-400"
             >
               The Shopify Experts Network is a community of experienced builders, operators, and professionals who have spent years working on Shopify. It exists for people who want to learn from{" "}
               <span className="relative inline-block">
@@ -392,9 +392,9 @@ export default function ExpertsPage() {
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
                 Real-World Learning
               </span>
-              <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
+              <h2 className="mb-8 text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
                 Learning Through{" "}
-                <span className="block font-serif italic text-lime mt-2">Real-World Feedback</span>
+                <span className="block font-serif italic text-lime mt-1 md:mt-2">Real-World Feedback</span>
               </h2>
 
               <div className="space-y-6 text-lg leading-relaxed text-gray-400">
@@ -467,7 +467,9 @@ export default function ExpertsPage() {
                 </div>
                 <h2 className="text-3xl font-bold tracking-tight text-white lg:text-4xl">
                   No Pitching,{" "}
-                  <span className="font-serif italic text-lime">Just Practical Insight</span>
+                  <span className="block md:inline">
+                    just <span className="font-serif italic text-lime">Practical Insight</span>
+                  </span>
                 </h2>
               </div>
             </SlideIn>

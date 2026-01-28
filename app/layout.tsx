@@ -33,6 +33,10 @@ export const metadata: Metadata = {
   creator: "Talk Shop",
   publisher: "Talk Shop",
   metadataBase: new URL("https://letstalkshop.com"),
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },

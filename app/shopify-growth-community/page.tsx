@@ -515,7 +515,7 @@ export default function GrowthPage() {
                 </span>
                 <h2 className="text-4xl font-bold tracking-tight text-white lg:text-6xl">
                   Shared Experiments,{" "}
-                  <span className="block font-serif italic text-lime mt-2">Faster Learning</span>
+                  <span className="block font-serif italic text-lime mt-1 md:mt-2">Faster Learning</span>
                 </h2>
               </div>
 
@@ -565,9 +565,9 @@ export default function GrowthPage() {
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
                 Who It&apos;s For
               </span>
-              <h2 className="mb-10 text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
+              <h2 className="mb-10 text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
                 Built for Merchants{" "}
-                <span className="block font-serif italic text-lime mt-2">Serious About Growth</span>
+                <span className="block font-serif italic text-lime mt-1 md:mt-2">Serious About Growth</span>
               </h2>
 
               <div className="space-y-6 text-lg leading-relaxed text-gray-400">

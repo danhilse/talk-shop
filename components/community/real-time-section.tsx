@@ -19,9 +19,9 @@ export function RealTimeSection() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 md:mb-6 block">
               Why Real-Time
             </span>
-            <h2 className="mb-6 md:mb-8 text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
+            <h2 className="mb-6 md:mb-8 text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
               Why Real-Time{" "}
-              <span className="block font-serif italic text-lime mt-2">Matters</span>
+              <span className="block font-serif italic text-lime mt-1 md:mt-2">Matters</span>
             </h2>
 
             <div className="space-y-6 text-lg leading-relaxed text-gray-400">

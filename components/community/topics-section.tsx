@@ -28,7 +28,7 @@ export function TopicsSection() {
             >
               Inside the Community
             </motion.span>
-            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
+            <h2 className="text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
               What Developers{" "}
               <span className="font-serif italic text-lime">Discuss</span>
             </h2>
