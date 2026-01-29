@@ -16,7 +16,7 @@ function GlitchText({ children, className = "" }: { children: React.ReactNode; c
 
 export function WhoItsForSection() {
   return (
-    <section className="relative bg-midnight py-16 md:py-24 overflow-hidden">
+    <section id="experience" className="relative bg-midnight py-16 md:py-24 overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-30"></div>
 
       {/* Decorative vertical line */}

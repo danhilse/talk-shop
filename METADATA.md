@@ -39,9 +39,9 @@
 | **Description** | Join the Shopify Dev Community on Discord. Connect with app developers, theme builders, and engineers working with Shopify APIs, Hydrogen, and headless storefronts. |
 | **Keywords** | Shopify developers, Shopify Discord, Shopify app development, Shopify theme development, Hydrogen Shopify, headless Shopify, Shopify API, Shopify webhooks, Liquid templates, Shopify community |
 | **OG Title** | Shopify Developer Community \| Talk Shop |
-| **OG Description** | A Discord community built for real Shopify developers. Discuss app architecture, APIs, webhooks, theme development, and Hydrogen with 500+ devs. |
+| **OG Description** | A Discord community built for real Shopify developers. Discuss app architecture, APIs, webhooks, theme development, and Hydrogen with 300+ devs. |
 | **Twitter Title** | Shopify Developer Community \| Talk Shop |
-| **Twitter Description** | Join 500+ Shopify developers on Discord. Real-time help for app development, theme building, and headless commerce. |
+| **Twitter Description** | Join 300+ Shopify developers on Discord. Real-time help for app development, theme building, and headless commerce. |
 | **Canonical** | https://talkshop.community/community |
 
 ---

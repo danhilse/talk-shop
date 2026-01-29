@@ -6,7 +6,7 @@ import { DiscordIcon } from "@/components/icons";
 
 export function CommunityCTASection() {
   return (
-    <section className="relative overflow-hidden py-32">
+    <section id="cta" className="relative overflow-hidden py-32">
       {/* Multi-layer background */}
       <div className="absolute inset-0 bg-gradient-to-br from-shopify via-shopify-dark to-shopify"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>

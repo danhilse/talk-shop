@@ -48,6 +48,11 @@ export {
   DiscordAIContextMenu,
 } from "./discord/ai-bot-response";
 
+export {
+  DiscordFullInterface,
+  DiscordFloatingChat,
+} from "./discord/full-interface";
+
 // ============================================
 // E-COMMERCE GRAPHICS
 // ============================================
@@ -55,6 +60,7 @@ export {
   EcommerceAnalyticsCard,
   EcommerceAnalyticsDashboard,
   EcommerceStat,
+  ShopifyAnalyticsStack,
 } from "./ecommerce/analytics-card";
 
 export {

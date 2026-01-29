@@ -5,7 +5,7 @@ import { SlideIn } from "@/components/motion";
 
 export function ProblemSection() {
   return (
-    <section className="relative bg-slate py-16 md:py-24">
+    <section id="learn-more" className="relative bg-slate py-16 md:py-24">
       <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
 
       <div className="relative mx-auto max-w-7xl px-6">

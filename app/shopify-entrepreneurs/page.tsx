@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import {
   FadeUp,
   StaggerContainer,
@@ -13,43 +12,14 @@ import {
   SlideIn,
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
-
-const headshots = [
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_3.png",
-];
-
-function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
+import { displayHeadshots } from "@/lib/data";
 
 export default function EntrepreneursPage() {
-  // Lazy initialization - shuffles once on mount
-  const [randomHeadshots] = useState(() => shuffleArray(headshots).slice(0, 5));
 
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
       {/* Hero Section - Centered, editorial style */}
-      <section className="relative min-h-screen overflow-hidden pt-16 md:pt-20 flex items-center">
+      <section id="hero" className="relative min-h-screen overflow-hidden pt-16 md:pt-20 flex items-center">
         {/* Subtle gradient orbs */}
         <Floating duration={12} distance={15}>
           <div className="absolute top-1/4 left-1/4 h-[500px] w-[500px] rounded-full bg-shopify/5 blur-[200px]"></div>
@@ -143,7 +113,7 @@ export default function EntrepreneursPage() {
               className="flex items-center gap-4"
             >
               <div className="flex -space-x-3">
-                {randomHeadshots.map((src, i) => (
+                {displayHeadshots.map((src, i) => (
                   <motion.div
                     key={src}
                     initial={{ opacity: 0, scale: 0 }}
@@ -171,7 +141,7 @@ export default function EntrepreneursPage() {
       </section>
 
       {/* The Journey - Horizontal timeline/narrative style */}
-      <section className="relative bg-slate py-32 overflow-hidden">
+      <section id="learn-more" className="relative bg-slate py-32 overflow-hidden">
         <div className="absolute inset-0 diagonal-stripes opacity-30"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
@@ -229,7 +199,7 @@ export default function EntrepreneursPage() {
       </section>
 
       {/* Why Community - Split testimonial style */}
-      <section className="relative bg-midnight py-32">
+      <section id="experience" className="relative bg-midnight py-32">
         <div className="absolute inset-0 grid-pattern opacity-20"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
@@ -294,7 +264,7 @@ export default function EntrepreneursPage() {
       </section>
 
       {/* Building Together - Card mosaic layout */}
-      <section className="relative bg-slate py-32 overflow-hidden">
+      <section id="building-together" className="relative bg-slate py-32 overflow-hidden">
         <div className="absolute inset-0 diagonal-stripes opacity-30"></div>
 
         <Floating duration={10} distance={20}>
@@ -385,7 +355,7 @@ export default function EntrepreneursPage() {
       </section>
 
       {/* CTA Section - Minimal, focused */}
-      <section className="relative overflow-hidden py-32 bg-midnight">
+      <section id="cta" className="relative overflow-hidden py-32 bg-midnight">
         <div className="absolute inset-0 grid-pattern opacity-20"></div>
 
         {/* Centered glow */}

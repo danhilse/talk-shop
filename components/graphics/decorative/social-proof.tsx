@@ -104,7 +104,7 @@ export function TestimonialStack({ className = "" }: { className?: string }) {
 // Social proof banner with logos/avatars
 export function SocialProofBanner({ className = "" }: { className?: string }) {
   const stats = [
-    { value: "500+", label: "Members" },
+    { value: "300+", label: "Members" },
     { value: "50k+", label: "Messages" },
     { value: "24/7", label: "Support" },
   ];
@@ -133,7 +133,7 @@ export function SocialProofBanner({ className = "" }: { className?: string }) {
           ))}
         </div>
         <div>
-          <div className="text-sm font-semibold text-white">Join 500+ merchants</div>
+          <div className="text-sm font-semibold text-white">Join 300+ merchants</div>
           <div className="text-xs text-gray-500">Growing their Shopify stores</div>
         </div>
       </div>

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Magnetic } from "@/components/motion";
@@ -73,15 +72,12 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
 }
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Developers", href: "/shopify-dev-community" },
-  { label: "Support", href: "/shopify-support-group" },
-  { label: "Experts", href: "/shopify-experts-network" },
-  { label: "Entrepreneurs", href: "/shopify-entrepreneurs" },
+  { label: "Learn More", href: "#learn-more" },
+  { label: "About Us", href: "#experience" },
+  { label: "Follow Us", href: "#socials" },
 ] as const;
 
 export function Nav() {
-  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Stable callback using functional setState
@@ -118,35 +114,22 @@ export function Nav() {
 
             {/* Desktop Navigation */}
             <div className="hidden items-center gap-8 md:flex">
-              {navLinks.map((item, i) => {
-                const isActive =
-                  pathname === item.href ||
-                  (item.href !== "/" &&
-                    pathname.startsWith(item.href.split("#")[0]));
-
-                return (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 * i, duration: 0.4 }}
+              {navLinks.map((item, i) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * i, duration: 0.4 }}
+                >
+                  <a
+                    href={item.href}
+                    className="text-sm font-medium transition-colors relative group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight text-gray-400 hover:text-white"
                   >
-                    <Link
-                      href={item.href}
-                      className={`text-sm font-medium transition-colors relative group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight ${
-                        isActive ? "text-shopify" : "text-gray-400 hover:text-white"
-                      }`}
-                    >
-                      {item.label}
-                      <span
-                        className={`absolute -bottom-1 left-0 h-0.5 bg-shopify transition-all ${
-                          isActive ? "w-full" : "w-0 group-hover:w-full"
-                        }`}
-                      />
-                    </Link>
-                  </motion.div>
-                );
-              })}
+                    {item.label}
+                    <span className="absolute -bottom-1 left-0 h-0.5 bg-shopify transition-all w-0 group-hover:w-full" />
+                  </a>
+                </motion.div>
+              ))}
             </div>
 
             <div className="flex items-center gap-3">
@@ -215,33 +198,22 @@ export function Nav() {
               <div className="flex flex-col h-full pt-24 px-6 pb-8">
                 {/* Navigation Links */}
                 <nav className="flex flex-col gap-2">
-                  {navLinks.map((item, i) => {
-                    const isActive =
-                      pathname === item.href ||
-                      (item.href !== "/" &&
-                        pathname.startsWith(item.href.split("#")[0]));
-
-                    return (
-                      <motion.div
-                        key={item.label}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 * i }}
+                  {navLinks.map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 * i }}
+                    >
+                      <a
+                        href={item.href}
+                        onClick={closeMenu}
+                        className="block py-3 px-4 rounded-lg text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight text-gray-400 hover:bg-white/5 hover:text-white"
                       >
-                        <Link
-                          href={item.href}
-                          onClick={closeMenu}
-                          className={`block py-3 px-4 rounded-lg text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight ${
-                            isActive
-                              ? "bg-shopify/10 text-shopify"
-                              : "text-gray-400 hover:bg-white/5 hover:text-white"
-                          }`}
-                        >
-                          {item.label}
-                        </Link>
-                      </motion.div>
-                    );
-                  })}
+                        {item.label}
+                      </a>
+                    </motion.div>
+                  ))}
                 </nav>
 
                 {/* Discord Button */}

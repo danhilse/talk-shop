@@ -25,10 +25,15 @@ const socialLinks = [
   { name: "Facebook", href: "https://www.facebook.com/letstalkshopify", icon: FacebookIcon },
 ];
 
-const navLinks = [
-  { label: "Home", href: "/" },
+const communityLinks = [
   { label: "Developers", href: "/shopify-dev-community" },
   { label: "Growth", href: "/shopify-growth-community" },
+  { label: "Entrepreneurs", href: "/shopify-entrepreneurs" },
+  { label: "Support", href: "/shopify-support-group" },
+  { label: "Experts", href: "/shopify-experts-network" },
+];
+
+const legalLinks = [
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
 ];
@@ -38,7 +43,7 @@ export function Footer() {
     <footer className="border-t border-white/5 bg-midnight py-16">
       <div className="mx-auto max-w-7xl px-6">
         {/* Social links */}
-        <FadeUp className="mb-12">
+        <FadeUp id="socials" className="mb-12">
           <StaggerContainer className="flex flex-wrap justify-center gap-4" staggerDelay={0.05}>
             {socialLinks.map((social) => (
               <StaggerItem key={social.name}>
@@ -58,7 +63,24 @@ export function Footer() {
           </StaggerContainer>
         </FadeUp>
 
-        <StaggerContainer className="grid gap-12 text-center md:grid-cols-3 md:text-left" staggerDelay={0.1}>
+        <StaggerContainer className="grid gap-12 text-center md:grid-cols-4 md:text-left" staggerDelay={0.1}>
+          {/* Community Pages */}
+          <StaggerItem>
+            <h4 className="mb-4 text-lg font-semibold text-white">Community</h4>
+            <ul className="space-y-2">
+              {communityLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-400 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </StaggerItem>
+
           {/* Location */}
           <StaggerItem>
             <h4 className="mb-4 text-lg font-semibold text-white">Location</h4>
@@ -117,17 +139,16 @@ export function Footer() {
               Built for real builders. Not affiliated with Shopify Inc.
             </p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
-              {navLinks.map((link) => (
+              <motion.div whileHover={{ y: -2 }}>
+                <Link href="/" className="text-xs text-gray-500 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
+                  Home
+                </Link>
+              </motion.div>
+              {legalLinks.map((link) => (
                 <motion.div key={link.label} whileHover={{ y: -2 }}>
-                  {link.href.startsWith("/") ? (
-                    <Link href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
-                      {link.label}
-                    </a>
-                  )}
+                  <Link href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
+                    {link.label}
+                  </Link>
                 </motion.div>
               ))}
             </div>

@@ -6,7 +6,7 @@ import { realTimeValueProps } from "@/lib/data";
 
 export function RealTimeSection() {
   return (
-    <section className="relative overflow-hidden bg-midnight">
+    <section id="real-time" className="relative overflow-hidden bg-midnight">
       {/* Left half background */}
       <div className="absolute left-0 top-0 bottom-0 w-1/2 bg-gradient-to-br from-shopify/5 to-transparent"></div>
 
@@ -129,7 +129,7 @@ export function RealTimeSection() {
                   whileHover={{ scale: 1.1 }}
                   className="absolute -bottom-4 -left-4 rounded-full bg-lime px-4 py-2 text-xs font-bold text-midnight shadow-lg"
                 >
-                  500+ Devs
+                  300+ Devs
                 </motion.div>
               </div>
             </div>

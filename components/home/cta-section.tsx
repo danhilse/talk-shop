@@ -28,15 +28,12 @@ export function CTASection() {
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         {/* Badge */}
         <FadeUp delay={0.1}>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="mb-10 inline-flex items-center gap-3 rounded-full bg-midnight/20 px-6 py-3 backdrop-blur-sm border border-white/10"
-          >
-            <DiscordIcon className="h-5 w-5 text-midnight" />
-            <span className="font-mono text-sm font-medium text-midnight tracking-wide">
-              Join on Discord
+          <div className="mb-10 inline-flex items-center gap-2 text-midnight/60">
+            <DiscordIcon className="h-4 w-4" />
+            <span className="font-mono text-sm tracking-wide">
+              Discord Community
             </span>
-          </motion.div>
+          </div>
         </FadeUp>
 
         <FadeUp delay={0.2}>

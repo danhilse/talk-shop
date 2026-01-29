@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import {
   FadeUp,
   StaggerContainer,
@@ -14,38 +13,9 @@ import {
   BounceIcon,
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
-
-const headshots = [
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_3.png",
-];
-
-function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
+import { displayHeadshots } from "@/lib/data";
 
 export default function GrowthPage() {
-  // Lazy initialization - shuffles once on mount
-  const [randomHeadshots] = useState(() => shuffleArray(headshots).slice(0, 5));
 
   const topics = [
     {
@@ -103,7 +73,7 @@ export default function GrowthPage() {
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
+      <section id="hero" className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
         {/* Animated gradient orbs */}
         <Floating duration={8} distance={20}>
           <div className="absolute top-20 left-[10%] h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
@@ -269,7 +239,7 @@ export default function GrowthPage() {
                 className="flex items-center gap-4"
               >
                 <div className="flex -space-x-3">
-                  {randomHeadshots.map((src, i) => (
+                  {displayHeadshots.map((src, i) => (
                     <motion.div
                       key={src}
                       initial={{ opacity: 0, scale: 0 }}
@@ -288,7 +258,7 @@ export default function GrowthPage() {
                   ))}
                 </div>
                 <div className="text-sm">
-                  <div className="font-semibold text-white">500+ merchants</div>
+                  <div className="font-semibold text-white">300+ merchants</div>
                   <div className="text-gray-500">scaling on Shopify</div>
                 </div>
               </motion.div>
@@ -305,7 +275,7 @@ export default function GrowthPage() {
       </section>
 
       {/* What Makes Us Different Section */}
-      <section className="relative bg-slate py-32">
+      <section id="learn-more" className="relative bg-slate py-32">
         <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
@@ -348,7 +318,7 @@ export default function GrowthPage() {
       </section>
 
       {/* Growth Topics Section */}
-      <section className="relative bg-slate py-32">
+      <section id="growth-topics" className="relative bg-slate py-32">
         {/* Top gradient fade */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate to-transparent"></div>
 
@@ -442,7 +412,7 @@ export default function GrowthPage() {
       </section>
 
       {/* Shared Learning Section */}
-      <section className="relative bg-midnight py-32 overflow-hidden">
+      <section id="shared-learning" className="relative bg-midnight py-32 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30"></div>
 
         {/* Decorative vertical line */}
@@ -552,7 +522,7 @@ export default function GrowthPage() {
       </section>
 
       {/* Who It's For Section */}
-      <section className="relative overflow-hidden bg-midnight">
+      <section id="experience" className="relative overflow-hidden bg-midnight">
         {/* Left half background */}
         <div className="absolute left-0 top-0 bottom-0 w-1/2 bg-gradient-to-br from-shopify/5 to-transparent"></div>
 
@@ -673,7 +643,7 @@ export default function GrowthPage() {
                     whileHover={{ scale: 1.1 }}
                     className="absolute -bottom-4 -left-4 rounded-full bg-lime px-4 py-2 text-xs font-bold text-midnight shadow-lg"
                   >
-                    500+ Merchants
+                    300+ Merchants
                   </motion.div>
                 </div>
               </div>
@@ -683,7 +653,7 @@ export default function GrowthPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden py-32">
+      <section id="cta" className="relative overflow-hidden py-32">
         {/* Multi-layer background */}
         <div className="absolute inset-0 bg-gradient-to-br from-shopify via-shopify-dark to-shopify"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>

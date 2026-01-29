@@ -68,7 +68,7 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] overflow-hidden pt-40 pb-56">
+      <section id="hero" className="relative min-h-[70vh] overflow-hidden pt-40 pb-56">
         {/* Background effects */}
         <div className="absolute inset-0 grid-pattern opacity-50"></div>
         <Floating duration={8} distance={20}>
@@ -166,7 +166,7 @@ export default function SupportPage() {
       </section>
 
       {/* Common Problems Section */}
-      <section className="relative bg-slate py-16 md:py-24">
+      <section id="learn-more" className="relative bg-slate py-16 md:py-24">
         <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
@@ -200,7 +200,7 @@ export default function SupportPage() {
       </section>
 
       {/* Why Peer Support Works Section */}
-      <section className="relative bg-midnight py-16 md:py-24 overflow-hidden">
+      <section id="experience" className="relative bg-midnight py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30"></div>
         <Floating duration={12} distance={25}>
           <div className="absolute right-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>
@@ -276,7 +276,7 @@ export default function SupportPage() {
       </section>
 
       {/* Faster Help Section */}
-      <section className="relative bg-slate py-16 md:py-24">
+      <section id="faster-help" className="relative bg-slate py-16 md:py-24">
         <div className="absolute inset-0 diagonal-stripes opacity-30"></div>
 
         <div className="relative mx-auto max-w-4xl px-6 text-center">
@@ -316,7 +316,7 @@ export default function SupportPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden py-32">
+      <section id="cta" className="relative overflow-hidden py-32">
         <div className="absolute inset-0 bg-gradient-to-br from-shopify via-shopify-dark to-shopify"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
         <div className="grain absolute inset-0"></div>

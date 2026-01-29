@@ -9,14 +9,20 @@ import {
   SlideIn,
 } from "@/components/motion";
 import { experienceStats, valueProps } from "@/lib/data";
+import { ConcentricCircles } from "@/components/graphics";
 
 export function ExperienceSection() {
   return (
-    <section className="relative bg-midnight py-16 md:py-24 overflow-hidden">
+    <section id="experience" className="relative bg-midnight py-16 md:py-24 overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-30"></div>
       <Floating duration={12} distance={25}>
         <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>
       </Floating>
+
+      {/* Right-side decorative pattern - flows to edge */}
+      <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-30 pointer-events-none">
+        <ConcentricCircles className="w-full h-full" rings={8} animated={false} />
+      </div>
 
       {/* Decorative vertical line */}
       <motion.div

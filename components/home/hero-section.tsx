@@ -2,15 +2,13 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Magnetic, Floating } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
-import { headshots, shuffleArray } from "@/lib/data";
+import { displayHeadshots } from "@/lib/data";
 
 export function HeroSection() {
   const heroRef = useRef(null);
-  // Lazy initialization - shuffles once on mount, prevents hydration mismatch
-  const [randomHeadshots] = useState(() => shuffleArray(headshots).slice(0, 5));
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -22,7 +20,7 @@ export function HeroSection() {
   const smoothY = useSpring(heroY, { stiffness: 100, damping: 30 });
 
   return (
-    <section ref={heroRef} className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
+    <section id="hero" ref={heroRef} className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
       {/* Background effects */}
       <div className="absolute inset-0 grid-pattern opacity-50"></div>
       <Floating duration={8} distance={20}>
@@ -188,7 +186,7 @@ export function HeroSection() {
               className="flex items-center gap-4"
             >
               <div className="flex -space-x-3">
-                {randomHeadshots.map((src, i) => (
+                {displayHeadshots.map((src, i) => (
                   <motion.div
                     key={src}
                     initial={{ opacity: 0, scale: 0 }}

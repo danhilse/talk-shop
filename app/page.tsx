@@ -34,7 +34,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Marquee Section */}
-      <section className="relative overflow-hidden bg-slate py-6 border-y border-white/5">
+      <section id="marquee" className="relative overflow-hidden bg-slate py-6 border-y border-white/5">
         <Marquee>
           <span className="text-2xl font-bold text-white/10 lg:text-4xl">LET&apos;S TALK SHOP</span>
           <span className="text-shopify">•</span>

@@ -19,14 +19,14 @@ export const headshots = [
   "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_3.png",
 ] as const;
 
-export function shuffleArray<T>(array: readonly T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
+// Pre-selected headshots for display (avoids hydration mismatch from random shuffling)
+export const displayHeadshots = [
+  headshots[0],
+  headshots[5],
+  headshots[9],
+  headshots[12],
+  headshots[3],
+] as const;
 
 // Home page features
 export const homeFeatures = [
@@ -64,7 +64,7 @@ export const homeFeatures = [
 export const experienceStats = [
   { value: "20+", label: "Years Experience", color: "text-shopify" },
   { value: "24/7", label: "Community Active", color: "text-lime" },
-  { value: "500+", label: "Members", color: "text-white" },
+  { value: "300+", label: "Members", color: "text-white" },
   { value: "∞", label: "Ideas Shared", color: "text-shopify" },
 ] as const;
 

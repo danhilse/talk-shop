@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import {
   FadeUp,
   StaggerContainer,
@@ -14,38 +13,9 @@ import {
   BounceIcon,
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
-
-const headshots = [
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_03f7b46f-8ce6-4b4a-acec-403f701646c2_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_7a52236f-2698-4eae-a41c-f08d3a1aef88_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_90fc909c-d5d1-47c1-bdf8-e165c70ce152_3.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_0.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_1.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_2.png",
-  "danhilse_photo_for_slack_headshot_--raw_--v_7_f2b21a2b-8083-434d-937c-321e5726fb39_3.png",
-];
-
-function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
+import { displayHeadshots } from "@/lib/data";
 
 export default function ExpertsPage() {
-  // Lazy initialization - shuffles once on mount
-  const [randomHeadshots] = useState(() => shuffleArray(headshots).slice(0, 5));
 
   const expertTypes = [
     {
@@ -95,7 +65,7 @@ export default function ExpertsPage() {
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
+      <section id="hero" className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
         {/* Animated gradient orbs */}
         <Floating duration={8} distance={20}>
           <div className="absolute top-20 right-[10%] h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
@@ -261,7 +231,7 @@ export default function ExpertsPage() {
                 className="flex items-center gap-4"
               >
                 <div className="flex -space-x-3">
-                  {randomHeadshots.map((src, i) => (
+                  {displayHeadshots.map((src, i) => (
                     <motion.div
                       key={src}
                       initial={{ opacity: 0, scale: 0 }}
@@ -297,7 +267,7 @@ export default function ExpertsPage() {
       </section>
 
       {/* Expert Types Grid */}
-      <section className="relative bg-slate py-32">
+      <section id="learn-more" className="relative bg-slate py-32">
         <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate to-transparent"></div>
 
@@ -373,7 +343,7 @@ export default function ExpertsPage() {
       </section>
 
       {/* Learning Through Real-World Feedback */}
-      <section className="relative bg-midnight py-32 overflow-hidden">
+      <section id="real-world-learning" className="relative bg-midnight py-32 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-30"></div>
 
         {/* Decorative vertical line */}
@@ -445,7 +415,7 @@ export default function ExpertsPage() {
       </section>
 
       {/* No Pitching, Just Practical Insight */}
-      <section className="relative bg-slate py-32">
+      <section id="our-philosophy" className="relative bg-slate py-32">
         <div className="absolute inset-0 diagonal-stripes opacity-30"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
@@ -492,7 +462,7 @@ export default function ExpertsPage() {
       </section>
 
       {/* Who Benefits Most */}
-      <section className="relative bg-midnight py-32 overflow-hidden">
+      <section id="experience" className="relative bg-midnight py-32 overflow-hidden">
         <div className="absolute inset-0 grid-pattern opacity-20"></div>
 
         {/* Background glow */}
@@ -587,7 +557,7 @@ export default function ExpertsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden py-32">
+      <section id="cta" className="relative overflow-hidden py-32">
         {/* Multi-layer background */}
         <div className="absolute inset-0 bg-gradient-to-br from-shopify via-shopify-dark to-shopify"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>

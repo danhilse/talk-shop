@@ -2,70 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { Magnetic, Floating } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
-import { headshots, shuffleArray } from "@/lib/data";
-
-function DiscordPreview() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20, rotate: -2 }}
-      animate={{ opacity: 1, y: 0, rotate: 2 }}
-      transition={{ duration: 0.8, delay: 0.5 }}
-      className="w-72 rounded-xl border border-shopify/20 bg-[#313338] p-4 backdrop-blur-xl shadow-2xl shadow-shopify/5"
-    >
-      <div className="mb-3 flex items-center gap-2">
-        <DiscordIcon className="h-4 w-4 text-[#5865F2]" />
-        <span className="text-xs font-semibold text-white/80"># shopify-dev</span>
-        <span className="ml-auto text-[10px] text-gray-500">3 online</span>
-      </div>
-      <div className="space-y-3 text-xs">
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1 }}
-          className="flex gap-2"
-        >
-          <div className="h-6 w-6 rounded-full bg-shopify/30 shrink-0"></div>
-          <div>
-            <span className="text-shopify font-medium">alex_dev</span>
-            <p className="text-gray-400 mt-0.5">Anyone dealt with webhook retries?</p>
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.4 }}
-          className="flex gap-2"
-        >
-          <div className="h-6 w-6 rounded-full bg-lime/30 shrink-0"></div>
-          <div>
-            <span className="text-lime font-medium">sam_builds</span>
-            <p className="text-gray-400 mt-0.5">Yeah, use idempotency keys!</p>
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.8 }}
-          className="flex items-center gap-2 text-gray-500"
-        >
-          <span className="text-shopify">+3</span>
-          <span>others are typing</span>
-          <span className="animate-pulse">...</span>
-        </motion.div>
-      </div>
-    </motion.div>
-  );
-}
+import { displayHeadshots } from "@/lib/data";
+import { DiscordFullInterface } from "@/components/graphics";
 
 export function CommunityHeroSection() {
-  // Lazy initialization - shuffles once on mount
-  const [randomHeadshots] = useState(() => shuffleArray(headshots).slice(0, 5));
-
   return (
-    <section className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
+    <section id="hero" className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
       {/* Animated gradient orbs */}
       <Floating duration={8} distance={20}>
         <div className="absolute top-20 left-[10%] h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
@@ -79,10 +23,10 @@ export function CommunityHeroSection() {
       <div className="absolute inset-0 grid-pattern opacity-50"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-midnight via-transparent to-midnight"></div>
 
-      {/* Floating Discord preview */}
-      <div className="absolute top-32 right-[8%] hidden lg:block">
-        <Floating duration={6} distance={10}>
-          <DiscordPreview />
+      {/* Full Discord Interface - emerges from right edge, clips at bottom/right only */}
+      <div className="absolute top-32 -right-24 2xl:-right-16 hidden xl:block pointer-events-none">
+        <Floating duration={10} distance={6}>
+          <DiscordFullInterface variant="hero" />
         </Floating>
       </div>
 
@@ -257,7 +201,7 @@ export function CommunityHeroSection() {
               className="flex items-center gap-4"
             >
               <div className="flex -space-x-3">
-                {randomHeadshots.map((src, i) => (
+                {displayHeadshots.map((src, i) => (
                   <motion.div
                     key={src}
                     initial={{ opacity: 0, scale: 0 }}
@@ -276,7 +220,7 @@ export function CommunityHeroSection() {
                 ))}
               </div>
               <div className="text-sm">
-                <div className="font-semibold text-white">500+ devs</div>
+                <div className="font-semibold text-white">300+ devs</div>
                 <div className="text-gray-500">shipping on Shopify</div>
               </div>
             </motion.div>

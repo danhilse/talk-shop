@@ -97,6 +97,16 @@ body {
   font-family: var(--font-dm-sans), system-ui, sans-serif;
 }
 
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset anchor scroll position for fixed navbar */
+[id] {
+  scroll-margin-top: 6rem; /* 96px - matches navbar height */
+}
+
 /* Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
