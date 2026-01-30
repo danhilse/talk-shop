@@ -15,7 +15,7 @@ import {
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
 import { displayHeadshots } from "@/lib/data";
-import { ShopifyAnalyticsInterface, EcommerceGrowthChart } from "@/components/graphics";
+import { ShopifyAnalyticsInterface, EcommerceGrowthChart, EcommerceStoreComparison } from "@/components/graphics";
 
 export default function GrowthPage() {
 
@@ -279,6 +279,28 @@ export default function GrowthPage() {
               </motion.div>
             </motion.div>
           </div>
+
+          {/* Mobile graphic - appears below content on small screens */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-16 xl:hidden pointer-events-none -mx-6 -mb-32"
+            style={{
+              maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)',
+            }}
+          >
+            <div
+              className="min-w-[1200px] ml-5"
+              style={{
+                transform: "perspective(1000px) rotateX(8deg) scale(0.65)",
+                transformOrigin: "left top"
+              }}
+            >
+              <ShopifyAnalyticsInterface />
+            </div>
+          </motion.div>
         </div>
 
         {/* Angled section divider */}
@@ -424,7 +446,7 @@ export default function GrowthPage() {
                       </div>
                     )}
 
-                    <div className="relative">
+                    <div className={`relative ${index === 0 ? 'max-w-md' : ''}`}>
                       {/* Icon */}
                       <BounceIcon>
                         <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 border border-white/10 font-mono text-2xl text-shopify transition-all duration-300 group-hover:bg-shopify/20 group-hover:border-shopify/30">
@@ -506,27 +528,26 @@ export default function GrowthPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 }}
-                  className="relative aspect-square rounded-2xl border border-white/10 bg-gradient-to-br from-carbon to-slate overflow-hidden"
+                  className="relative rounded-2xl overflow-hidden"
                 >
-                  {/* Center content */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center p-8">
-                      <motion.div
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                        className="font-mono text-7xl font-bold text-shopify/30"
-                      >
-                        📈
-                      </motion.div>
-                      <div className="mt-4 font-mono text-xs text-gray-600 tracking-widest">
-                        SHARED EXPERIMENTS
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Corner brackets */}
-                  <div className="absolute top-6 left-6 h-12 w-12 border-l-2 border-t-2 border-shopify/40"></div>
-                  <div className="absolute bottom-6 right-6 h-12 w-12 border-r-2 border-b-2 border-lime/40"></div>
+                  <EcommerceStoreComparison
+                    beforeTitle="Old Product Page"
+                    afterTitle="Optimized Page"
+                    beforeFeatures={[
+                      "Basic product images",
+                      "Simple description",
+                      "No reviews shown",
+                      "Generic CTA button",
+                    ]}
+                    afterFeatures={[
+                      "High-quality gallery",
+                      "Compelling copy",
+                      "230+ Reviews displayed",
+                      "Urgency-driven CTA",
+                      "Trust badges",
+                      "Risk-free guarantee",
+                    ]}
+                  />
                 </motion.div>
               </div>
             </SlideIn>
@@ -589,7 +610,7 @@ export default function GrowthPage() {
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
                 Who It&apos;s For
               </span>
-              <h2 className="mb-10 text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
+              <h2 className="mb-10 text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
                 Built for Merchants{" "}
                 <span className="block font-serif italic text-lime mt-1 md:mt-2">Serious About Growth</span>
               </h2>

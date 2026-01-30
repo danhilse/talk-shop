@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   FadeUp,
@@ -39,6 +40,8 @@ const legalLinks = [
 ];
 
 export function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="border-t border-white/5 bg-midnight py-16">
       <div className="mx-auto max-w-7xl px-6">
@@ -68,16 +71,23 @@ export function Footer() {
           <StaggerItem>
             <h4 className="mb-4 text-lg font-semibold text-white">Community</h4>
             <ul className="space-y-2">
-              {communityLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {communityLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className={`transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight ${
+                        isActive
+                          ? "text-white font-semibold"
+                          : "text-gray-400 hover:text-white"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </StaggerItem>
 
@@ -142,17 +152,34 @@ export function Footer() {
             </p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
               <motion.div whileHover={{ y: -2 }}>
-                <Link href="/" className="text-xs text-gray-500 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
+                <Link
+                  href="/"
+                  className={`text-xs transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight ${
+                    pathname === "/"
+                      ? "text-white font-semibold"
+                      : "text-gray-500 hover:text-white"
+                  }`}
+                >
                   Home
                 </Link>
               </motion.div>
-              {legalLinks.map((link) => (
-                <motion.div key={link.label} whileHover={{ y: -2 }}>
-                  <Link href={link.href} className="text-xs text-gray-500 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+              {legalLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <motion.div key={link.label} whileHover={{ y: -2 }}>
+                    <Link
+                      href={link.href}
+                      className={`text-xs transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight ${
+                        isActive
+                          ? "text-white font-semibold"
+                          : "text-gray-500 hover:text-white"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </motion.div>

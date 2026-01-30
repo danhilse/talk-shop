@@ -29,7 +29,7 @@ export function FeaturesSection() {
             >
               Why Join Us
             </motion.span>
-            <h2 className="text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
+            <h2 className="text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
               Enter the Shopify{" "}
               <span className="font-serif italic text-lime">Mindstream</span>
             </h2>

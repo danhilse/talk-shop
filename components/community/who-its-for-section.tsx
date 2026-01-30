@@ -226,7 +226,7 @@ export function WhoItsForSection() {
               <span className="inline-block font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-3 md:mb-4">
                 Who It&apos;s For
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
+              <h2 className="text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
                 Who This{" "}
                 <span className="block md:inline">
                   Community <span className="font-serif italic text-lime">Is For</span>

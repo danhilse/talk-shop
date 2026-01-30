@@ -271,6 +271,28 @@ export default function ExpertsPage() {
               </motion.div>
             </motion.div>
           </div>
+
+          {/* Mobile graphic - appears below content on small screens */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-16 xl:hidden pointer-events-none -mx-6 -mb-32"
+            style={{
+              maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)',
+            }}
+          >
+            <div
+              className="min-w-[1200px] ml-5"
+              style={{
+                transform: "perspective(1000px) rotateX(8deg) scale(0.65)",
+                transformOrigin: "left top"
+              }}
+            >
+              <ShopifyAnalyticsInterface />
+            </div>
+          </motion.div>
         </div>
 
         {/* Angled section divider */}
@@ -377,7 +399,7 @@ export default function ExpertsPage() {
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
                 Real-World Learning
               </span>
-              <h2 className="mb-8 text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
+              <h2 className="mb-8 text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
                 Learning Through{" "}
                 <span className="block font-serif italic text-lime">Real-World Feedback</span>
               </h2>

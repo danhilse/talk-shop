@@ -214,6 +214,28 @@ export default function SupportPage() {
               </motion.div>
             </motion.div>
           </div>
+
+          {/* Mobile graphic - appears below content on small screens */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-16 xl:hidden pointer-events-none -mx-6 -mb-32"
+            style={{
+              maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 70%, transparent 100%)',
+            }}
+          >
+            <div
+              className="min-w-[900px] ml-5"
+              style={{
+                transform: "perspective(1000px) rotateX(8deg) scale(0.65)",
+                transformOrigin: "left top"
+              }}
+            >
+              <DiscordFullInterface />
+            </div>
+          </motion.div>
         </div>
 
         {/* Section divider */}
@@ -233,7 +255,7 @@ export default function SupportPage() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               Common Challenges
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl mb-6">
               Common Shopify Problems{" "}
               <span className="font-serif italic text-lime">Merchants Face</span>
             </h2>
@@ -272,7 +294,7 @@ export default function SupportPage() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(22, 27, 34, 0.9) 0%, rgba(22, 27, 34, 0.4) 50%, transparent 100%)"
+            background: "radial-gradient(ellipse 80% 70% at 50% 50%, rgba(22, 27, 34, 0.95) 0%, rgba(22, 27, 34, 0.8) 40%, rgba(22, 27, 34, 0.3) 70%, transparent 100%)"
           }}
         />
 
@@ -294,7 +316,7 @@ export default function SupportPage() {
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
                 Why It Works
               </span>
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
+              <h2 className="mb-6 text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
                 Why Peer-Based{" "}
                 <span className="block font-serif italic text-lime mt-1 md:mt-2">Shopify Support Works</span>
               </h2>
@@ -374,7 +396,7 @@ export default function SupportPage() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               Speed Matters
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl mb-6">
               Faster Help{" "}
               <span className="font-serif italic text-lime">Without the Guesswork</span>
             </h2>

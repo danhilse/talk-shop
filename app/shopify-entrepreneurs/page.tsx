@@ -12,9 +12,171 @@ import {
   SlideIn,
   Typewriter,
 } from "@/components/motion";
+import { useInView, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
 import { DiscordIcon } from "@/components/icons";
 import { DiscordSingleMessage } from "@/components/graphics/discord/message-thread";
 import { displayHeadshots } from "@/lib/data";
+
+const journeySteps = [
+  { step: "01", title: "Launch", desc: "Navigate the complexities of getting your store live and ready for customers." },
+  { step: "02", title: "Validate", desc: "Test ideas and validate market fit before investing significant resources." },
+  { step: "03", title: "Grow", desc: "Develop strategies that balance profitability with sustainable growth." },
+  { step: "04", title: "Scale", desc: "Build systems and processes that allow your business to thrive long-term." },
+];
+
+function FounderJourneySection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const prefersReducedMotion = useReducedMotion();
+
+  // Base delay for when animations start after coming into view
+  const baseDelay = 0.2;
+  // How long the line takes to draw
+  const lineDuration = 1.2;
+
+  return (
+    <section id="learn-more" className="relative bg-slate py-32 overflow-hidden">
+      <div className="absolute inset-0 diagonal-stripes opacity-30"></div>
+
+      <div ref={ref} className="relative mx-auto max-w-7xl px-6">
+        <FadeUp className="text-center mb-20">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
+            The Founder Journey
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
+            From Idea to <span className="font-serif italic text-lime">Sustainable Business</span>
+          </h2>
+        </FadeUp>
+
+        {/* Timeline */}
+        <div className="relative">
+          {/* Timeline line - draws from left to right */}
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={isInView ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
+            transition={{
+              scaleX: { duration: lineDuration, ease: [0.25, 0.1, 0.25, 1], delay: baseDelay },
+              opacity: { duration: 0.3, delay: baseDelay },
+            }}
+            className="absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-transparent via-shopify/40 to-transparent origin-left hidden lg:block"
+          />
+
+          {/* Animated glow that travels along the line */}
+          <motion.div
+            initial={{ left: "0%", opacity: 0 }}
+            animate={isInView ? { left: "100%", opacity: [0, 1, 1, 0] } : { left: "0%", opacity: 0 }}
+            transition={{
+              duration: lineDuration,
+              ease: "linear",
+              delay: baseDelay,
+            }}
+            className="absolute top-8 -translate-y-1/2 w-16 h-4 bg-shopify/60 blur-md rounded-full hidden lg:block"
+            style={{ marginLeft: "-2rem" }}
+          />
+
+          <div className="grid gap-8 lg:grid-cols-4">
+            {journeySteps.map((item, index) => {
+              // Calculate when this step should animate based on line progress
+              const stepDelay = prefersReducedMotion
+                ? 0
+                : baseDelay + (lineDuration * (index + 0.5)) / 4;
+
+              return (
+                <motion.div
+                  key={item.step}
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 0.3, delay: stepDelay }}
+                  whileHover={{ y: -5 }}
+                  className="relative text-center lg:text-left"
+                >
+                  {/* Step number circle with pop-in effect */}
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={
+                      isInView
+                        ? { scale: 1, opacity: 1 }
+                        : { scale: 0, opacity: 0 }
+                    }
+                    transition={{
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 15,
+                      delay: stepDelay,
+                    }}
+                    className="relative inline-flex h-16 w-16 items-center justify-center rounded-full border border-shopify/30 bg-midnight mb-6 mx-auto lg:mx-0"
+                  >
+                    {/* Glow ring on pop */}
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={
+                        isInView
+                          ? { scale: [0.8, 1.5, 1.2], opacity: [0, 0.6, 0] }
+                          : { scale: 0.8, opacity: 0 }
+                      }
+                      transition={{
+                        duration: 0.6,
+                        delay: stepDelay,
+                        ease: "easeOut",
+                      }}
+                      className="absolute inset-0 rounded-full border-2 border-shopify/50"
+                    />
+                    <span className="font-mono text-sm text-shopify">{item.step}</span>
+                  </motion.div>
+
+                  {/* Title with staggered fade */}
+                  <motion.h3
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: stepDelay + 0.15,
+                      ease: [0.25, 0.4, 0.25, 1],
+                    }}
+                    className="text-xl font-bold text-white mb-3"
+                  >
+                    {item.title}
+                  </motion.h3>
+
+                  {/* Description with staggered fade */}
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: stepDelay + 0.25,
+                      ease: [0.25, 0.4, 0.25, 1],
+                    }}
+                    className="text-gray-500 leading-relaxed"
+                  >
+                    {item.desc}
+                  </motion.p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Bottom note */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{
+            duration: 0.5,
+            delay: baseDelay + lineDuration + 0.3,
+            ease: [0.25, 0.4, 0.25, 1],
+          }}
+          className="mt-16 text-center"
+        >
+          <p className="text-lg text-gray-400">
+            The emphasis is on building <span className="text-white font-medium">sustainable businesses</span> rather than chasing short-term wins.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
 
 export default function EntrepreneursPage() {
 
@@ -143,62 +305,7 @@ export default function EntrepreneursPage() {
       </section>
 
       {/* The Journey - Horizontal timeline/narrative style */}
-      <section id="learn-more" className="relative bg-slate py-32 overflow-hidden">
-        <div className="absolute inset-0 diagonal-stripes opacity-30"></div>
-
-        <div className="relative mx-auto max-w-7xl px-6">
-          <FadeUp className="text-center mb-20">
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
-              The Founder Journey
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
-              From Idea to <span className="font-serif italic text-lime">Sustainable Business</span>
-            </h2>
-          </FadeUp>
-
-          {/* Timeline */}
-          <div className="relative">
-            {/* Timeline line */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              className="absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-transparent via-shopify/30 to-transparent origin-left hidden lg:block"
-            />
-
-            <StaggerContainer className="grid gap-8 lg:grid-cols-4" staggerDelay={0.15}>
-              {[
-                { step: "01", title: "Launch", desc: "Navigate the complexities of getting your store live and ready for customers." },
-                { step: "02", title: "Validate", desc: "Test ideas and validate market fit before investing significant resources." },
-                { step: "03", title: "Grow", desc: "Develop strategies that balance profitability with sustainable growth." },
-                { step: "04", title: "Scale", desc: "Build systems and processes that allow your business to thrive long-term." },
-              ].map((item) => (
-                <StaggerItem key={item.step}>
-                  <motion.div
-                    whileHover={{ y: -5 }}
-                    className="relative text-center lg:text-left"
-                  >
-                    {/* Step number */}
-                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-full border border-shopify/30 bg-midnight mb-6 mx-auto lg:mx-0">
-                      <span className="font-mono text-sm text-shopify">{item.step}</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-                    <p className="text-gray-500 leading-relaxed">{item.desc}</p>
-                  </motion.div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </div>
-
-          {/* Bottom note */}
-          <FadeUp delay={0.4} className="mt-16 text-center">
-            <p className="text-lg text-gray-400">
-              The emphasis is on building <span className="text-white font-medium">sustainable businesses</span> rather than chasing short-term wins.
-            </p>
-          </FadeUp>
-        </div>
-      </section>
+      <FounderJourneySection />
 
       {/* Why Community - Split testimonial style */}
       <section id="experience" className="relative bg-midnight py-32">
@@ -285,7 +392,7 @@ export default function EntrepreneursPage() {
             <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
               Building Together
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl max-w-2xl">
+            <h2 className="text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl max-w-2xl">
               Building Alongside <span className="font-serif italic text-lime">Other Founders</span>
             </h2>
           </FadeUp>
