@@ -11,6 +11,7 @@ import {
   Floating,
   SlideIn,
   BounceIcon,
+  Typewriter,
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
 import { displayHeadshots } from "@/lib/data";
@@ -82,13 +83,13 @@ export default function ExpertsPage() {
 
         {/* Shopify Analytics Interface - emerges from right edge */}
         <div
-          className="absolute top-24 -right-72 2xl:-right-48 hidden xl:block pointer-events-none"
+          className="absolute top-32 -right-80 2xl:-right-56 hidden xl:block pointer-events-none"
           style={{
-            transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg)",
+            transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg) scale(1.08)",
             transformOrigin: "right center"
           }}
         >
-          <Floating duration={10} distance={6}>
+          <Floating duration={12} distance={14}>
             <ShopifyAnalyticsInterface variant="hero" />
           </Floating>
         </div>
@@ -462,9 +463,15 @@ export default function ExpertsPage() {
             <SlideIn direction="right" delay={0.2} className="lg:col-span-8">
               <div className="space-y-6 text-xl leading-relaxed text-gray-300 lg:text-2xl font-light">
                 <p>
-                  The community is designed to prioritize{" "}
-                  <span className="font-serif italic text-white font-normal">learning and collaboration</span>{" "}
-                  over selling services. This creates an environment where advice is honest, relevant, and focused on results.
+                  <Typewriter
+                    delay={0.3}
+                    speed={35}
+                    segments={[
+                      { text: "The community is designed to prioritize " },
+                      { text: "learning and collaboration", className: "font-serif italic text-white font-normal" },
+                      { text: " over selling services. This creates an environment where advice is honest, relevant, and focused on results." },
+                    ]}
+                  />
                 </p>
                 <p className="text-lg text-gray-400">
                   Members are encouraged to share lessons learned, challenges faced, and strategies that have worked in practice.

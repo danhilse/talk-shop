@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SlideIn } from "@/components/motion";
+import { SlideIn, Typewriter } from "@/components/motion";
 
 export function ProblemSection() {
   return (
@@ -38,13 +38,15 @@ export function ProblemSection() {
           {/* Right column - Content */}
           <SlideIn direction="right" delay={0.2} className="lg:col-span-8">
             <p className="text-xl md:text-2xl leading-relaxed text-gray-300 lg:text-3xl font-light">
-              Many Shopify developers struggle to find a place where technical
-              conversations can happen{" "}
-              <span className="font-serif italic text-white font-normal">naturally</span>.
-              Forums tend to be slow, fragmented, and overly generic. This
-              community fills that gap by creating a space where Shopify
-              developers can talk through real problems, share implementation
-              details, and learn from others building at the same level.
+              <Typewriter
+                delay={0.3}
+                speed={35}
+                segments={[
+                  { text: "Many Shopify developers struggle to find a place where technical conversations can happen " },
+                  { text: "naturally", className: "font-serif italic text-white font-normal" },
+                  { text: ". Forums tend to be slow, fragmented, and overly generic. This community fills that gap by creating a space where Shopify developers can talk through real problems, share implementation details, and learn from others building at the same level." },
+                ]}
+              />
             </p>
           </SlideIn>
         </div>

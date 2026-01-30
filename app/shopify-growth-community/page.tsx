@@ -15,7 +15,7 @@ import {
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
 import { displayHeadshots } from "@/lib/data";
-import { ShopifyAnalyticsInterface } from "@/components/graphics";
+import { ShopifyAnalyticsInterface, EcommerceGrowthChart } from "@/components/graphics";
 
 export default function GrowthPage() {
 
@@ -91,13 +91,13 @@ export default function GrowthPage() {
 
         {/* Shopify Analytics Interface - emerges from right edge */}
         <div
-          className="absolute top-24 -right-72 2xl:-right-48 hidden xl:block pointer-events-none"
+          className="absolute top-32 -right-80 2xl:-right-56 hidden xl:block pointer-events-none"
           style={{
-            transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg)",
+            transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg) scale(1.08)",
             transformOrigin: "right center"
           }}
         >
-          <Floating duration={10} distance={6}>
+          <Floating duration={12} distance={14}>
             <ShopifyAnalyticsInterface variant="hero" />
           </Floating>
         </div>
@@ -378,7 +378,7 @@ export default function GrowthPage() {
                 key={topic.title}
                 className={index === 0 ? 'lg:col-span-2 lg:row-span-1' : ''}
               >
-                <ScaleOnHover scale={1.02}>
+                <ScaleOnHover scale={1.02} className="h-full">
                   <div className="group relative overflow-hidden rounded-3xl border border-white/5 bg-carbon/30 p-8 backdrop-blur-sm transition-all duration-500 hover:border-white/20 h-full">
                     {/* Gradient background on hover */}
                     <motion.div
@@ -390,6 +390,39 @@ export default function GrowthPage() {
 
                     {/* Decorative corner */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/5 to-transparent rounded-bl-[100px]"></div>
+
+                    {/* Decorative graphic for wide card */}
+                    {index === 0 && (
+                      <div className="absolute -right-4 top-1/2 -translate-y-1/2 rotate-3 hidden lg:block pointer-events-none">
+                        <div
+                          style={{
+                            maskImage: 'linear-gradient(to right, transparent 0%, black 20%)',
+                            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%)',
+                          }}
+                        >
+                          <EcommerceGrowthChart
+                            title="Conversion Rate"
+                            subtitle="Monthly trend"
+                            variant="area"
+                            className="!w-[320px] scale-110"
+                            data={[
+                              { label: "Jan", value: 2.1 },
+                              { label: "Feb", value: 2.4 },
+                              { label: "Mar", value: 2.2 },
+                              { label: "Apr", value: 2.8 },
+                              { label: "May", value: 3.1 },
+                              { label: "Jun", value: 3.4 },
+                              { label: "Jul", value: 3.2 },
+                              { label: "Aug", value: 3.8 },
+                              { label: "Sep", value: 4.1 },
+                              { label: "Oct", value: 4.5 },
+                              { label: "Nov", value: 4.8 },
+                              { label: "Dec", value: 5.2 },
+                            ]}
+                          />
+                        </div>
+                      </div>
+                    )}
 
                     <div className="relative">
                       {/* Icon */}

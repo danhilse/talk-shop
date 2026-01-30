@@ -9,6 +9,7 @@ import {
   Magnetic,
   Floating,
   SlideIn,
+  Typewriter,
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
 import { DiscordFullInterface, ConnectionNodes } from "@/components/graphics";
@@ -83,13 +84,13 @@ export default function SupportPage() {
 
         {/* Full Discord Interface - emerges from right edge */}
         <div
-          className="absolute top-28 right-0 2xl:right-8 hidden xl:block pointer-events-none"
+          className="absolute top-36 -right-16 2xl:-right-8 hidden xl:block pointer-events-none"
           style={{
-            transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg)",
+            transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg) scale(1.08)",
             transformOrigin: "right center"
           }}
         >
-          <Floating duration={10} distance={6}>
+          <Floating duration={12} distance={14}>
             <DiscordFullInterface variant="hero" />
           </Floating>
         </div>
@@ -298,7 +299,15 @@ export default function SupportPage() {
                 <span className="block font-serif italic text-lime mt-1 md:mt-2">Shopify Support Works</span>
               </h2>
               <p className="text-lg leading-relaxed text-gray-400 mb-8">
-                Peer support works because it is grounded in real experience. Instead of relying solely on support tickets or searching through outdated forum posts, merchants connect with others who are actively running Shopify stores and solving similar problems.
+                <Typewriter
+                  delay={0.3}
+                  speed={35}
+                  segments={[
+                    { text: "Peer support works because it is grounded in " },
+                    { text: "real experience", className: "font-serif italic text-white font-normal" },
+                    { text: ". Instead of relying solely on support tickets or searching through outdated forum posts, merchants connect with others who are actively running Shopify stores and solving similar problems." },
+                  ]}
+                />
               </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-4">

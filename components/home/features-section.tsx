@@ -73,7 +73,7 @@ export function FeaturesSection() {
                       >
                         <DiscordMessageThread
                           className="!w-[400px] !bg-[#1a1b1e] scale-110"
-                          animated={false}
+                          animated={true}
                           showDateDivider={false}
                           messages={[
                             { username: "alex_dev", userColor: "#95BF47", message: "Just shipped v2.0 🚀", timestamp: "2:14 PM" },

@@ -25,13 +25,13 @@ export function CommunityHeroSection() {
 
       {/* Full Discord Interface - emerges from right edge, clips at bottom/right only */}
       <div
-        className="absolute top-28 right-0 2xl:right-8 hidden xl:block pointer-events-none"
+        className="absolute top-36 -right-16 2xl:-right-8 hidden xl:block pointer-events-none"
         style={{
-          transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg)",
+          transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg) scale(1.08)",
           transformOrigin: "right center"
         }}
       >
-        <Floating duration={10} distance={6}>
+        <Floating duration={12} distance={14}>
           <DiscordFullInterface variant="hero" />
         </Floating>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import {
   StaggerContainer,
   StaggerItem,
@@ -8,8 +9,168 @@ import {
   Floating,
   SlideIn,
 } from "@/components/motion";
-import { experienceStats, valueProps } from "@/lib/data";
+import { valueProps } from "@/lib/data";
 import { ConcentricCircles } from "@/components/graphics";
+
+// Animated count-up component
+function CountUpStat({
+  value,
+  suffix = "",
+  duration = 2,
+  delay = 0,
+}: {
+  value: number;
+  suffix?: string;
+  duration?: number;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(count, value, {
+        duration,
+        delay,
+        ease: [0.25, 0.4, 0.25, 1],
+      });
+      return controls.stop;
+    }
+  }, [isInView, value, count, duration, delay]);
+
+  useEffect(() => {
+    const unsubscribe = rounded.on("change", (latest) => {
+      setDisplayValue(latest);
+    });
+    return unsubscribe;
+  }, [rounded]);
+
+  return (
+    <span ref={ref}>
+      {displayValue}{suffix}
+    </span>
+  );
+}
+
+// Animated 24/7
+function TwentyFourSevenStat({ delay = 0 }: { delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <div ref={ref} className="flex items-baseline gap-1">
+      {/* 24 */}
+      <motion.span
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: delay + 0.1, duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
+      >
+        24
+      </motion.span>
+
+      {/* Animated slash/divider */}
+      <motion.span
+        initial={{ opacity: 0, scaleY: 0 }}
+        animate={isInView ? { opacity: 1, scaleY: 1 } : {}}
+        transition={{ delay: delay + 0.3, duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+        className="origin-bottom"
+      >
+        /
+      </motion.span>
+
+      {/* 7 */}
+      <motion.span
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: delay + 0.5, duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
+      >
+        7
+      </motion.span>
+    </div>
+  );
+}
+
+// Animated infinity symbol
+function InfinityStat({ delay = 0 }: { delay?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <motion.span
+      ref={ref}
+      initial={{ opacity: 0, scale: 0, rotate: -180 }}
+      animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+      transition={{
+        delay: delay + 0.2,
+        duration: 0.8,
+        type: "spring",
+        stiffness: 200,
+        damping: 15,
+      }}
+      className="inline-block text-5xl lg:text-6xl"
+    >
+      ∞
+    </motion.span>
+  );
+}
+
+// Enhanced stat card that picks the right animation
+function AnimatedStatCard({
+  stat,
+  index
+}: {
+  stat: { value: string; label: string; color: string };
+  index: number;
+}) {
+  const delay = index * 0.15;
+
+  const renderValue = () => {
+    // Years Experience - count up to 20
+    if (stat.value === "20+") {
+      return <CountUpStat value={20} suffix="+" delay={delay} />;
+    }
+    // Members - count up to 300
+    if (stat.value === "300+") {
+      return <CountUpStat value={300} suffix="+" delay={delay} />;
+    }
+    // 24/7 - animated reveal
+    if (stat.value === "24/7") {
+      return <TwentyFourSevenStat delay={delay} />;
+    }
+    // Infinity - draw animation
+    if (stat.value === "∞") {
+      return <InfinityStat delay={delay} />;
+    }
+    // Fallback
+    return stat.value;
+  };
+
+  return (
+    <ScaleOnHover scale={1.05} className="h-full">
+      <div className="group rounded-2xl border border-white/10 bg-carbon/50 p-8 backdrop-blur-sm transition-all hover:border-shopify/30 hover:bg-carbon h-full">
+        <motion.div
+          className={`text-4xl font-bold lg:text-5xl ${stat.color}`}
+          whileHover={{ scale: 1.1 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          {renderValue()}
+        </motion.div>
+        <div className="mt-2 text-sm text-gray-500">{stat.label}</div>
+      </div>
+    </ScaleOnHover>
+  );
+}
+
+// Stats data (moved here since we need custom rendering)
+const experienceStats = [
+  { value: "20+", label: "Years Experience", color: "text-shopify" },
+  { value: "24/7", label: "Community Active", color: "text-lime" },
+  { value: "300+", label: "Members", color: "text-white" },
+  { value: "∞", label: "Ideas Shared", color: "text-shopify" },
+];
 
 export function ExperienceSection() {
   return (
@@ -78,21 +239,10 @@ export function ExperienceSection() {
           {/* Stats grid */}
           <SlideIn direction="right" delay={0.2} className="relative lg:pl-12">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-shopify/10 to-transparent blur-xl"></div>
-            <StaggerContainer className="relative grid grid-cols-2 gap-4" staggerDelay={0.1}>
-              {experienceStats.map((stat) => (
-                <StaggerItem key={stat.label}>
-                  <ScaleOnHover scale={1.05}>
-                    <div className="group rounded-2xl border border-white/10 bg-carbon/50 p-8 backdrop-blur-sm transition-all hover:border-shopify/30 hover:bg-carbon">
-                      <motion.div
-                        className={`text-4xl font-bold lg:text-5xl ${stat.color}`}
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        {stat.value}
-                      </motion.div>
-                      <div className="mt-2 text-sm text-gray-500">{stat.label}</div>
-                    </div>
-                  </ScaleOnHover>
+            <StaggerContainer className="relative grid grid-cols-2 gap-4 auto-rows-fr" staggerDelay={0.1}>
+              {experienceStats.map((stat, index) => (
+                <StaggerItem key={stat.label} className="h-full">
+                  <AnimatedStatCard stat={stat} index={index} />
                 </StaggerItem>
               ))}
             </StaggerContainer>

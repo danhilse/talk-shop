@@ -83,7 +83,11 @@ export function DiscordMessageThread({
   const MessageWrapper = animated ? motion.div : "div";
 
   return (
-    <div
+    <motion.div
+      initial={animated ? { opacity: 0, x: 40 } : undefined}
+      whileInView={animated ? { opacity: 1, x: 0 } : undefined}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
       className={`w-full max-w-md rounded-xl border border-white/10 p-4 select-none ${className}`}
       style={{ backgroundColor: DISCORD_BG }}
     >
@@ -92,23 +96,34 @@ export function DiscordMessageThread({
           <div key={i}>
             {/* Date divider */}
             {showDateDivider && i === 1 && (
-              <div className="flex items-center gap-2 py-2">
+              <motion.div
+                initial={animated ? { opacity: 0, scaleX: 0 } : undefined}
+                whileInView={animated ? { opacity: 1, scaleX: 1 } : undefined}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + i * 0.12, duration: 0.4 }}
+                className="flex items-center gap-2 py-2"
+              >
                 <div className="flex-1 h-px bg-white/10"></div>
                 <span className="text-[10px] text-gray-500">{dateDividerText}</span>
                 <div className="flex-1 h-px bg-white/10"></div>
-              </div>
+              </motion.div>
             )}
 
             <MessageWrapper
               {...(animated && {
-                initial: { opacity: 0, y: 10 },
-                animate: { opacity: 1, y: 0 },
-                transition: { delay: 0.2 + i * 0.15 },
+                initial: { opacity: 0, y: 15, x: -10 },
+                whileInView: { opacity: 1, y: 0, x: 0 },
+                viewport: { once: true },
+                transition: { delay: 0.4 + i * 0.15, duration: 0.5, ease: [0.25, 0.4, 0.25, 1] },
               })}
               className="flex gap-3"
             >
               {/* Avatar */}
-              <div
+              <motion.div
+                initial={animated ? { scale: 0 } : undefined}
+                whileInView={animated ? { scale: 1 } : undefined}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 + i * 0.15, type: "spring", stiffness: 300, damping: 20 }}
                 className="h-10 w-10 shrink-0 rounded-full"
                 style={{ backgroundColor: `${msg.userColor}30` }}
               />
@@ -152,7 +167,7 @@ export function DiscordMessageThread({
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

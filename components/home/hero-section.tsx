@@ -23,32 +23,192 @@ export function HeroSection() {
     <section id="hero" ref={heroRef} className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
       {/* Background effects */}
       <div className="absolute inset-0 grid-pattern opacity-50"></div>
-      <Floating duration={8} distance={20}>
-        <div className="absolute top-20 left-1/4 h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
-      </Floating>
-      <Floating duration={10} distance={15}>
-        <div className="absolute bottom-0 right-1/4 h-[500px] w-[500px] rounded-full bg-lime/5 blur-[150px]"></div>
-      </Floating>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-cyan-500/3 blur-[200px]"></div>
 
-      {/* Decorative elements */}
+      {/* Aurora gradient mesh */}
+      <div className="absolute inset-0 overflow-hidden">
+        <Floating duration={8} distance={20}>
+          <div className="absolute top-20 left-1/4 h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
+        </Floating>
+        <Floating duration={10} distance={15}>
+          <div className="absolute bottom-0 right-1/4 h-[500px] w-[500px] rounded-full bg-lime/5 blur-[150px]"></div>
+        </Floating>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-cyan-500/3 blur-[200px]"></div>
+      </div>
+
+      {/* Animated gradient beams */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Top-left beam */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="absolute -top-20 -left-20 w-[600px] h-[2px] origin-left rotate-[35deg]"
+        >
+          <div className="w-full h-full bg-gradient-to-r from-transparent via-shopify/20 to-transparent" />
+        </motion.div>
+
+        {/* Top-right beam */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.5, delay: 0.7 }}
+          className="absolute -top-20 -right-20 w-[500px] h-[2px] origin-right -rotate-[40deg]"
+        >
+          <div className="w-full h-full bg-gradient-to-l from-transparent via-lime/15 to-transparent" />
+        </motion.div>
+
+        {/* Bottom beams */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, delay: 0.9 }}
+          className="absolute bottom-40 -left-10 w-[400px] h-[1px] origin-left rotate-[15deg]"
+        >
+          <div className="w-full h-full bg-gradient-to-r from-transparent via-shopify/10 to-transparent" />
+        </motion.div>
+      </div>
+
+      {/* Concentric rings - centered behind content */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        {/* Outer ring */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.3 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] md:w-[1000px] md:h-[1000px]"
+        >
+          <div className="absolute inset-0 rounded-full border border-shopify/[0.07]" />
+        </motion.div>
+
+        {/* Middle ring */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[750px] md:h-[750px]"
+        >
+          <div className="absolute inset-0 rounded-full border border-shopify/[0.05]" />
+        </motion.div>
+
+        {/* Inner ring with subtle glow pulse - uses CSS animation for smoothness */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.7 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[500px] md:h-[500px]"
+        >
+          <div
+            className="absolute inset-0 rounded-full border border-lime/[0.08]"
+            style={{
+              animation: 'ring-glow 6s ease-in-out infinite',
+            }}
+          />
+        </motion.div>
+
+        {/* Rotating accent ring with dots - very slow rotation */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] md:w-[850px] md:h-[850px]"
+          style={{
+            animation: 'spin 180s linear infinite',
+          }}
+        >
+          {[0, 90, 180, 270].map((angle) => (
+            <div
+              key={angle}
+              className="absolute w-1 h-1 rounded-full bg-shopify/30"
+              style={{
+                top: '50%',
+                left: '50%',
+                transform: `rotate(${angle}deg) translateX(350px) translateY(-50%)`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Floating gradient orbs - CSS animations for smooth continuous motion */}
       <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.8, duration: 0.8 }}
-        className="absolute top-40 left-[5%] hidden lg:block"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1.5 }}
+        className="absolute top-[20%] right-[10%] hidden lg:block"
       >
-        <span className="font-mono text-8xl font-bold text-shopify/5 select-none">{"{"}</span>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.8, duration: 0.8 }}
-        className="absolute bottom-40 right-[5%] hidden lg:block"
-      >
-        <span className="font-mono text-8xl font-bold text-shopify/5 select-none">{"}"}</span>
+        <div
+          className="w-3 h-3 rounded-full bg-gradient-to-br from-shopify/40 to-lime/20 blur-[1px]"
+          style={{ animation: 'float-slow 8s ease-in-out infinite' }}
+        />
       </motion.div>
 
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 1.5 }}
+        className="absolute bottom-[30%] left-[8%] hidden lg:block"
+      >
+        <div
+          className="w-2 h-2 rounded-full bg-gradient-to-br from-lime/30 to-shopify/10 blur-[1px]"
+          style={{ animation: 'float-slow 10s ease-in-out infinite reverse' }}
+        />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 1.5 }}
+        className="absolute top-[40%] left-[15%] hidden xl:block"
+      >
+        <div
+          className="w-1.5 h-1.5 rounded-full bg-shopify/25"
+          style={{ animation: 'float-diagonal 12s ease-in-out infinite' }}
+        />
+      </motion.div>
+
+      {/* Corner accents - clean geometric lines */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.8, duration: 0.8 }}
+        className="absolute top-24 left-[5%] hidden lg:block"
+      >
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" className="text-shopify/10">
+          <path d="M0 30 L0 0 L30 0" stroke="currentColor" strokeWidth="1" fill="none" />
+        </svg>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.9, duration: 0.8 }}
+        className="absolute top-24 right-[5%] hidden lg:block"
+      >
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" className="text-shopify/10">
+          <path d="M60 30 L60 0 L30 0" stroke="currentColor" strokeWidth="1" fill="none" />
+        </svg>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        className="absolute bottom-32 left-[5%] hidden lg:block"
+      >
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" className="text-lime/10">
+          <path d="M0 30 L0 60 L30 60" stroke="currentColor" strokeWidth="1" fill="none" />
+        </svg>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.1, duration: 0.8 }}
+        className="absolute bottom-32 right-[5%] hidden lg:block"
+      >
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" className="text-lime/10">
+          <path d="M60 30 L60 60 L30 60" stroke="currentColor" strokeWidth="1" fill="none" />
+        </svg>
+      </motion.div>
+
+      {/* Main content */}
       <motion.div
         style={{ y: smoothY }}
         className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:py-40"
@@ -75,7 +235,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
-            className="mb-6 md:mb-10 max-w-5xl"
+            className="mb-6 md:mb-10 max-w-5xl relative"
           >
             <motion.span
               initial={{ opacity: 0, y: 20 }}
