@@ -305,7 +305,13 @@ export function HexGrid({ className = "" }: { className?: string }) {
 }
 
 // Connection nodes visualization
-export function ConnectionNodes({ className = "" }: { className?: string }) {
+export function ConnectionNodes({
+  className = "",
+  showLabels = true,
+}: {
+  className?: string;
+  showLabels?: boolean;
+}) {
   const nodes = [
     { x: 100, y: 60, size: 24, label: "You", primary: true },
     { x: 200, y: 40, size: 16, label: "Dev" },
@@ -357,7 +363,7 @@ export function ConnectionNodes({ className = "" }: { className?: string }) {
               stroke="#95BF47"
               strokeWidth={node.primary ? 2 : 1}
             />
-            {node.label && (
+            {showLabels && node.label && (
               <text
                 x={node.x}
                 y={node.y + node.size + 12}

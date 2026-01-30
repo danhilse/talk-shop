@@ -11,6 +11,7 @@ import {
   SlideIn,
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
+import { DiscordFullInterface, ConnectionNodes } from "@/components/graphics";
 
 const commonProblems = [
   {
@@ -68,24 +69,39 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-[70vh] overflow-hidden pt-40 pb-56">
+      <section id="hero" className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
         {/* Background effects */}
         <div className="absolute inset-0 grid-pattern opacity-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-midnight via-transparent to-midnight"></div>
         <Floating duration={8} distance={20}>
-          <div className="absolute top-20 right-1/4 h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
+          <div className="absolute top-20 left-[10%] h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
         </Floating>
         <Floating duration={10} distance={15}>
-          <div className="absolute bottom-0 left-1/4 h-[500px] w-[500px] rounded-full bg-lime/5 blur-[150px]"></div>
+          <div className="absolute bottom-0 right-[5%] h-[500px] w-[500px] rounded-full bg-lime/5 blur-[150px]"></div>
         </Floating>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-orange-500/3 blur-[200px]"></div>
 
-        <div className="relative mx-auto max-w-5xl px-6">
-          <div className="flex flex-col items-center text-center">
+        {/* Full Discord Interface - emerges from right edge */}
+        <div
+          className="absolute top-28 right-0 2xl:right-8 hidden xl:block pointer-events-none"
+          style={{
+            transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg)",
+            transformOrigin: "right center"
+          }}
+        >
+          <Floating duration={10} distance={6}>
+            <DiscordFullInterface variant="hero" />
+          </Floating>
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:py-40">
+          <div className="max-w-4xl">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-              className="mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
+              className="mb-6 md:mb-10 inline-flex items-center gap-3 rounded-full border border-shopify/30 bg-shopify/5 px-5 py-2.5 backdrop-blur-sm"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-shopify opacity-75"></span>
@@ -101,31 +117,56 @@ export default function SupportPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
-              className="mb-8 max-w-4xl"
+              className="mb-6 md:mb-10"
             >
-              <span className="block text-4xl font-bold tracking-tight text-white lg:text-6xl">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="block text-5xl font-bold tracking-tight text-white lg:text-7xl"
+              >
                 Shopify Support Group
-              </span>
-              <span className="block mt-4 text-2xl text-gray-400 lg:text-3xl font-normal">
-                <span className="font-serif italic text-lime">for Merchants</span>
-              </span>
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 200 }}
+                className="font-serif text-5xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify lg:text-7xl"
+              >
+                for Merchants
+              </motion.span>
             </motion.h1>
 
             {/* Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-12 max-w-2xl text-lg leading-relaxed text-gray-400"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mb-8 md:mb-12 max-w-2xl text-lg md:text-xl leading-relaxed text-gray-400"
             >
-              Running a Shopify store comes with challenges, especially when something breaks or behaves unexpectedly. Connect with merchants who understand the platform from hands-on experience.
+              <span className="hidden md:inline">
+                Running a Shopify store comes with challenges, especially when something breaks or behaves unexpectedly. Connect with merchants who understand the platform from{" "}
+              </span>
+              <span className="md:hidden">
+                Connect with merchants who understand Shopify from{" "}
+              </span>
+              <span className="relative inline-block">
+                <span className="relative z-10 text-white font-medium">hands-on experience</span>
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                  className="absolute bottom-0.5 left-0 right-0 h-[3px] bg-shopify/30 -z-0 origin-left rounded-full"
+                />
+              </span>.
             </motion.p>
 
             {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap items-center gap-6"
             >
               <Magnetic>
                 <motion.a
@@ -134,7 +175,7 @@ export default function SupportPage() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-shopify to-shopify-dark px-10 py-5 text-lg font-bold text-midnight transition-all hover:shadow-2xl hover:shadow-shopify/25"
+                  className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-shopify to-shopify-dark px-8 py-4 text-lg font-bold text-midnight transition-all hover:shadow-2xl hover:shadow-shopify/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
                 >
                   <motion.span
                     className="absolute inset-0 bg-gradient-to-r from-lime to-shopify"
@@ -153,6 +194,23 @@ export default function SupportPage() {
                   </motion.span>
                 </motion.a>
               </Magnetic>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="flex items-center gap-3"
+              >
+                <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+                  </span>
+                  <span className="text-sm text-gray-400">
+                    <span className="font-semibold text-white">47</span> online now
+                  </span>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -200,11 +258,34 @@ export default function SupportPage() {
       </section>
 
       {/* Why Peer Support Works Section */}
-      <section id="experience" className="relative bg-midnight py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 grid-pattern opacity-30"></div>
-        <Floating duration={12} distance={25}>
-          <div className="absolute right-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>
+      <section id="experience" className="relative py-16 md:py-24 overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-carbon via-slate to-midnight"></div>
+
+        {/* ConnectionNodes as background - perfect for peer support theme */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-50 scale-[2.5] pointer-events-none">
+          <ConnectionNodes showLabels={false} className="w-full max-w-none h-full !border-0 !bg-transparent !rounded-none" />
+        </div>
+
+        {/* Center fade overlay - creates focus area for content */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(22, 27, 34, 0.9) 0%, rgba(22, 27, 34, 0.4) 50%, transparent 100%)"
+          }}
+        />
+
+        {/* Gradient orbs for depth */}
+        <Floating duration={12} distance={20}>
+          <div className="absolute -left-32 top-1/4 h-[400px] w-[400px] rounded-full bg-shopify/8 blur-[120px]"></div>
         </Floating>
+        <Floating duration={10} distance={15}>
+          <div className="absolute right-0 bottom-1/4 h-[350px] w-[350px] rounded-full bg-lime/6 blur-[100px]"></div>
+        </Floating>
+
+        {/* Edge fades */}
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate to-transparent"></div>
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-midnight to-transparent"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">

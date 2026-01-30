@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, Variants, HTMLMotionProps, useReducedMotion } from "framer-motion";
-import { ReactNode, useRef, useMemo } from "react";
+import { ReactNode, useRef, useMemo, useState, useEffect } from "react";
 
 // ============================================================================
 // Hoisted transition constants - prevents object recreation on every render
@@ -503,5 +503,109 @@ export function GradientBorder({ children, className }: GradientBorderProps) {
     >
       {children}
     </motion.div>
+  );
+}
+
+// Word reveal animation
+interface WordRevealSegment {
+  text: string;
+  className?: string;
+}
+
+interface WordRevealProps {
+  segments: WordRevealSegment[];
+  className?: string;
+  delay?: number;
+  speed?: number; // ms per word
+}
+
+export function Typewriter({ segments, className, delay = 0, speed = 40 }: WordRevealProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const prefersReducedMotion = useReducedMotion();
+  const [wordCount, setWordCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+
+  // Build word list with segment info (only actual words, not spaces)
+  const words = useMemo(() => {
+    const result: { word: string; className?: string }[] = [];
+    segments.forEach((segment) => {
+      const segmentWords = segment.text.split(/\s+/).filter(Boolean);
+      segmentWords.forEach((word) => {
+        result.push({ word, className: segment.className });
+      });
+    });
+    return result;
+  }, [segments]);
+
+  const totalWords = words.length;
+
+  useEffect(() => {
+    if (!isInView || hasStarted) return;
+
+    if (prefersReducedMotion) {
+      const timeout = setTimeout(() => {
+        setWordCount(totalWords);
+      }, delay * 1000);
+      return () => clearTimeout(timeout);
+    }
+
+    const startTimeout = setTimeout(() => {
+      setHasStarted(true);
+    }, delay * 1000);
+
+    return () => clearTimeout(startTimeout);
+  }, [isInView, delay, prefersReducedMotion, totalWords, hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted || prefersReducedMotion) return;
+
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= totalWords) {
+        setWordCount(currentIndex);
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+      }
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [hasStarted, totalWords, speed, prefersReducedMotion]);
+
+  const renderFullSegments = () => {
+    return segments.map((segment, index) => (
+      <span key={index} className={segment.className}>
+        {segment.text}
+      </span>
+    ));
+  };
+
+  return (
+    <span ref={ref} className={`${className || ""} relative inline`}>
+      <span className="invisible" aria-hidden="true">
+        {renderFullSegments()}
+      </span>
+      <span className="absolute inset-0">
+        {words.map((word, index) => (
+          <motion.span
+            key={index}
+            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, filter: "blur(4px)", y: 4 }}
+            animate={
+              index < wordCount
+                ? { opacity: 1, filter: "blur(0px)", y: 0 }
+                : prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 0, filter: "blur(4px)", y: 4 }
+            }
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className={word.className}
+          >
+            {word.word}
+            {index < words.length - 1 && " "}
+          </motion.span>
+        ))}
+      </span>
+    </span>
   );
 }

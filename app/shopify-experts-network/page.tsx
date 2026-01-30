@@ -14,6 +14,7 @@ import {
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
 import { displayHeadshots } from "@/lib/data";
+import { ShopifyAnalyticsInterface } from "@/components/graphics";
 
 export default function ExpertsPage() {
 
@@ -78,6 +79,19 @@ export default function ExpertsPage() {
         {/* Grid pattern with fade */}
         <div className="absolute inset-0 grid-pattern opacity-50"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-midnight via-transparent to-midnight"></div>
+
+        {/* Shopify Analytics Interface - emerges from right edge */}
+        <div
+          className="absolute top-24 -right-72 2xl:-right-48 hidden xl:block pointer-events-none"
+          style={{
+            transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg)",
+            transformOrigin: "right center"
+          }}
+        >
+          <Floating duration={10} distance={6}>
+            <ShopifyAnalyticsInterface variant="hero" />
+          </Floating>
+        </div>
 
         {/* Decorative elements */}
         <motion.div
@@ -362,9 +376,9 @@ export default function ExpertsPage() {
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
                 Real-World Learning
               </span>
-              <h2 className="mb-8 text-2xl sm:text-3xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
+              <h2 className="mb-8 text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
                 Learning Through{" "}
-                <span className="block font-serif italic text-lime mt-1 md:mt-2">Real-World Feedback</span>
+                <span className="block font-serif italic text-lime">Real-World Feedback</span>
               </h2>
 
               <div className="space-y-6 text-lg leading-relaxed text-gray-400">

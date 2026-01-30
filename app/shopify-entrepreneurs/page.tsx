@@ -12,6 +12,7 @@ import {
   SlideIn,
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
+import { DiscordSingleMessage } from "@/components/graphics/discord/message-thread";
 import { displayHeadshots } from "@/lib/data";
 
 export default function EntrepreneursPage() {
@@ -19,7 +20,7 @@ export default function EntrepreneursPage() {
   return (
     <div className="min-h-screen bg-midnight font-sans overflow-x-hidden">
       {/* Hero Section - Centered, editorial style */}
-      <section id="hero" className="relative min-h-screen overflow-hidden pt-16 md:pt-20 flex items-center">
+      <section id="hero" className="relative min-h-screen overflow-hidden pt-8 md:pt-12 flex items-center">
         {/* Subtle gradient orbs */}
         <Floating duration={12} distance={15}>
           <div className="absolute top-1/4 left-1/4 h-[500px] w-[500px] rounded-full bg-shopify/5 blur-[200px]"></div>
@@ -215,7 +216,7 @@ export default function EntrepreneursPage() {
                 &ldquo;
               </motion.span>
               <div className="relative">
-                <p className="text-3xl font-light leading-relaxed text-white lg:text-4xl">
+                <p className="text-3xl font-light leading-snug text-white lg:text-4xl">
                   Sharing experiences with other founders helps reduce uncertainty and improves{" "}
                   <span className="font-serif italic text-lime">decision-making</span>.
                 </p>
@@ -281,45 +282,113 @@ export default function EntrepreneursPage() {
             </h2>
           </FadeUp>
 
-          {/* Mosaic grid - asymmetric */}
-          <div className="grid gap-6 lg:grid-cols-3">
+          {/* Two-column layout */}
+          <div className="flex flex-col lg:flex-row gap-6">
             {/* Large card */}
-            <SlideIn direction="left" className="lg:col-span-2 lg:row-span-2">
-              <ScaleOnHover scale={1.02}>
-                <div className="h-full rounded-3xl border border-white/10 bg-carbon/50 p-10 backdrop-blur-sm flex flex-col">
-                  <div>
-                    <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-shopify/10 text-2xl">
+            <SlideIn direction="left" className="lg:flex-[2]">
+              <ScaleOnHover scale={1.02} className="h-full">
+                <div className="h-full rounded-3xl border border-white/10 bg-carbon/50 p-8 lg:p-10 backdrop-blur-sm flex flex-col overflow-hidden">
+                  <div className="shrink-0">
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-shopify/10 text-xl">
                       💬
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Open Discussion</h3>
-                    <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
-                      This community encourages open discussion, accountability, and long-term relationships between members.
+                    <h3 className="text-xl font-bold text-white mb-2">Open Discussion</h3>
+                    <p className="text-gray-400 leading-relaxed">
                       Share challenges and wins without judgment in a supportive environment.
                     </p>
                   </div>
 
-                  {/* Decorative graphic element to fill remaining height - hidden on mobile */}
-                  <div className="mt-auto pt-10 flex-1 hidden md:flex items-end">
-                    <div className="w-full relative">
+                  {/* Discord message cards - hidden on mobile */}
+                  <div className="mt-6 flex-1 hidden md:flex flex-col gap-3 overflow-hidden min-h-0">
+                    {/* Top row */}
+                    <div className="flex gap-3 shrink-0">
                       <motion.div
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        className="h-px w-full bg-gradient-to-r from-shopify/30 to-transparent origin-left mb-8"
-                      />
-                      <div className="flex gap-3">
-                        {[...Array(6)].map((_, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: 0.4 + i * 0.05 }}
-                            className="flex-1 h-16 rounded-xl bg-gradient-to-b from-shopify/10 to-transparent"
-                          />
-                        ))}
-                      </div>
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="flex-1 -rotate-1"
+                      >
+                        <DiscordSingleMessage
+                          username="sarah_founder"
+                          userColor="#95BF47"
+                          message="Finally hit profitability after 8 months. This community kept me going!"
+                          emoji="🎉"
+                        />
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="flex-1 rotate-1"
+                      >
+                        <DiscordSingleMessage
+                          username="mike_builds"
+                          userColor="#C4E456"
+                          message="The feedback here saved me weeks of debugging"
+                          emoji="🙏"
+                        />
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        className="flex-1 -rotate-0.5"
+                      >
+                        <DiscordSingleMessage
+                          username="jenna_store"
+                          userColor="#5865F2"
+                          message="Just launched my second store thanks to the advice here!"
+                          emoji="💚"
+                        />
+                      </motion.div>
+                    </div>
+                    {/* Bottom row */}
+                    <div className="flex gap-3 shrink-0">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.45 }}
+                        className="flex-1 rotate-0.5"
+                      >
+                        <DiscordSingleMessage
+                          username="lily_brand"
+                          userColor="#FFB347"
+                          message="Found my accountability partner here!"
+                          emoji="✨"
+                        />
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="flex-1 -rotate-1"
+                      >
+                        <DiscordSingleMessage
+                          username="alex_ecom"
+                          userColor="#FF6B6B"
+                          message="Best business decision I made this year"
+                          emoji="🚀"
+                        />
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.55 }}
+                        className="flex-1 rotate-1"
+                      >
+                        <DiscordSingleMessage
+                          username="emma_shop"
+                          userColor="#E91E63"
+                          message="Real talk from real founders"
+                          emoji="💯"
+                        />
+                      </motion.div>
                     </div>
                   </div>
                 </div>
@@ -327,29 +396,31 @@ export default function EntrepreneursPage() {
             </SlideIn>
 
             {/* Stacked cards */}
-            <SlideIn direction="right" delay={0.1}>
-              <ScaleOnHover scale={1.03}>
-                <div className="rounded-3xl border border-white/10 bg-carbon/50 p-8 backdrop-blur-sm">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-lime/10 text-xl">
-                    🤝
+            <div className="lg:flex-1 flex flex-col gap-6">
+              <SlideIn direction="right" delay={0.1} className="flex-1">
+                <ScaleOnHover scale={1.03} className="h-full">
+                  <div className="h-full rounded-3xl border border-white/10 bg-carbon/50 p-8 backdrop-blur-sm">
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-lime/10 text-xl">
+                      🤝
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">Accountability</h3>
+                    <p className="text-gray-500">Stay motivated with peer support and regular check-ins from fellow founders.</p>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Accountability</h3>
-                  <p className="text-gray-500">Stay motivated with peer support and regular check-ins from fellow founders.</p>
-                </div>
-              </ScaleOnHover>
-            </SlideIn>
+                </ScaleOnHover>
+              </SlideIn>
 
-            <SlideIn direction="right" delay={0.2}>
-              <ScaleOnHover scale={1.03}>
-                <div className="rounded-3xl border border-white/10 bg-carbon/50 p-8 backdrop-blur-sm">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-shopify/10 text-xl">
-                    🌱
+              <SlideIn direction="right" delay={0.2} className="flex-1">
+                <ScaleOnHover scale={1.03} className="h-full">
+                  <div className="h-full rounded-3xl border border-white/10 bg-carbon/50 p-8 backdrop-blur-sm">
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-shopify/10 text-xl">
+                      🌱
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">Long-term Relationships</h3>
+                    <p className="text-gray-500">Build lasting connections that help you navigate challenges and celebrate progress together.</p>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Long-term Relationships</h3>
-                  <p className="text-gray-500">Build lasting connections that help you navigate challenges and celebrate progress together.</p>
-                </div>
-              </ScaleOnHover>
-            </SlideIn>
+                </ScaleOnHover>
+              </SlideIn>
+            </div>
           </div>
         </div>
       </section>

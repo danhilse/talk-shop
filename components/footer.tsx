@@ -63,7 +63,7 @@ export function Footer() {
           </StaggerContainer>
         </FadeUp>
 
-        <StaggerContainer className="grid gap-12 text-center md:grid-cols-4 md:text-left" staggerDelay={0.1}>
+        <StaggerContainer className="grid gap-12 text-center md:grid-cols-3 md:text-left" staggerDelay={0.1}>
           {/* Community Pages */}
           <StaggerItem>
             <h4 className="mb-4 text-lg font-semibold text-white">Community</h4>
@@ -81,21 +81,23 @@ export function Footer() {
             </ul>
           </StaggerItem>
 
-          {/* Location */}
+          {/* Location & Hours - Stacked */}
           <StaggerItem>
-            <h4 className="mb-4 text-lg font-semibold text-white">Location</h4>
-            <p className="text-gray-400">
-              123 Mars, Crater City, Red Planet
-            </p>
-            <p className="mt-1 text-sm text-gray-600">(WiFi may be spotty)</p>
-          </StaggerItem>
-
-          {/* Hours */}
-          <StaggerItem>
-            <h4 className="mb-4 text-lg font-semibold text-white">Hours</h4>
-            <p className="text-gray-400">
-              Who has time for breaks? We&apos;re here 24/7!
-            </p>
+            <div className="space-y-6">
+              <div>
+                <h4 className="mb-2 text-lg font-semibold text-white">Location</h4>
+                <p className="text-gray-400">
+                  123 Mars, Crater City, Red Planet
+                </p>
+                <p className="mt-1 text-sm text-gray-600">(WiFi may be spotty)</p>
+              </div>
+              <div>
+                <h4 className="mb-2 text-lg font-semibold text-white">Hours</h4>
+                <p className="text-gray-400">
+                  Who has time for breaks? We&apos;re here 24/7!
+                </p>
+              </div>
+            </div>
           </StaggerItem>
 
           {/* Contact */}

@@ -48,8 +48,6 @@ export function DiscordFullInterface({
           className="relative flex rounded-2xl border border-white/10 overflow-hidden shadow-2xl shadow-black/60"
           style={{
             backgroundColor: DISCORD_TERTIARY,
-            transformStyle: "preserve-3d",
-            transform: isHero ? "perspective(1200px) rotateY(-4deg) rotateX(2deg)" : undefined,
           }}
         >
         {/* Server List - compact */}
@@ -87,7 +85,7 @@ export function DiscordFullInterface({
 
         {/* Channel Sidebar */}
         <div
-          className="w-56 border-r border-white/5 flex flex-col h-[70vh]"
+          className="w-64 border-r border-white/5 flex flex-col h-[70vh]"
           style={{ backgroundColor: DISCORD_SECONDARY }}
         >
           {/* Server header */}
@@ -172,7 +170,7 @@ export function DiscordFullInterface({
 
         {/* Chat Area */}
         <div
-          className="w-96 flex flex-col h-[70vh]"
+          className="w-[480px] flex flex-col h-[70vh]"
           style={{ backgroundColor: DISCORD_BG }}
         >
           {/* Channel header */}

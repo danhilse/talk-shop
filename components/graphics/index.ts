@@ -64,6 +64,10 @@ export {
 } from "./ecommerce/analytics-card";
 
 export {
+  ShopifyAnalyticsInterface,
+} from "./shopify/analytics-interface";
+
+export {
   EcommerceGrowthChart,
   EcommerceProgressBar,
   EcommerceRevenueComparison,

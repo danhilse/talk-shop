@@ -96,11 +96,11 @@ export function FeaturesSection() {
                     </div>
                   )}
                   {index === 3 && (
-                    <div className="absolute -right-12 top-1/2 -translate-y-[45%] rotate-6 hidden lg:block pointer-events-none">
+                    <div className="absolute -left-12 top-1/2 -translate-y-[45%] -rotate-6 hidden lg:block pointer-events-none">
                       <div
                         style={{
-                          maskImage: 'linear-gradient(to right, transparent 0%, black 20%)',
-                          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%)',
+                          maskImage: 'linear-gradient(to left, transparent 0%, black 20%)',
+                          WebkitMaskImage: 'linear-gradient(to left, transparent 0%, black 20%)',
                         }}
                       >
                         <ShopifyAnalyticsStack />
@@ -108,7 +108,7 @@ export function FeaturesSection() {
                     </div>
                   )}
 
-                  <div className="relative">
+                  <div className={`relative ${index === 3 ? 'lg:ml-auto lg:text-right' : ''}`}>
                     {/* Icon */}
                     <BounceIcon>
                       <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 border border-white/10 font-mono text-2xl text-shopify transition-all duration-300 group-hover:bg-shopify/20 group-hover:border-shopify/30">
@@ -119,7 +119,7 @@ export function FeaturesSection() {
                     <h3 className="mb-4 text-xl font-bold text-white">
                       {feature.title}
                     </h3>
-                    <p className="leading-relaxed text-gray-500 transition-colors group-hover:text-gray-400 max-w-md">
+                    <p className={`leading-relaxed text-gray-500 transition-colors group-hover:text-gray-400 max-w-md ${index === 3 ? 'lg:ml-auto' : ''}`}>
                       {feature.description}
                     </p>
                   </div>

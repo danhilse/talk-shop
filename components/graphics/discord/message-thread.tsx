@@ -174,30 +174,32 @@ export function DiscordSingleMessage({
   message = "Just hit my first $10k month!",
   emoji = "🚀",
   className = "",
+  multiline = true,
 }: {
   username?: string;
   userColor?: string;
   message?: string;
   emoji?: string;
   className?: string;
+  multiline?: boolean;
 }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.4 }}
-      className={`flex items-center gap-3 rounded-xl border border-white/10 p-3 select-none ${className}`}
+      className={`flex items-start gap-3 rounded-xl border border-white/10 p-3 select-none ${className}`}
       style={{ backgroundColor: DISCORD_BG }}
     >
       <div
-        className="h-8 w-8 shrink-0 rounded-full"
+        className="h-8 w-8 shrink-0 rounded-full mt-0.5"
         style={{ backgroundColor: `${userColor}30` }}
       />
       <div className="flex-1 min-w-0">
         <span className="font-semibold text-sm" style={{ color: userColor }}>
           {username}
         </span>
-        <p className="text-sm text-gray-300 truncate">
+        <p className={`text-sm text-gray-300 ${multiline ? '' : 'truncate'}`}>
           {message} {emoji}
         </p>
       </div>

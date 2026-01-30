@@ -11,9 +11,11 @@ import {
   Floating,
   SlideIn,
   BounceIcon,
+  Typewriter,
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
 import { displayHeadshots } from "@/lib/data";
+import { ShopifyAnalyticsInterface } from "@/components/graphics";
 
 export default function GrowthPage() {
 
@@ -86,6 +88,19 @@ export default function GrowthPage() {
         {/* Grid pattern with fade */}
         <div className="absolute inset-0 grid-pattern opacity-50"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-midnight via-transparent to-midnight"></div>
+
+        {/* Shopify Analytics Interface - emerges from right edge */}
+        <div
+          className="absolute top-24 -right-72 2xl:-right-48 hidden xl:block pointer-events-none"
+          style={{
+            transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg)",
+            transformOrigin: "right center"
+          }}
+        >
+          <Floating duration={10} distance={6}>
+            <ShopifyAnalyticsInterface variant="hero" />
+          </Floating>
+        </div>
 
         {/* Decorative brackets */}
         <motion.div
@@ -308,9 +323,15 @@ export default function GrowthPage() {
             {/* Right column - Content */}
             <SlideIn direction="right" delay={0.2} className="lg:col-span-8">
               <p className="text-2xl leading-relaxed text-gray-300 lg:text-3xl font-light">
-                Rather than surface-level tips, this community centers on strategies that have been{" "}
-                <span className="font-serif italic text-white font-normal">tested and refined</span>{" "}
-                through real-world experimentation. We focus on what actually moves the needle for Shopify merchants at every stage of growth.
+                <Typewriter
+                  delay={0.3}
+                  speed={35}
+                  segments={[
+                    { text: "Rather than surface-level tips, this community centers on strategies that have been " },
+                    { text: "tested and refined", className: "font-serif italic text-white font-normal" },
+                    { text: " through real-world experimentation. We focus on what actually moves the needle for Shopify merchants at every stage of growth." },
+                  ]}
+                />
               </p>
             </SlideIn>
           </div>

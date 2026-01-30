@@ -24,7 +24,13 @@ export function CommunityHeroSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-midnight via-transparent to-midnight"></div>
 
       {/* Full Discord Interface - emerges from right edge, clips at bottom/right only */}
-      <div className="absolute top-32 -right-24 2xl:-right-16 hidden xl:block pointer-events-none">
+      <div
+        className="absolute top-28 right-0 2xl:right-8 hidden xl:block pointer-events-none"
+        style={{
+          transform: "perspective(1500px) rotateY(-15deg) rotateX(3deg)",
+          transformOrigin: "right center"
+        }}
+      >
         <Floating duration={10} distance={6}>
           <DiscordFullInterface variant="hero" />
         </Floating>
