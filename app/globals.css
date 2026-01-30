@@ -285,3 +285,6 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* Klaro consent manager styles */
+@import "./klaro.css";

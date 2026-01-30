@@ -100,13 +100,13 @@ export function Nav() {
         <div className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
-              <motion.div whileHover={hoverScale} whileTap={tapScale}>
+              <motion.div whileHover={hoverScale} whileTap={tapScale} className="relative h-16 w-40">
                 <Image
                   src="/logo.webp"
                   alt="Talk Shop"
-                  width={160}
-                  height={64}
-                  className="h-16 w-auto"
+                  fill
+                  sizes="160px"
+                  className="object-contain"
                   priority
                 />
               </motion.div>

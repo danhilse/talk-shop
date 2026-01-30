@@ -1,0 +1,259 @@
+/* Klaro Shopify Theme Override */
+
+.klaro {
+  --klaro-green: #95bf47;
+  --klaro-green-dark: #5e8e3e;
+  --klaro-green-light: #b4d455;
+  --klaro-midnight: #0d1117;
+  --klaro-slate: #161b22;
+  --klaro-white: #ffffff;
+  --klaro-gray-400: #a3a3a3;
+  --klaro-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Notice bar (bottom banner) - full width */
+.klaro .cookie-notice {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(13, 17, 23, 0.6) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  border-top: 1px solid var(--klaro-border) !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  padding: 1rem 1.5rem !important;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.3) !important;
+  z-index: 99999 !important;
+}
+
+.klaro .cookie-notice .cn-body {
+  max-width: 80rem !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1.5rem !important;
+  padding: 0 !important;
+}
+
+.klaro .cookie-notice p {
+  color: var(--klaro-gray-400) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  max-width: 42rem !important;
+}
+
+.klaro .cookie-notice a {
+  color: var(--klaro-green) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+.klaro .cookie-notice a:hover {
+  color: var(--klaro-green-light) !important;
+}
+
+/* Buttons container */
+.klaro .cn-buttons {
+  display: flex !important;
+  gap: 0.75rem !important;
+  flex-shrink: 0 !important;
+}
+
+/* All buttons base styles */
+.klaro .cm-btn {
+  border-radius: 9999px !important;
+  padding: 0.625rem 1.25rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  transition: all 150ms ease !important;
+  border: none !important;
+  cursor: pointer !important;
+  line-height: 1.25 !important;
+}
+
+/* Primary button (Accept All) */
+.klaro .cm-btn.cm-btn-success {
+  background: var(--klaro-green) !important;
+  color: var(--klaro-midnight) !important;
+  font-weight: 600 !important;
+}
+
+.klaro .cm-btn.cm-btn-success:hover {
+  background: var(--klaro-green-light) !important;
+}
+
+/* Secondary buttons (Manage/Decline) */
+.klaro .cm-btn.cm-btn-info,
+.klaro .cm-btn.cm-btn-danger {
+  background: transparent !important;
+  color: var(--klaro-white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.klaro .cm-btn.cm-btn-info:hover,
+.klaro .cm-btn.cm-btn-danger:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Modal */
+.klaro .cookie-modal {
+  z-index: 100000 !important;
+}
+
+.klaro .cookie-modal .cm-modal {
+  background: var(--klaro-midnight) !important;
+  border: 1px solid var(--klaro-border) !important;
+  border-radius: 1rem !important;
+  max-width: 32rem !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+  overflow: hidden !important;
+}
+
+.klaro .cookie-modal .cm-header {
+  border-bottom: 1px solid var(--klaro-border) !important;
+  padding: 1.5rem !important;
+  background: transparent !important;
+}
+
+.klaro .cookie-modal .cm-header h1 {
+  color: var(--klaro-white) !important;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+}
+
+.klaro .cookie-modal .cm-body {
+  padding: 1.5rem !important;
+  max-height: 60vh !important;
+  overflow-y: auto !important;
+  background: transparent !important;
+}
+
+.klaro .cookie-modal .cm-body p {
+  color: var(--klaro-gray-400) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.6 !important;
+}
+
+/* Service toggles */
+.klaro .cm-list-input:checked + .cm-list-label .slider {
+  background: var(--klaro-green) !important;
+}
+
+.klaro .cm-list-label .slider {
+  background: var(--klaro-slate) !important;
+  border: 1px solid var(--klaro-border) !important;
+}
+
+.klaro .cm-list-title {
+  color: var(--klaro-white) !important;
+  font-weight: 500 !important;
+}
+
+.klaro .cm-list-description {
+  color: var(--klaro-gray-400) !important;
+  font-size: 0.8125rem !important;
+}
+
+/* Purpose sections */
+.klaro .cm-purpose {
+  border-bottom: 1px solid var(--klaro-border) !important;
+  padding: 1rem 0 !important;
+}
+
+.klaro .cm-purpose:last-child {
+  border-bottom: none !important;
+}
+
+.klaro .cm-purpose .cm-purpose-title {
+  color: var(--klaro-white) !important;
+  font-weight: 600 !important;
+}
+
+/* Services list */
+.klaro .cm-services {
+  background: transparent !important;
+}
+
+.klaro .cm-service {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Footer */
+.klaro .cookie-modal .cm-footer {
+  border-top: 1px solid var(--klaro-border) !important;
+  padding: 1.5rem !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 0.75rem !important;
+  background: transparent !important;
+}
+
+/* Close button */
+.klaro .cookie-modal .hide {
+  color: var(--klaro-gray-400) !important;
+  background: transparent !important;
+  opacity: 1 !important;
+}
+
+.klaro .cookie-modal .hide:hover {
+  color: var(--klaro-white) !important;
+}
+
+/* Focus states for accessibility */
+.klaro .cm-btn:focus-visible {
+  outline: 2px solid var(--klaro-green) !important;
+  outline-offset: 2px !important;
+}
+
+/* Backdrop */
+.klaro .cookie-modal .cm-bg {
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* Hide Klaro branding */
+.klaro .cm-powered-by,
+.klaro .cn-ok a.cm-link.cn-learn-more {
+  display: none !important;
+}
+
+/* Toggle switch styling */
+.klaro .cm-list-input + .cm-list-label .slider::before {
+  background: var(--klaro-white) !important;
+}
+
+/* Required badge */
+.klaro .cm-caret,
+.klaro .cm-required {
+  color: var(--klaro-gray-400) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .klaro .cookie-notice .cn-body {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem !important;
+  }
+
+  .klaro .cn-buttons {
+    flex-direction: column !important;
+  }
+
+  .klaro .cm-btn {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}

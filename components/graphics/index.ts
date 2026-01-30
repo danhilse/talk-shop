@@ -53,6 +53,10 @@ export {
   DiscordFloatingChat,
 } from "./discord/full-interface";
 
+export {
+  DiscordGrowthChat,
+} from "./discord/growth-chat";
+
 // ============================================
 // E-COMMERCE GRAPHICS
 // ============================================

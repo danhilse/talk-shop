@@ -112,7 +112,7 @@ export function RealTimeSection() {
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  className="absolute -inset-4 rounded-3xl border border-dashed border-shopify/30"
+                  className="absolute -inset-4 rounded-3xl border border-dashed border-shopify/30 -z-10"
                 />
 
                 {/* Main card - Discord chat */}

@@ -220,6 +220,7 @@ export function CommunityHeroSection() {
                       src={`/headshots/${src}`}
                       alt=""
                       fill
+                      sizes="40px"
                       className="object-cover"
                     />
                   </motion.div>

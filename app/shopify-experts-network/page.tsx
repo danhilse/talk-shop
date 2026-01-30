@@ -259,6 +259,7 @@ export default function ExpertsPage() {
                         src={`/headshots/${src}`}
                         alt="Expert member"
                         fill
+                        sizes="40px"
                         className="object-cover"
                       />
                     </motion.div>

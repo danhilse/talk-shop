@@ -62,12 +62,12 @@ export function DiscordFullInterface({
             transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
             className="relative"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl overflow-hidden">
+            <div className="relative h-10 w-10 rounded-2xl overflow-hidden">
               <Image
                 src="/logo.webp"
                 alt="Talk Shop"
-                width={40}
-                height={40}
+                fill
+                sizes="40px"
                 className="object-contain"
               />
             </div>

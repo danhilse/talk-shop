@@ -347,7 +347,7 @@ export function EcommerceStoreComparison({
           initial={animated ? { opacity: 0, scale: 0, rotate: -180 } : undefined}
           animate={animated && isInView ? { opacity: 1, scale: 1, rotate: 0 } : undefined}
           transition={{ delay: timing.arrow, duration: 0.5, type: "spring", stiffness: 200 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-shopify text-midnight shadow-lg shadow-shopify/30"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-shopify text-midnight shadow-lg shadow-shopify/30 z-20"
         >
           <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />

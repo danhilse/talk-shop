@@ -15,7 +15,7 @@ import {
 } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
 import { displayHeadshots } from "@/lib/data";
-import { ShopifyAnalyticsInterface, EcommerceGrowthChart, EcommerceStoreComparison } from "@/components/graphics";
+import { ShopifyAnalyticsInterface, EcommerceGrowthChart, EcommerceStoreComparison, DiscordGrowthChat } from "@/components/graphics";
 
 export default function GrowthPage() {
 
@@ -267,6 +267,7 @@ export default function GrowthPage() {
                         src={`/headshots/${src}`}
                         alt="Community member"
                         fill
+                        sizes="40px"
                         className="object-cover"
                       />
                     </motion.div>
@@ -662,42 +663,17 @@ export default function GrowthPage() {
               <div className="absolute inset-0 bg-gradient-to-l from-lime/5 to-transparent"></div>
 
               <div className="relative w-full max-w-md">
-                {/* Image placeholder with decorative elements */}
-                <div className="relative aspect-square">
+                {/* Decorative frame */}
+                <div className="relative">
                   {/* Rotating border */}
                   <motion.div
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 rounded-3xl border border-dashed border-shopify/30"
+                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                    className="absolute -inset-3 rounded-3xl border border-dashed border-shopify/20"
                   />
 
-                  {/* Main card */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="absolute inset-4 rounded-2xl border border-white/10 bg-gradient-to-br from-slate to-carbon overflow-hidden"
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <motion.div
-                          animate={{ y: [0, -10, 0] }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                          className="font-mono text-6xl text-lime/20"
-                        >
-                          ↗
-                        </motion.div>
-                        <div className="mt-4 font-mono text-xs text-gray-600 tracking-widest">
-                          GROWTH MINDSET
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Corner accents */}
-                    <div className="absolute top-4 right-4 h-10 w-10 border-r-2 border-t-2 border-lime/40 rounded-tr-lg"></div>
-                    <div className="absolute bottom-4 left-4 h-10 w-10 border-l-2 border-b-2 border-lime/40 rounded-bl-lg"></div>
-                  </motion.div>
+                  {/* Discord chat component */}
+                  <DiscordGrowthChat className="relative z-10" />
 
                   {/* Floating badges */}
                   <motion.div
@@ -706,7 +682,7 @@ export default function GrowthPage() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.5 }}
                     whileHover={{ scale: 1.1 }}
-                    className="absolute -top-4 -right-4 rounded-full bg-shopify px-4 py-2 text-xs font-bold text-midnight shadow-lg"
+                    className="absolute -top-3 -right-3 z-20 rounded-full bg-shopify px-4 py-2 text-xs font-bold text-midnight shadow-lg"
                   >
                     Results-Focused
                   </motion.div>
@@ -716,7 +692,7 @@ export default function GrowthPage() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.6 }}
                     whileHover={{ scale: 1.1 }}
-                    className="absolute -bottom-4 -left-4 rounded-full bg-lime px-4 py-2 text-xs font-bold text-midnight shadow-lg"
+                    className="absolute -bottom-3 -left-3 z-20 rounded-full bg-lime px-4 py-2 text-xs font-bold text-midnight shadow-lg"
                   >
                     300+ Merchants
                   </motion.div>

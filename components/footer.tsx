@@ -142,6 +142,7 @@ export function Footer() {
                   src="/logo.webp"
                   alt="Talk Shop"
                   fill
+                  sizes="32px"
                   className="object-cover"
                 />
               </div>
@@ -180,6 +181,18 @@ export function Footer() {
                   </motion.div>
                 );
               })}
+              <motion.div whileHover={{ y: -2 }}>
+                <button
+                  onClick={() => {
+                    if (typeof window !== "undefined" && window.klaro) {
+                      window.klaro.show();
+                    }
+                  }}
+                  className="text-xs text-gray-500 hover:text-white transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight"
+                >
+                  Cookie Settings
+                </button>
+              </motion.div>
             </div>
           </div>
         </motion.div>
