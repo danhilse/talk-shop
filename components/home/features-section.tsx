@@ -13,27 +13,28 @@ import { DiscordMessageThread, ShopifyAnalyticsStack } from "@/components/graphi
 
 export function FeaturesSection() {
   return (
-    <section id="learn-more" className="relative bg-slate py-16 md:py-24">
-      <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate to-transparent"></div>
+    <section id="learn-more" className="relative bg-slate py-16 md:py-24" aria-labelledby="features-heading">
+      <div className="absolute inset-0 diagonal-stripes opacity-50" aria-hidden="true"></div>
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate to-transparent" aria-hidden="true"></div>
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      <article className="relative mx-auto max-w-7xl px-6">
         {/* Section header */}
         <FadeUp className="mb-16 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
-          <div>
+          <header>
             <motion.span
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block"
+              aria-hidden="true"
             >
               Why Join Us
             </motion.span>
-            <h2 className="text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
+            <h2 id="features-heading" className="text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
               Enter the Shopify{" "}
               <span className="font-serif italic text-lime">Mindstream</span>
             </h2>
-          </div>
+          </header>
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
@@ -128,7 +129,7 @@ export function FeaturesSection() {
             </StaggerItem>
           ))}
         </StaggerContainer>
-      </div>
+      </article>
     </section>
   );
 }

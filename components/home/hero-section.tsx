@@ -20,12 +20,12 @@ export function HeroSection() {
   const smoothY = useSpring(heroY, { stiffness: 100, damping: 30 });
 
   return (
-    <section id="hero" ref={heroRef} className="relative min-h-screen overflow-hidden pt-16 md:pt-20">
+    <section id="hero" ref={heroRef} className="relative min-h-screen overflow-hidden pt-16 md:pt-20" aria-labelledby="hero-heading">
       {/* Background effects */}
-      <div className="absolute inset-0 grid-pattern opacity-50"></div>
+      <div className="absolute inset-0 grid-pattern opacity-50" aria-hidden="true"></div>
 
       {/* Aurora gradient mesh */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <Floating duration={8} distance={20}>
           <div className="absolute top-20 left-1/4 h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
         </Floating>
@@ -36,7 +36,7 @@ export function HeroSection() {
       </div>
 
       {/* Animated gradient beams */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         {/* Top-left beam */}
         <motion.div
           initial={{ opacity: 0, x: -100 }}
@@ -69,7 +69,7 @@ export function HeroSection() {
       </div>
 
       {/* Concentric rings - centered behind content */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">
         {/* Outer ring */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -209,7 +209,7 @@ export function HeroSection() {
       </motion.div>
 
       {/* Main content */}
-      <motion.div
+      <motion.article
         style={{ y: smoothY }}
         className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:py-40"
       >
@@ -230,80 +230,85 @@ export function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Main heading */}
-          <motion.h1
+          {/* Main heading - semantic h1 with motion wrapper for animation */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.4, 0.25, 1] }}
             className="mb-6 md:mb-10 max-w-5xl relative"
           >
-            <motion.span
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="block text-5xl font-bold tracking-tight text-white lg:text-7xl"
-            >
-              The Shopify Discord
-            </motion.span>
-            <span className="relative block mt-2">
+            <h1 id="hero-heading">
               <motion.span
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 200 }}
-                className="font-serif text-6xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify lg:text-8xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="block text-5xl font-bold tracking-tight text-white lg:text-7xl"
               >
-                Server
+                The Shopify Discord
               </motion.span>
-              {/* Underline accent */}
-              <motion.svg
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-                className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-32 h-3 lg:w-44"
-                viewBox="0 0 150 12"
-                fill="none"
-                preserveAspectRatio="none"
-              >
-                <motion.path
-                  d="M0 6 Q37 2, 75 6 T150 6"
-                  stroke="url(#hero-gradient)"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
+              <span className="relative block mt-2">
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 200 }}
+                  className="font-serif text-6xl italic text-transparent bg-clip-text bg-gradient-to-r from-shopify via-lime to-shopify lg:text-8xl"
+                >
+                  Server
+                </motion.span>
+                {/* Underline accent */}
+                <motion.svg
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-                />
-                <defs>
-                  <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#95BF47"/>
-                    <stop offset="50%" stopColor="#C4E456"/>
-                    <stop offset="100%" stopColor="#95BF47"/>
-                  </linearGradient>
-                </defs>
-              </motion.svg>
-            </span>
-          </motion.h1>
+                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-32 h-3 lg:w-44"
+                  viewBox="0 0 150 12"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <motion.path
+                    d="M0 6 Q37 2, 75 6 T150 6"
+                    stroke="url(#hero-gradient)"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+                  />
+                  <defs>
+                    <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#95BF47"/>
+                      <stop offset="50%" stopColor="#C4E456"/>
+                      <stop offset="100%" stopColor="#95BF47"/>
+                    </linearGradient>
+                  </defs>
+                </motion.svg>
+              </span>
+            </h1>
+          </motion.div>
 
-          {/* Subtitle */}
-          <motion.p
+          {/* Subtitle - semantic p with motion wrapper */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-8 md:mb-12 max-w-2xl text-lg leading-relaxed text-gray-400 lg:text-xl"
           >
-            Welcome to our Shopify Discord server. Connect with merchants, experts, and eCommerce pros to share insights, solve problems, and level up your store. Whether you&apos;re just starting or scaling to the moon—we&apos;re here as a{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-white font-medium">community</span>
-              <motion.span
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="absolute bottom-0.5 left-0 right-0 h-[3px] bg-shopify/30 -z-0 origin-left rounded-full"
-              />
-            </span>{" "}
-            to help.
-          </motion.p>
+            <p className="mb-8 md:mb-12 max-w-2xl text-lg leading-relaxed text-gray-400 lg:text-xl">
+              Welcome to our Shopify Discord server. Connect with merchants, experts, and eCommerce pros to share insights, solve problems, and level up your store. Whether you&apos;re just starting or scaling to the moon—we&apos;re here as a{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-white font-medium">community</span>
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                  className="absolute bottom-0.5 left-0 right-0 h-[3px] bg-shopify/30 -z-0 origin-left rounded-full"
+                  aria-hidden="true"
+                />
+              </span>{" "}
+              to help.
+            </p>
+          </motion.div>
 
           {/* CTA group */}
           <motion.div
@@ -372,10 +377,10 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
         </div>
-      </motion.div>
+      </motion.article>
 
       {/* Angled section divider */}
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="absolute bottom-0 left-0 right-0" aria-hidden="true">
         <svg className="w-full h-12 md:h-24" viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none">
           <path d="M0 96V48L720 0L1440 48V96H0Z" fill="#161B22"/>
         </svg>

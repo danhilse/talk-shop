@@ -88,6 +88,29 @@ export const viewport: Viewport = {
   ],
 };
 
+// Structured data for SEO
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Talk Shop",
+  url: "https://letstalkshop.com",
+  logo: "https://letstalkshop.com/logo.png",
+  description: "The Shopify Discord community for developers, merchants, and experts.",
+  sameAs: ["https://discord.gg/talk-shop"],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Talk Shop",
+  url: "https://letstalkshop.com",
+  description: "Join the Shopify Discord community for developers, merchants, and experts. Get real-time help, share insights, and connect with members building on Shopify.",
+  publisher: {
+    "@type": "Organization",
+    name: "Talk Shop",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -96,6 +119,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
         {/* Klaro CSS */}
         <link
           rel="stylesheet"
@@ -272,7 +308,9 @@ export default function RootLayout({
           />
         </noscript>
         <Nav />
-        {children}
+        <main id="main-content">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

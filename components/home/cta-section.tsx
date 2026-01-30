@@ -6,26 +6,27 @@ import { DiscordIcon } from "@/components/icons";
 
 export function CTASection() {
   return (
-    <section id="join-discord" className="relative overflow-hidden py-32">
+    <section id="join-discord" className="relative overflow-hidden py-32" aria-labelledby="cta-heading">
       {/* Multi-layer background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-shopify via-shopify-dark to-shopify"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-      <div className="grain absolute inset-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-shopify via-shopify-dark to-shopify" aria-hidden="true"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" aria-hidden="true"></div>
+      <div className="grain absolute inset-0" aria-hidden="true"></div>
 
       {/* Animated orbs */}
       <Floating duration={8} distance={30}>
-        <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+        <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/10 blur-3xl" aria-hidden="true"></div>
       </Floating>
       <Floating duration={10} distance={20}>
-        <div className="absolute -right-32 top-1/3 h-64 w-64 rounded-full bg-midnight/30 blur-3xl"></div>
+        <div className="absolute -right-32 top-1/3 h-64 w-64 rounded-full bg-midnight/30 blur-3xl" aria-hidden="true"></div>
       </Floating>
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         className="absolute left-1/2 -translate-x-1/2 bottom-0 h-64 w-[600px] rounded-full bg-lime/20 blur-3xl"
+        aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-4xl px-6 text-center">
+      <article className="relative mx-auto max-w-4xl px-6 text-center">
         {/* Badge */}
         <FadeUp delay={0.1}>
           <div className="mb-10 inline-flex items-center gap-2 text-midnight/60">
@@ -37,7 +38,7 @@ export function CTASection() {
         </FadeUp>
 
         <FadeUp delay={0.2}>
-          <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-midnight lg:text-5xl">
+          <h2 id="cta-heading" className="mb-8 text-3xl font-bold leading-tight tracking-tight text-midnight lg:text-5xl">
             Join our Shopify{" "}
             <span className="font-serif italic">Discord Collective</span>
           </h2>
@@ -82,7 +83,7 @@ export function CTASection() {
             </motion.a>
           </Magnetic>
         </FadeUp>
-      </div>
+      </article>
     </section>
   );
 }

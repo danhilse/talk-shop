@@ -174,14 +174,14 @@ const experienceStats = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="relative bg-midnight py-16 md:py-24 overflow-hidden">
-      <div className="absolute inset-0 grid-pattern opacity-30"></div>
+    <section id="experience" className="relative bg-midnight py-16 md:py-24 overflow-hidden" aria-labelledby="experience-heading">
+      <div className="absolute inset-0 grid-pattern opacity-30" aria-hidden="true"></div>
       <Floating duration={12} distance={25}>
-        <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]"></div>
+        <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-shopify/5 blur-[180px]" aria-hidden="true"></div>
       </Floating>
 
       {/* Right-side decorative pattern - flows to edge */}
-      <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-30 pointer-events-none">
+      <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-30 pointer-events-none" aria-hidden="true">
         <ConcentricCircles className="w-full h-full" rings={8} animated={false} />
       </div>
 
@@ -192,17 +192,20 @@ export function ExperienceSection() {
         viewport={{ once: true }}
         transition={{ duration: 1 }}
         className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-shopify/20 to-transparent hidden lg:block origin-top"
+        aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      <article className="relative mx-auto max-w-7xl px-6">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <SlideIn direction="left" delay={0.1}>
-            <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block">
-              Our Experience
-            </span>
-            <h2 className="mb-8 text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
-              With 20 years in eCommerce, <span className="font-serif italic text-lime">We stand out</span>
-            </h2>
+            <header>
+              <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4 block" aria-hidden="true">
+                Our Experience
+              </span>
+              <h2 id="experience-heading" className="mb-8 text-3xl sm:text-4xl font-bold leading-none sm:leading-tight tracking-tight text-white lg:text-5xl">
+                With 20 years in eCommerce, <span className="font-serif italic text-lime">We stand out</span>
+              </h2>
+            </header>
 
             <p className="text-lg leading-relaxed text-gray-400 mb-8">
               We&apos;ve witnessed it all—platform changes, Shopify updates, trends shifting, and strategies rising and falling. This is battle-tested insight from years in the trenches. Join us to stay ahead of the chaos.
@@ -238,7 +241,7 @@ export function ExperienceSection() {
 
           {/* Stats grid */}
           <SlideIn direction="right" delay={0.2} className="relative lg:pl-12">
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-shopify/10 to-transparent blur-xl"></div>
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-shopify/10 to-transparent blur-xl" aria-hidden="true"></div>
             <StaggerContainer className="relative grid grid-cols-2 gap-4 auto-rows-fr" staggerDelay={0.1}>
               {experienceStats.map((stat, index) => (
                 <StaggerItem key={stat.label} className="h-full">
@@ -248,7 +251,7 @@ export function ExperienceSection() {
             </StaggerContainer>
           </SlideIn>
         </div>
-      </div>
+      </article>
     </section>
   );
 }
