@@ -321,15 +321,9 @@ export default function SupportPage() {
                 <span className="block font-serif italic text-lime mt-1 md:mt-2">Shopify Support Works</span>
               </h2>
               <p className="text-lg leading-relaxed text-gray-400 mb-8">
-                <Typewriter
-                  delay={0.3}
-                  speed={35}
-                  segments={[
-                    { text: "Peer support works because it is grounded in " },
-                    { text: "real experience", className: "font-serif italic text-white font-normal" },
-                    { text: ". Instead of relying solely on support tickets or searching through outdated forum posts, merchants connect with others who are actively running Shopify stores and solving similar problems." },
-                  ]}
-                />
+                Peer support works because it is grounded in{" "}
+                <span className="font-serif italic text-white font-normal">real experience</span>
+                . Instead of relying solely on support tickets or searching through outdated forum posts, merchants connect with others who are actively running Shopify stores and solving similar problems.
               </p>
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
