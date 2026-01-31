@@ -313,7 +313,7 @@ export default function GrowthPage() {
       </section>
 
       {/* What Makes Us Different Section */}
-      <section id="learn-more" className="relative bg-slate py-32">
+      <section id="learn-more" className="relative bg-slate py-16 lg:py-32">
         <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
@@ -600,7 +600,8 @@ export default function GrowthPage() {
 
         <div className="relative mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2">
-            {/* Left column - Content */}
+            {/* Left column - Conte
+            nt */}
             <SlideIn direction="left" className="relative px-6 py-32 lg:pr-16">
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-6 block">
                 Who It&apos;s For
