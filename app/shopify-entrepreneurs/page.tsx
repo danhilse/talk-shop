@@ -326,15 +326,8 @@ export default function EntrepreneursPage() {
               </motion.span>
               <div className="relative">
                 <p className="text-3xl font-light leading-snug text-white lg:text-4xl">
-                  <Typewriter
-                    delay={0.3}
-                    speed={35}
-                    segments={[
-                      { text: "Sharing experiences with other founders helps reduce uncertainty and improves " },
-                      { text: "decision-making", className: "font-serif italic text-lime" },
-                      { text: "." },
-                    ]}
-                  />
+                  Sharing experiences with other founders helps reduce uncertainty and improves{" "}
+                  <span className="font-serif italic text-lime">decision-making</span>.
                 </p>
                 <motion.div
                   initial={{ scaleX: 0 }}

@@ -346,15 +346,9 @@ export default function GrowthPage() {
             {/* Right column - Content */}
             <SlideIn direction="right" delay={0.2} className="lg:col-span-8">
               <p className="text-xl leading-relaxed text-gray-300 md:text-2xl lg:text-3xl font-light">
-                <Typewriter
-                  delay={0.3}
-                  speed={35}
-                  segments={[
-                    { text: "Rather than surface-level tips, this community centers on strategies that have been " },
-                    { text: "tested and refined", className: "font-serif italic text-white font-normal" },
-                    { text: " through real-world experimentation. We focus on what actually moves the needle for Shopify merchants at every stage of growth." },
-                  ]}
-                />
+                Rather than surface-level tips, this community centers on strategies that have been{" "}
+                <span className="font-serif italic text-white font-normal">tested and refined</span>
+                {" "}through real-world experimentation. We focus on what actually moves the needle for Shopify merchants at every stage of growth.
               </p>
             </SlideIn>
           </div>

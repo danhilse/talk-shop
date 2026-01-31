@@ -486,15 +486,9 @@ export default function ExpertsPage() {
             <SlideIn direction="right" delay={0.2} className="lg:col-span-8">
               <div className="space-y-6 text-lg leading-relaxed text-gray-300 md:text-xl lg:text-2xl font-light">
                 <p>
-                  <Typewriter
-                    delay={0.3}
-                    speed={35}
-                    segments={[
-                      { text: "The community is designed to prioritize " },
-                      { text: "learning and collaboration", className: "font-serif italic text-white font-normal" },
-                      { text: " over selling services. This creates an environment where advice is honest, relevant, and focused on results." },
-                    ]}
-                  />
+                  The community is designed to prioritize{" "}
+                  <span className="font-serif italic text-white font-normal">learning and collaboration</span>
+                  {" "}over selling services. This creates an environment where advice is honest, relevant, and focused on results.
                 </p>
                 <p className="text-lg text-gray-400">
                   Members are encouraged to share lessons learned, challenges faced, and strategies that have worked in practice.
