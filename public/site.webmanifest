@@ -1,6 +1,6 @@
 {
-  "name": "Shopify Dev Community",
-  "short_name": "Shopify Dev",
+  "name": "Talk Shop - Shopify Discord Community",
+  "short_name": "Talk Shop",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -15,5 +15,6 @@
   ],
   "theme_color": "#95BF47",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/"
 }

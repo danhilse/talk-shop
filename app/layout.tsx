@@ -38,9 +38,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Talk Shop Community" }],
   creator: "Talk Shop",
   publisher: "Talk Shop",
-  metadataBase: new URL("https://letstalkshop.com"),
+  metadataBase: new URL("https://www.letstalkshop.com"),
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
@@ -55,8 +56,8 @@ export const metadata: Metadata = {
     description: "Join the Shopify Discord community for developers, merchants, and experts. Get real-time help, share insights, and connect with members building on Shopify.",
     images: [
       {
-        url: "/opengraph.png",
-        width: 1200,
+        url: "/opengraph.jpg",
+        width: 1120,
         height: 630,
         alt: "Talk Shop - Shopify Discord Community",
       },
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Talk Shop - Shopify Discord Community",
     description: "Join the Shopify Discord community for developers, merchants, and experts. Get real-time help, share insights, and connect with members building on Shopify.",
-    images: ["/opengraph.png"],
+    images: ["/opengraph.jpg"],
   },
   robots: {
     index: true,
@@ -93,8 +94,8 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Talk Shop",
-  url: "https://letstalkshop.com",
-  logo: "https://letstalkshop.com/logo.png",
+  url: "https://www.letstalkshop.com",
+  logo: "https://www.letstalkshop.com/logo.webp",
   description: "The Shopify Discord community for developers, merchants, and experts.",
   sameAs: ["https://discord.gg/talk-shop"],
 };
@@ -103,7 +104,7 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Talk Shop",
-  url: "https://letstalkshop.com",
+  url: "https://www.letstalkshop.com",
   description: "Join the Shopify Discord community for developers, merchants, and experts. Get real-time help, share insights, and connect with members building on Shopify.",
   publisher: {
     "@type": "Organization",
