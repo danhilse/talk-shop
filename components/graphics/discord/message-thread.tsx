@@ -42,7 +42,7 @@ const defaultMessages: ThreadMessage[] = [
     message: (
       <>
         <p>If you run an online store and feel tired replying messages, posting ads, and chasing sales...</p>
-        <p className="mt-2">I'm offering a free automation audit to show you how sales can happen even when you're offline.</p>
+        <p className="mt-2">I&apos;m offering a free automation audit to show you how sales can happen even when you&apos;re offline.</p>
         <p className="mt-2">No payment. Just real help.</p>
         <p className="mt-2">Apply in my bio link</p>
       </>
@@ -57,7 +57,7 @@ const defaultMessages: ThreadMessage[] = [
     message: (
       <>
         <p>Store owners — quick poll:</p>
-        <p className="mt-2">What's harder right now?</p>
+        <p className="mt-2">What&apos;s harder right now?</p>
         <div className="mt-2 flex flex-col gap-1">
           <span className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-sm bg-[#5865F2]"></span>

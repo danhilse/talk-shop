@@ -29,14 +29,11 @@ import {
 import {
   EcommerceAnalyticsCard,
   EcommerceAnalyticsDashboard,
-  EcommerceStat,
   EcommerceGrowthChart,
   EcommerceProgressBar,
   EcommerceRevenueComparison,
   EcommerceProductCard,
-  EcommerceProductGrid,
   EcommerceOrderNotification,
-  EcommerceNotificationStack,
   EcommerceLiveSalesTicker,
   EcommerceStoreComparison,
 } from "@/components/graphics";
@@ -52,7 +49,6 @@ import {
   DeveloperGitTerminal,
   DeveloperAPIResponse,
   DeveloperWebhookPayload,
-  DeveloperGraphQLResponse,
 } from "@/components/graphics";
 
 // Community components
@@ -60,7 +56,6 @@ import {
   CommunityMemberGrid,
   CommunityOnlineNow,
   CommunityAchievementBadge,
-  CommunityAchievementCollection,
   CommunityBadgeRow,
   CommunityLiveActivity,
   CommunityActivityStats,

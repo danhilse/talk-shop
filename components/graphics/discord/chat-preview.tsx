@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 
 // Discord color palette
 const DISCORD_BG = "#313338";
-const DISCORD_SECONDARY = "#2B2D31";
-const DISCORD_TERTIARY = "#1E1F22";
 const DISCORD_BRAND = "#5865F2";
 
 interface Message {

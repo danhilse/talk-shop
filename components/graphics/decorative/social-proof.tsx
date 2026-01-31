@@ -23,7 +23,7 @@ export function TestimonialCard({
       className={`relative w-80 rounded-2xl border border-white/10 bg-gradient-to-br from-slate to-carbon p-6 select-none ${className}`}
     >
       {/* Quote mark */}
-      <div className="absolute -top-4 -left-2 text-6xl font-serif text-shopify/20">"</div>
+      <div className="absolute -top-4 -left-2 text-6xl font-serif text-shopify/20">&ldquo;</div>
 
       {/* Quote */}
       <p className="relative text-gray-300 leading-relaxed mb-6">{quote}</p>
@@ -87,7 +87,7 @@ export function TestimonialStack({ className = "" }: { className?: string }) {
           className="absolute top-0 left-0 w-72 rounded-xl border border-white/10 bg-slate p-5"
           style={{ zIndex: testimonials.length - i }}
         >
-          <p className="text-sm text-gray-300 mb-4">"{t.quote}"</p>
+          <p className="text-sm text-gray-300 mb-4">&ldquo;{t.quote}&rdquo;</p>
           <div className="flex items-center gap-2">
             <div
               className="w-8 h-8 rounded-full"

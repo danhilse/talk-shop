@@ -11,6 +11,26 @@ import {
 import { homeFeatures } from "@/lib/data";
 import { DiscordMessageThread, ShopifyAnalyticsStack } from "@/components/graphics";
 
+// Hoisted static data - prevents object recreation on every render
+const DISCORD_PREVIEW_MESSAGES = [
+  { username: "alex_dev", userColor: "#95BF47", message: "Just shipped v2.0 🚀", timestamp: "2:14 PM" },
+  { username: "merchant_pro", userColor: "#FFD700", badge: "GROW" as const, badgeColor: "#95BF47", message: "Hit $50k this month! Finally cracked the Meta ads formula after 3 months of testing", timestamp: "2:18 PM" },
+  { username: "theme_wizard", userColor: "#FF6B6B", message: "reply" as const, timestamp: "2:22 PM" },
+  { username: "sam_builds", userColor: "#5865F2", badge: "DEV" as const, badgeColor: "#5865F2", message: "Anyone using Hydrogen?", timestamp: "2:25 PM" },
+  { username: "ecom_expert", userColor: "#00CED1", message: "New checkout extensions 👀", timestamp: "2:31 PM" },
+] as const;
+
+// Hoisted style objects - prevents object recreation on every render
+const MASK_GRADIENT_RIGHT = {
+  maskImage: "linear-gradient(to right, transparent 0%, black 20%)",
+  WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 20%)",
+} as const;
+
+const MASK_GRADIENT_LEFT = {
+  maskImage: "linear-gradient(to left, transparent 0%, black 20%)",
+  WebkitMaskImage: "linear-gradient(to left, transparent 0%, black 20%)",
+} as const;
+
 export function FeaturesSection() {
   return (
     <section id="learn-more" className="relative bg-slate py-16 md:py-24" aria-labelledby="features-heading">
@@ -65,45 +85,35 @@ export function FeaturesSection() {
                   {/* Decorative graphics for wider cards */}
                   {index === 0 && (
                     <div className="absolute -right-4 top-1/2 -translate-y-1/2 rotate-3 hidden lg:block pointer-events-none">
-                      <div
-                        className="relative"
-                        style={{
-                          maskImage: 'linear-gradient(to right, transparent 0%, black 20%)',
-                          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%)',
-                        }}
-                      >
+                      <div className="relative" style={MASK_GRADIENT_RIGHT}>
                         <DiscordMessageThread
                           className="!w-[400px] !bg-[#1a1b1e] scale-110"
                           animated={true}
                           showDateDivider={false}
-                          messages={[
-                            { username: "alex_dev", userColor: "#95BF47", message: "Just shipped v2.0 🚀", timestamp: "2:14 PM" },
-                            { username: "merchant_pro", userColor: "#FFD700", badge: "GROW", badgeColor: "#95BF47", message: "Hit $50k this month! Finally cracked the Meta ads formula after 3 months of testing", timestamp: "2:18 PM" },
-                            { username: "theme_wizard", userColor: "#FF6B6B", message: (
-                              <>
-                                <div className="flex items-center gap-1.5 text-[11px] text-gray-500 mb-1">
-                                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M10 8.5L14 12l-4 3.5V8.5z" /></svg>
-                                  <span className="text-[#95BF47]">@alex_dev</span>
-                                  <span className="truncate">Just shipped v2.0...</span>
-                                </div>
-                                <span>Nice work! Testing now</span>
-                              </>
-                            ), timestamp: "2:22 PM" },
-                            { username: "sam_builds", userColor: "#5865F2", badge: "DEV", badgeColor: "#5865F2", message: "Anyone using Hydrogen?", timestamp: "2:25 PM" },
-                            { username: "ecom_expert", userColor: "#00CED1", message: "New checkout extensions 👀", timestamp: "2:31 PM" },
-                          ]}
+                          messages={DISCORD_PREVIEW_MESSAGES.map((msg) =>
+                            msg.message === "reply"
+                              ? {
+                                  ...msg,
+                                  message: (
+                                    <>
+                                      <div className="flex items-center gap-1.5 text-[11px] text-gray-500 mb-1">
+                                        <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M10 8.5L14 12l-4 3.5V8.5z" /></svg>
+                                        <span className="text-[#95BF47]">@alex_dev</span>
+                                        <span className="truncate">Just shipped v2.0...</span>
+                                      </div>
+                                      <span>Nice work! Testing now</span>
+                                    </>
+                                  ),
+                                }
+                              : msg
+                          )}
                         />
                       </div>
                     </div>
                   )}
                   {index === 3 && (
                     <div className="absolute -left-12 top-1/2 -translate-y-[45%] -rotate-6 hidden lg:block pointer-events-none">
-                      <div
-                        style={{
-                          maskImage: 'linear-gradient(to left, transparent 0%, black 20%)',
-                          WebkitMaskImage: 'linear-gradient(to left, transparent 0%, black 20%)',
-                        }}
-                      >
+                      <div style={MASK_GRADIENT_LEFT}>
                         <ShopifyAnalyticsStack />
                       </div>
                     </div>

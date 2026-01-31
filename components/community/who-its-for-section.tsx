@@ -172,11 +172,11 @@ export function WhoItsForSection() {
                       </div>
                       <div className="p-3 font-mono text-[9px] text-gray-300">
                         <div>{"{"}</div>
-                        <div className="pl-2"><span className="text-cyan-400">"products"</span>: [{"{"}</div>
-                        <div className="pl-4"><span className="text-cyan-400">"id"</span>: <span className="text-orange-400">7654321098</span>,</div>
-                        <div className="pl-4"><span className="text-cyan-400">"title"</span>: <span className="text-lime">"Premium Hoodie"</span>,</div>
-                        <div className="pl-4"><span className="text-cyan-400">"status"</span>: <span className="text-lime">"active"</span>,</div>
-                        <div className="pl-4"><span className="text-cyan-400">"variants"</span>: [...]</div>
+                        <div className="pl-2"><span className="text-cyan-400">&quot;products&quot;</span>: [{"{"}</div>
+                        <div className="pl-4"><span className="text-cyan-400">&quot;id&quot;</span>: <span className="text-orange-400">7654321098</span>,</div>
+                        <div className="pl-4"><span className="text-cyan-400">&quot;title&quot;</span>: <span className="text-lime">&quot;Premium Hoodie&quot;</span>,</div>
+                        <div className="pl-4"><span className="text-cyan-400">&quot;status&quot;</span>: <span className="text-lime">&quot;active&quot;</span>,</div>
+                        <div className="pl-4"><span className="text-cyan-400">&quot;variants&quot;</span>: [...]</div>
                         <div className="pl-2">{"}]"}</div>
                         <div>{"}"}</div>
                       </div>

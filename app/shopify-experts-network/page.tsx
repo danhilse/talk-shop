@@ -457,7 +457,7 @@ export default function ExpertsPage() {
         <div className="absolute inset-0 diagonal-stripes opacity-30"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
-          <div className="grid gap-20 lg:grid-cols-12 lg:items-center">
+          <div className="grid gap-6 lg:gap-20 lg:grid-cols-12 lg:items-center">
             {/* Left column - Big quote mark */}
             <SlideIn direction="left" className="lg:col-span-4 relative">
               <motion.span
@@ -465,11 +465,11 @@ export default function ExpertsPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="absolute -top-8 -left-4 font-serif text-[120px] md:text-[200px] leading-none text-shopify/10 select-none"
+                className="absolute -top-8 -left-4 font-serif text-[80px] md:text-[200px] leading-none text-shopify/10 select-none"
               >
                 &ldquo;
               </motion.span>
-              <div className="relative">
+              <div className="relative pl-1">
                 <div className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4">
                   Our Philosophy
                 </div>
@@ -484,7 +484,7 @@ export default function ExpertsPage() {
 
             {/* Right column - Content */}
             <SlideIn direction="right" delay={0.2} className="lg:col-span-8">
-              <div className="space-y-6 text-xl leading-relaxed text-gray-300 lg:text-2xl font-light">
+              <div className="space-y-6 text-lg leading-relaxed text-gray-300 md:text-xl lg:text-2xl font-light">
                 <p>
                   <Typewriter
                     delay={0.3}

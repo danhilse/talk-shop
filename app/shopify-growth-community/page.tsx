@@ -317,7 +317,7 @@ export default function GrowthPage() {
         <div className="absolute inset-0 diagonal-stripes opacity-50"></div>
 
         <div className="relative mx-auto max-w-7xl px-6">
-          <div className="grid gap-16 lg:grid-cols-12 lg:items-center">
+          <div className="grid gap-6 lg:gap-16 lg:grid-cols-12 lg:items-center">
             {/* Left column - Quote mark */}
             <SlideIn direction="left" className="lg:col-span-4 relative">
               <motion.span
@@ -325,11 +325,11 @@ export default function GrowthPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="absolute -top-8 -left-4 font-serif text-[120px] md:text-[200px] leading-none text-shopify/10 select-none"
+                className="absolute -top-8 -left-4 font-serif text-[80px] md:text-[200px] leading-none text-shopify/10 select-none"
               >
                 &ldquo;
               </motion.span>
-              <div className="relative">
+              <div className="relative pl-1">
                 <div className="font-mono text-xs uppercase tracking-[0.3em] text-shopify mb-4">
                   Beyond Surface-Level
                 </div>
@@ -345,7 +345,7 @@ export default function GrowthPage() {
 
             {/* Right column - Content */}
             <SlideIn direction="right" delay={0.2} className="lg:col-span-8">
-              <p className="text-2xl leading-relaxed text-gray-300 lg:text-3xl font-light">
+              <p className="text-xl leading-relaxed text-gray-300 md:text-2xl lg:text-3xl font-light">
                 <Typewriter
                   delay={0.3}
                   speed={35}

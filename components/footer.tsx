@@ -143,7 +143,8 @@ export function Footer() {
                   alt="Talk Shop"
                   fill
                   sizes="32px"
-                  className="object-cover"
+                  className="object-contain"
+                  unoptimized
                 />
               </div>
               <span className="text-sm font-medium text-white/60">Talk Shop</span>

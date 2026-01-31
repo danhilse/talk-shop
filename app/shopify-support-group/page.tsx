@@ -331,7 +331,7 @@ export default function SupportPage() {
                   ]}
                 />
               </p>
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div className="flex items-start gap-4">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-shopify/20 text-shopify shrink-0 mt-0.5">
                     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">

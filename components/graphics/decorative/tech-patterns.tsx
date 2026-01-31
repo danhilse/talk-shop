@@ -1,15 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useMemo } from "react";
+
+// Seeded random number generator for stable values across renders
+function seededRandom(seed: number): () => number {
+  return () => {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  };
+}
 
 // Code rain / matrix effect
 export function CodeRain({ className = "" }: { className?: string }) {
   const columns = 20;
   const chars = "01{}[]<>/\\|;:.,?!@#$%^&*SHOPIFY".split("");
 
+  // Pre-generate stable random values
+  const columnData = useMemo(() => {
+    const random = seededRandom(789);
+    return Array.from({ length: columns }, () => ({
+      duration: 3 + random() * 4,
+      delay: random() * 2,
+      charIndices: Array.from({ length: 15 }, () => Math.floor(random() * chars.length)),
+    }));
+  }, [chars.length]);
+
   return (
     <div className={`relative w-full h-48 overflow-hidden rounded-2xl bg-midnight select-none ${className}`}>
-      {Array.from({ length: columns }, (_, i) => (
+      {columnData.map((col, i) => (
         <motion.div
           key={i}
           className="absolute top-0 font-mono text-xs leading-tight"
@@ -20,15 +39,15 @@ export function CodeRain({ className = "" }: { className?: string }) {
           initial={{ y: "-100%" }}
           animate={{ y: "200%" }}
           transition={{
-            duration: 3 + Math.random() * 4,
+            duration: col.duration,
             repeat: Infinity,
-            delay: Math.random() * 2,
+            delay: col.delay,
             ease: "linear",
           }}
         >
-          {Array.from({ length: 15 }, (_, j) => (
+          {col.charIndices.map((charIndex, j) => (
             <div key={j} style={{ opacity: 1 - j * 0.06 }}>
-              {chars[Math.floor(Math.random() * chars.length)]}
+              {chars[charIndex]}
             </div>
           ))}
         </motion.div>
@@ -266,14 +285,19 @@ export function HexGrid({ className = "" }: { className?: string }) {
     return points.join(" ");
   };
 
-  const hexagons: { x: number; y: number; active: boolean }[] = [];
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
-      const x = col * hexSize * 1.75 + (row % 2) * hexSize * 0.875 + 40;
-      const y = row * hexSize * 1.5 + 40;
-      hexagons.push({ x, y, active: Math.random() > 0.6 });
+  // Pre-generate stable hexagon data
+  const hexagons = useMemo(() => {
+    const random = seededRandom(456);
+    const result: { x: number; y: number; active: boolean; fillDelay: number }[] = [];
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const x = col * hexSize * 1.75 + (row % 2) * hexSize * 0.875 + 40;
+        const y = row * hexSize * 1.5 + 40;
+        result.push({ x, y, active: random() > 0.6, fillDelay: random() * 2 });
+      }
     }
-  }
+    return result;
+  }, []);
 
   return (
     <div className={`relative w-full h-48 rounded-2xl overflow-hidden select-none ${className}`}>
@@ -295,7 +319,7 @@ export function HexGrid({ className = "" }: { className?: string }) {
             }}
             transition={{
               delay: i * 0.02,
-              fill: { duration: 3, repeat: Infinity, delay: Math.random() * 2 },
+              fill: { duration: 3, repeat: Infinity, delay: hex.fillDelay },
             }}
           />
         ))}

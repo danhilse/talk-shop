@@ -249,11 +249,12 @@
   }
 
   .klaro .cn-buttons {
-    flex-direction: column !important;
+    flex-direction: row !important;
+    width: 100% !important;
   }
 
   .klaro .cm-btn {
-    width: 100% !important;
+    flex: 1 !important;
     text-align: center !important;
   }
 }

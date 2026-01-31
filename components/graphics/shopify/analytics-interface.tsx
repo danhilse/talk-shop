@@ -7,7 +7,6 @@ const SHOPIFY_BG = "#1A1A1A";
 const SHOPIFY_SIDEBAR = "#0D0D0D";
 const SHOPIFY_CARD = "#252525";
 const SHOPIFY_BORDER = "#333333";
-const SHOPIFY_GREEN = "#95BF47";
 const SHOPIFY_TEXT = "#E3E3E3";
 const SHOPIFY_TEXT_SUBDUED = "#8A8A8A";
 
@@ -469,14 +468,12 @@ function SummaryCard({
   title,
   value,
   change,
-  positive,
   chartData,
   delay = 0,
 }: {
   title: string;
   value: string;
   change: number;
-  positive?: boolean;
   chartData: number[];
   delay?: number;
 }) {

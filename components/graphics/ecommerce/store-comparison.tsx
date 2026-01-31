@@ -13,8 +13,10 @@ interface StoreComparisonProps {
 }
 
 export function EcommerceStoreComparison({
-  beforeTitle = "Old Product Page",
-  afterTitle = "New Product Page",
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  beforeTitle: _beforeTitle = "Old Product Page",
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  afterTitle: _afterTitle = "New Product Page",
   beforeFeatures = [
     "Basic product images",
     "Simple description",

@@ -1,6 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useMemo } from "react";
+
+// Seeded random number generator for stable values across renders
+function seededRandom(seed: number): () => number {
+  return () => {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  };
+}
 
 // Repeating isometric cubes
 export function IsometricCubes({
@@ -710,13 +719,18 @@ export function NoisePattern({
   className?: string;
   density?: number;
 }) {
-  const particles = Array.from({ length: density }, (_, i) => ({
-    x: Math.random() * 400,
-    y: Math.random() * 200,
-    size: Math.random() * 3 + 1,
-    opacity: Math.random() * 0.4 + 0.1,
-    isGreen: Math.random() > 0.7,
-  }));
+  const particles = useMemo(() => {
+    const random = seededRandom(999);
+    return Array.from({ length: density }, () => ({
+      x: random() * 400,
+      y: random() * 200,
+      size: random() * 3 + 1,
+      opacity: random() * 0.4 + 0.1,
+      isGreen: random() > 0.7,
+      duration: 2 + random() * 2,
+      delay: random() * 2,
+    }));
+  }, [density]);
 
   return (
     <div className={`relative overflow-hidden select-none ${className}`}>
@@ -734,9 +748,9 @@ export function NoisePattern({
               opacity: [p.opacity, p.opacity * 0.3, p.opacity],
             }}
             transition={{
-              duration: 2 + Math.random() * 2,
+              duration: p.duration,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: p.delay,
             }}
           />
         ))}
@@ -756,11 +770,14 @@ export function MazePattern({
   const rows = 10;
   const cols = 20;
 
-  // Generate a simple random maze-like pattern
-  const cells = Array.from({ length: rows * cols }, (_, i) => ({
-    hasRight: Math.random() > 0.5,
-    hasBottom: Math.random() > 0.5,
-  }));
+  // Generate a stable maze-like pattern using seeded random
+  const cells = useMemo(() => {
+    const random = seededRandom(888);
+    return Array.from({ length: rows * cols }, () => ({
+      hasRight: random() > 0.5,
+      hasBottom: random() > 0.5,
+    }));
+  }, []);
 
   return (
     <div className={`relative overflow-hidden select-none ${className}`}>

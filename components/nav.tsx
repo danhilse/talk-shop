@@ -72,9 +72,10 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
 }
 
 const navLinks = [
-  { label: "Learn More", href: "#learn-more" },
-  { label: "About Us", href: "#experience" },
-  { label: "Follow Us", href: "#socials" },
+  { label: "Home", href: "/" },
+  { label: "Learn More", href: "/#learn-more" },
+  { label: "About Us", href: "/#experience" },
+  { label: "Follow Us", href: "/#socials" },
 ] as const;
 
 export function Nav() {
@@ -100,13 +101,13 @@ export function Nav() {
         <div className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-shopify focus-visible:ring-offset-2 focus-visible:ring-offset-midnight">
-              <motion.div whileHover={hoverScale} whileTap={tapScale} className="relative h-16 w-40">
+              <motion.div whileHover={hoverScale} whileTap={tapScale} className="relative h-12 w-28 md:h-16 md:w-40">
                 <Image
                   src="/logo.webp"
                   alt="Talk Shop"
                   fill
-                  sizes="160px"
-                  className="object-contain"
+                  sizes="(max-width: 768px) 112px, 160px"
+                  className="object-contain object-left"
                   priority
                 />
               </motion.div>

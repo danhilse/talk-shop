@@ -42,7 +42,6 @@ export function EcommerceAnalyticsCard({
     .join(" ");
 
   const areaPath = `M0,${height} L${points} L${width},${height} Z`;
-  const linePath = `M${points}`;
 
   if (variant === "compact") {
     return (

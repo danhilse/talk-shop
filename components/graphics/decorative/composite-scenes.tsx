@@ -52,7 +52,7 @@ export function DiscordBusyScene({ className = "" }: { className?: string }) {
           <span className="text-xs font-semibold text-[#5865F2]">@TalkShop</span>
           <span className="text-[10px] bg-[#5865F2] px-1 rounded text-white font-bold">BOT</span>
         </div>
-        <p className="text-xs text-gray-400">Here's what I found about webhooks...</p>
+        <p className="text-xs text-gray-400">Here&apos;s what I found about webhooks...</p>
       </motion.div>
 
       <motion.div

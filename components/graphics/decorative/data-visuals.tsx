@@ -1,6 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useMemo } from "react";
+
+// Seeded random number generator for stable values across renders
+function seededRandom(seed: number): () => number {
+  return () => {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  };
+}
 
 // Radial progress with multiple rings
 export function RadialProgress({
@@ -172,8 +181,11 @@ export function HeatMapCalendar({ className = "" }: { className?: string }) {
   const weeks = 12;
   const days = 7;
 
-  // Generate random activity data
-  const data = Array.from({ length: weeks * days }, () => Math.random());
+  // Generate stable activity data using seeded random
+  const data = useMemo(() => {
+    const random = seededRandom(123);
+    return Array.from({ length: weeks * days }, () => random());
+  }, []);
 
   const getColor = (value: number) => {
     if (value < 0.2) return "#ffffff05";

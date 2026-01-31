@@ -1,6 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useMemo } from "react";
+
+// Seeded random number generator for stable values across renders
+function seededRandom(seed: number): () => number {
+  return () => {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  };
+}
 
 // Floating orbs with gradient glow - great for backgrounds
 export function FloatingOrbs({ className = "" }: { className?: string }) {
@@ -75,13 +84,16 @@ export function GradientMesh({ className = "" }: { className?: string }) {
 
 // Particle field with connections
 export function ParticleNetwork({ className = "" }: { className?: string }) {
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: 3 + Math.random() * 4,
-    duration: 3 + Math.random() * 4,
-  }));
+  const particles = useMemo(() => {
+    const random = seededRandom(42);
+    return Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: random() * 100,
+      y: random() * 100,
+      size: 3 + random() * 4,
+      duration: 3 + random() * 4,
+    }));
+  }, []);
 
   return (
     <div className={`relative w-full h-64 overflow-hidden rounded-2xl bg-slate/50 select-none ${className}`}>

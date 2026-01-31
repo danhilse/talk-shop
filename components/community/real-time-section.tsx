@@ -259,7 +259,7 @@ function DiscordChatAnimation() {
                 </div>
                 {msg.isCode ? (
                   <div className="mt-2 rounded-lg bg-[#2B2D31] p-3 text-xs font-mono border border-white/5">
-                    <div className="text-gray-400 mb-1">// Use raw body for HMAC verification</div>
+                    <div className="text-gray-400 mb-1">{"// Use raw body for HMAC verification"}</div>
                     <div><span className="text-purple-400">app</span>.use(<span className="text-lime">&apos;/webhooks&apos;</span>,</div>
                     <div className="ml-3"><span className="text-cyan-400">express</span>.raw({"{"}type: <span className="text-lime">&apos;application/json&apos;</span>{"}"}))</div>
                   </div>
