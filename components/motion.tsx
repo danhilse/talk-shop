@@ -310,6 +310,8 @@ interface FloatingProps {
   distance?: number;
 }
 
+const floatingStyle = { willChange: "transform" } as const;
+
 export function Floating({
   children,
   className,
@@ -337,7 +339,12 @@ export function Floating({
   );
 
   return (
-    <motion.div className={className} animate={animate} transition={transition}>
+    <motion.div
+      className={className}
+      animate={animate}
+      transition={transition}
+      style={prefersReducedMotion ? undefined : floatingStyle}
+    >
       {children}
     </motion.div>
   );

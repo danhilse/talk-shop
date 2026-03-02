@@ -2,13 +2,24 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import { Magnetic, Floating } from "@/components/motion";
 import { DiscordIcon } from "@/components/icons";
 import { displayHeadshots } from "@/lib/data";
 
+// Media query subscription for SSR-safe desktop detection
+const MQ = "(min-width: 768px)";
+const subscribeToMQ = (cb: () => void) => {
+  const mq = window.matchMedia(MQ);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+};
+const getMQSnapshot = () => window.matchMedia(MQ).matches;
+const getMQServerSnapshot = () => false;
+
 export function HeroSection() {
   const heroRef = useRef(null);
+  const isDesktop = useSyncExternalStore(subscribeToMQ, getMQSnapshot, getMQServerSnapshot);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -24,8 +35,8 @@ export function HeroSection() {
       {/* Background effects */}
       <div className="absolute inset-0 grid-pattern opacity-50" aria-hidden="true"></div>
 
-      {/* Aurora gradient mesh */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      {/* Aurora gradient mesh - hidden on mobile, expensive to animate on low-end GPUs */}
+      <div className="absolute inset-0 overflow-hidden hidden md:block" aria-hidden="true">
         <Floating duration={8} distance={20}>
           <div className="absolute top-20 left-1/4 h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
         </Floating>
@@ -35,8 +46,8 @@ export function HeroSection() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-cyan-500/3 blur-[200px]"></div>
       </div>
 
-      {/* Animated gradient beams */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      {/* Animated gradient beams - hidden on mobile */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block" aria-hidden="true">
         {/* Top-left beam */}
         <motion.div
           initial={{ opacity: 0, x: -100 }}
@@ -210,7 +221,7 @@ export function HeroSection() {
 
       {/* Main content */}
       <motion.article
-        style={{ y: smoothY }}
+        style={isDesktop ? { y: smoothY } : {}}
         className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:py-40"
       >
         <div className="flex flex-col items-center text-center">

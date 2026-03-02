@@ -10,8 +10,8 @@ import { DiscordFullInterface } from "@/components/graphics";
 export function CommunityHeroSection() {
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden pt-16 md:pt-20" aria-labelledby="community-hero-heading">
-      {/* Animated gradient orbs */}
-      <div aria-hidden="true">
+      {/* Animated gradient orbs - hidden on mobile, expensive to animate on low-end GPUs */}
+      <div aria-hidden="true" className="hidden md:block">
         <Floating duration={8} distance={20}>
           <div className="absolute top-20 left-[10%] h-[600px] w-[600px] rounded-full bg-shopify/8 blur-[180px]"></div>
         </Floating>

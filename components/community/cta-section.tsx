@@ -12,18 +12,20 @@ export function CommunityCTASection() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
       <div className="grain absolute inset-0"></div>
 
-      {/* Animated orbs */}
-      <Floating duration={8} distance={30}>
-        <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
-      </Floating>
-      <Floating duration={10} distance={20}>
-        <div className="absolute -right-32 top-1/3 h-64 w-64 rounded-full bg-midnight/30 blur-3xl"></div>
-      </Floating>
-      <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-1/2 -translate-x-1/2 bottom-0 h-64 w-[600px] rounded-full bg-lime/20 blur-3xl"
-      />
+      {/* Animated orbs - hidden on mobile, expensive to animate on low-end GPUs */}
+      <div className="hidden md:block" aria-hidden="true">
+        <Floating duration={8} distance={30}>
+          <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+        </Floating>
+        <Floating duration={10} distance={20}>
+          <div className="absolute -right-32 top-1/3 h-64 w-64 rounded-full bg-midnight/30 blur-3xl"></div>
+        </Floating>
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute left-1/2 -translate-x-1/2 bottom-0 h-64 w-[600px] rounded-full bg-lime/20 blur-3xl"
+        />
+      </div>
 
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         {/* Badge */}

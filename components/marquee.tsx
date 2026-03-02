@@ -36,6 +36,7 @@ export function Marquee({ children, reverse = false }: MarqueeProps) {
     <div className="flex overflow-hidden select-none gap-8">
       <motion.div
         className="flex shrink-0 items-center gap-8"
+        style={{ willChange: "transform" }}
         animate={{ x: animateX }}
         transition={marqueeTransition}
       >
@@ -44,6 +45,7 @@ export function Marquee({ children, reverse = false }: MarqueeProps) {
       </motion.div>
       <motion.div
         className="flex shrink-0 items-center gap-8"
+        style={{ willChange: "transform" }}
         aria-hidden="true"
         animate={{ x: animateX }}
         transition={marqueeTransition}
